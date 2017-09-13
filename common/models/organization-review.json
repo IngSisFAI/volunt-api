@@ -1,0 +1,22 @@
+{
+  "name": "OrganizationReview",
+  "plural": "OrganizationReviews",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Calification": {
+      "type": "number",
+      "required": true
+    },
+    "Text": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

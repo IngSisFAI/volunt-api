@@ -1,0 +1,26 @@
+{
+  "name": "PermanentRequest",
+  "base": "DonationRequest",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Ammount": {
+      "type": "number",
+      "required": true
+    },
+    "Status": {
+      "type": "boolean",
+      "required": true
+    },
+    "ClosingDate": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

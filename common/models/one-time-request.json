@@ -1,0 +1,32 @@
+{
+  "name": "OneTimeRequest",
+  "base": "DonationRequest",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Ammount": {
+      "type": "number",
+      "required": true
+    },
+    "ExpirationDate": {
+      "type": "date",
+      "required": true
+    },
+    "Covered": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "Promised": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

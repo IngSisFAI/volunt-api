@@ -1,0 +1,27 @@
+{
+  "name": "DonationResponse",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "CreationDate": {
+      "type": "string",
+      "required": true
+    },
+    "Ammount": {
+      "type": "number",
+      "required": true
+    },
+    "AlreadyDelivered": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
