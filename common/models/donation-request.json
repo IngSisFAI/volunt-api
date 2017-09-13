@@ -12,7 +12,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "product": {
+      "type": "hasOne",
+      "model": "Product",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

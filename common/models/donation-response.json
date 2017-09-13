@@ -21,7 +21,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "respondsTo": {
+      "type": "hasOne",
+      "model": "DonationRequest",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

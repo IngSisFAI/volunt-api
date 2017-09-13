@@ -16,7 +16,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "parentProduct": {
+      "type": "hasOne",
+      "model": "Product",
+      "foreignKey": ""
+    },
+    "unit": {
+      "type": "hasOne",
+      "model": "Unit",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

@@ -8,7 +8,23 @@
   },
   "properties": {},
   "validations": [],
-  "relations": {},
+  "relations": {
+    "contacts": {
+      "type": "hasMany",
+      "model": "Contact",
+      "foreignKey": ""
+    },
+    "donnerReviews": {
+      "type": "hasMany",
+      "model": "DonnerReview",
+      "foreignKey": ""
+    },
+    "donationRequests": {
+      "type": "hasMany",
+      "model": "DonationRequest",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

@@ -12,7 +12,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "reviewedResponse": {
+      "type": "hasOne",
+      "model": "DonationResponse",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }
