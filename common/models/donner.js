@@ -1,4 +1,5 @@
 'use strict';
+var path = require('path');
 
 module.exports = function(Donner) {
   // Disable related model relations "Donation Response"
@@ -49,47 +50,96 @@ module.exports = function(Donner) {
   Donner.disableRemoteMethodByName(
     'prototype.__destroyById__organizationReviews');
 
-  Donner.remoteMethod('sampleRemoteMethod', {
-    accepts: [
-      {arg: 'urlArg',
-        type: 'string',
-        required: true,
-        description: ['Sample multiline', ' argument description'],
-      },
-      {arg: 'bodyArg',
-        type: 'string',
-        required: true,
-        description: ['Sample multiline', ' argument description'],
-        http: {
-          source: 'body'},
-      }],
-    http: {'verb': 'post', 'path': '/routeName'},
-    returns: {arg: 'sampleReturn', type: 'string'},
-    description: 'Sample description',
-  });
+// Importing user control
 
-  Donner.sampleRemoteMethod = function(urlArg, bodyArg, cb) {
-    console.log(urlArg, bodyArg);
-    Donner.create(
-      {email: 'sample@email.com',
-        password: 'samplePassowrd'},
-      function(error, donner) {
-        if (error) throw error;
-        console.log(donner);
+  // Disable ACLs
+  Donner.settings.acls.length = 0;
+  Donner.settings.acls = [
+    {accessType: '*',
+      principalType: 'ROLE',
+      principalId: '$everyone',
+      permission: 'ALLOW'}];
+
+  Donner.beforeRemote('prototype.patchAttributes',
+    function(ctx, res, next) {
+      Donner.findById(ctx.req.accessToken.userId, function(err, user) {
+        if (err) {
+          var error = new Error('No se encontró el usuario');
+          error.status = 404;
+          next(error);
+        }
+        // Block intentional email change
+        ctx.req.body.email = user.email;
+        ctx.req.body.username = user.username;
+        // User wants to patch password, this requires oldPassword
+        if (ctx.req.body.password != null)        {
+          user.hasPassword(ctx.req.body.oldPassword, function(err, isMatch) {
+            if (!isMatch) {
+              var error = new Error('El password antiguo no coincide');
+              error.status = 401;
+              next(error);
+            } else {
+              next();
+            }
+          });
+        } else
+          next();
       });
-    cb('error', 'success');
+    });
+
+  Donner.afterRemote('create', function(context, userInstance, next) {
+    console.log('> user.afterRemote triggered');
+
+    var options = {
+      type: 'email',
+      to: userInstance.email,
+      from: 'voluntariadouncoma2017@gmail.com',
+      subject: 'Thanks for registering.',
+      template: path.resolve(__dirname, '../../server/views/verify.ejs'),
+      redirect: '/verified',
+      user: userInstance,
+      host: 'localhost',
+      port: '',
+    };
+
+    options.verifyHref = options.verifyHref ||
+      options.protocol +
+      '://' +
+      options.host +
+      Donner.app.get('restApiRoot') +
+      Donner.http.path +
+      Donner.sharedClass.find('confirm', true).http.path +
+      '?uid=' +
+      options.user.id +
+      '&redirect=' +
+      options.redirect;
+
+    userInstance.verify(options, function(err, response) {
+      console.log(err);
+      if (err) return next(err);
+      next();
+    });
+  });
+
+  Donner.remoteMethod('emailExists', {
+    accepts: [{
+      arg: 'email',
+      type: 'string',
+      required: true,
+      http: {source: 'body'}}],
+    http: {
+      'verb': 'post',
+      'path': '/emailExists',
+    },
+    returns: {arg: 'emailExists', type: 'boolean'},
+  });
+
+  Donner.emailExists = function(mail, cb) {
+    console.log(mail);
+    Donner.findOne({where: {email: mail}}, function(err, Donner) {
+      if (err) throw err;
+      console.log(Donner);
+      cb(null, Donner != null);
+    });
   };
-
-  // SAMPLE HOOKS
-  Donner.beforeRemote('create',  function(context, donnerInstance, next) {
-    console.log(context);
-    console.log(donnerInstance);
-    next();
-  });
-
-  Donner.afterRemote('create',  function(context, donnerInstance, next) {
-    console.log(context);
-    console.log(donnerInstance);
-    next();
-  });
 };

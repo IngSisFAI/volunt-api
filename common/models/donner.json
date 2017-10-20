@@ -6,7 +6,25 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "inheritAcls": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "dni":{
+      "type": "string",
+      "required": true
+    }
+  },
   "validations": [],
   "relations": {
     "donationResponses": {

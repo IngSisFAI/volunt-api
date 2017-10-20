@@ -2,5 +2,21 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "myEmailDataSource": {
+    "name": "myEmailDataSource",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "SMTP",
+        "host": "gmail.com",
+        "secure": false,
+        "port": 587,
+        "auth": {
+          "user": "voluntariadouncoma2017@gmail.com",
+          "pass": "*"
+        }
+      }
+    ]
   }
 }
