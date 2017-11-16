@@ -19,14 +19,14 @@
       }
     ]
   },
-  "mongoDs": {
-    "host": "localhost",
-    "port": 27017,
+  "mLab": {
+    "host": "ds111476.mlab.com",
+    "port": 11476,
     "url": "",
     "database": "voluntariado",
-    "password": "",
-    "name": "mongoDs",
-    "user": "",
+    "password": "123456",
+    "name": "mLab",
+    "user": "root",
     "connector": "mongodb"
   }
 }
