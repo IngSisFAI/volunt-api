@@ -14,33 +14,33 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "mongoDs"
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": false
   },
   "Organization": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": true
   },
   "Donner": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": true,
     "options": {
       "remoting": {
@@ -53,39 +53,39 @@
     }
   },
   "Contact": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": true
   },
   "DonnerReview": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": true
   },
   "OrganizationReview": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": true
   },
   "DonationRequest": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": false
   },
   "OneTimeRequest": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": true
   },
   "PermanentRequest": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": true
   },
   "DonationResponse": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": true
   },
   "Product": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": true
   },
   "Unit": {
-    "dataSource": "db",
+    "dataSource": "mongoDs",
     "public": true
   }
 }

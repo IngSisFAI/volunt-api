@@ -18,5 +18,15 @@
         }
       }
     ]
+  },
+  "mongoDs": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "voluntariado",
+    "password": "",
+    "name": "mongoDs",
+    "user": "",
+    "connector": "mongodb"
   }
 }
