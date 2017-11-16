@@ -23,7 +23,7 @@
   "validations": [],
   "relations": {
     "respondsTo": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "DonationRequest",
       "foreignKey": ""
     }

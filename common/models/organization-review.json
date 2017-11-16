@@ -18,7 +18,7 @@
   "validations": [],
   "relations": {
     "reviewedRequest": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "DonationRequest",
       "foreignKey": ""
     }

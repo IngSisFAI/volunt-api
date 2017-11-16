@@ -18,12 +18,12 @@
   "validations": [],
   "relations": {
     "parentProduct": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "Product",
       "foreignKey": ""
     },
     "unit": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "Unit",
       "foreignKey": ""
     }

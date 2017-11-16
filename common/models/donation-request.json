@@ -14,7 +14,7 @@
   "validations": [],
   "relations": {
     "product": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "Product",
       "foreignKey": ""
     }
