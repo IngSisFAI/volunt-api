@@ -14,33 +14,33 @@
     ]
   },
   "User": {
-    "dataSource": "mongoDs"
+    "dataSource": "mLab"
   },
   "AccessToken": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": false
   },
   "ACL": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": false
   },
   "Organization": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": true
   },
   "Donner": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": true,
     "options": {
       "remoting": {
@@ -53,39 +53,39 @@
     }
   },
   "Contact": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": true
   },
   "DonnerReview": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": true
   },
   "OrganizationReview": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": true
   },
   "DonationRequest": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": false
   },
   "OneTimeRequest": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": true
   },
   "PermanentRequest": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": true
   },
   "DonationResponse": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": true
   },
   "Product": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": true
   },
   "Unit": {
-    "dataSource": "mongoDs",
+    "dataSource": "mLab",
     "public": true
   }
 }
