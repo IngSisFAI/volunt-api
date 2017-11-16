@@ -18,11 +18,11 @@
         }
       }
     ]
-  },
+  }, 
   "mLab": {
-    "host": "ds111476.mlab.com",
+    "host": "mlab.com",
     "port": 11476,
-    "url": "",
+    "url": "mongodb://root:123456@ds111476.mlab.com:11476/voluntariado",
     "database": "voluntariado",
     "password": "123456",
     "name": "mLab",
