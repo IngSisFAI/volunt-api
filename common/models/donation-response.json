@@ -6,15 +6,15 @@
     "validateUpsert": true
   },
   "properties": {
-    "CreationDate": {
+    "creationDate": {
       "type": "string",
       "required": true
     },
-    "Ammount": {
+    "ammount": {
       "type": "number",
       "required": true
     },
-    "AlreadyDelivered": {
+    "alreadyDelivered": {
       "type": "boolean",
       "required": true,
       "default": false

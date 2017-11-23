@@ -7,7 +7,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "Calification": {
+    "calification": {
       "type": "string"
     }
   },

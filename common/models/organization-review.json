@@ -7,11 +7,11 @@
     "validateUpsert": true
   },
   "properties": {
-    "Calification": {
+    "calification": {
       "type": "number",
       "required": true
     },
-    "Text": {
+    "text": {
       "type": "string"
     }
   },

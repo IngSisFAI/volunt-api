@@ -6,11 +6,11 @@
     "validateUpsert": true
   },
   "properties": {
-    "Name": {
+    "name": {
       "type": "string",
       "required": true
     },
-    "Icon": {
+    "icon": {
       "type": "string",
       "required": true
     }

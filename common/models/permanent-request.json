@@ -6,15 +6,15 @@
     "validateUpsert": true
   },
   "properties": {
-    "Ammount": {
+    "ammount": {
       "type": "number",
       "required": true
     },
-    "Status": {
+    "status": {
       "type": "boolean",
       "required": true
     },
-    "ClosingDate": {
+    "closingDate": {
       "type": "date",
       "required": true
     }

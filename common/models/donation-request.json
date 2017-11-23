@@ -6,7 +6,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "CreationDate": {
+    "creationDate": {
       "type": "date",
       "required": true
     }
