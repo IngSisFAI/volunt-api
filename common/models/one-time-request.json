@@ -6,20 +6,20 @@
     "validateUpsert": true
   },
   "properties": {
-    "Ammount": {
+    "ammount": {
       "type": "number",
       "required": true
     },
-    "ExpirationDate": {
+    "expirationDate": {
       "type": "date",
       "required": true
     },
-    "Covered": {
+    "covered": {
       "type": "number",
       "required": true,
       "default": 0
     },
-    "Promised": {
+    "promised": {
       "type": "number",
       "required": true,
       "default": 0
