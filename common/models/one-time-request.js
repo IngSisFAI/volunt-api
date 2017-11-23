@@ -11,10 +11,10 @@ module.exports = function(Onetimerequest) {
       var error = new Error();
 
       // la fecha de creación no se va a mostrar al usuario y debemos coolocarle la fecha actual
-      ctx.req.body.CreationDate = moment();
+      ctx.req.body.creationDate = moment();
 
       console.log(ctx.req.body);
-      if (ctx.req.body.Ammount > 0) {
+      if (ctx.req.body.ammount > 0) {
         console.log('La cantidad es mayor a 0');
         next();
       } else {
