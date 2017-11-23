@@ -7,10 +7,10 @@
   },
   "properties": {
     "creationDate": {
-      "type": "string",
+      "type": "date",
       "required": true
     },
-    "ammount": {
+    "amount": {
       "type": "number",
       "required": true
     },
@@ -22,7 +22,7 @@
   },
   "validations": [],
   "relations": {
-    "respondsTo": {
+    "donationRequest": {
       "type": "belongsTo",
       "model": "DonationRequest",
       "foreignKey": ""

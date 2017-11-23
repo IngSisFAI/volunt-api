@@ -1,5 +1,5 @@
 'use strict';
 
-module.exports = function(Donationrequest) {
+module.exports = function(DonationRequest) {
 
 };

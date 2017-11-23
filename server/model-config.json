@@ -45,7 +45,7 @@
     "options": {
       "remoting": {
         "sharedMethods": {
-          "*": false,
+          "*": true,
           "create": true,
           "sampleRemoteMethod": true
         }
