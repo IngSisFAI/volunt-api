@@ -70,7 +70,16 @@
   },
   "OneTimeRequest": {
     "dataSource": "mLab",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "sampleRemoteMethod": true
+        }
+      }
+    }
   },
   "PermanentRequest": {
     "dataSource": "mLab",
