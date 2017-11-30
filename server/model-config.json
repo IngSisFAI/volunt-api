@@ -76,6 +76,9 @@
         "sharedMethods": {
           "*": false,
           "create": true,
+          "prototype.patchAttributes" : true,
+          "deleteById" : true,
+          "find" : true,
           "sampleRemoteMethod": true
         }
       }
@@ -83,7 +86,18 @@
   },
   "PermanentRequest": {
     "dataSource": "mLab",
-    "public": true
+    "public": true,"options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "prototype.patchAttributes" : false,
+          "deleteById" : false,
+          "find" : true,
+          "sampleRemoteMethod": true
+        }
+      }
+    }
   },
   "DonationResponse": {
     "dataSource": "mLab",
