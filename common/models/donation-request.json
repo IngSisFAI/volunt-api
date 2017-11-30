@@ -9,7 +9,33 @@
     "creationDate": {
       "type": "date",
       "required": true
-    }
+    },
+    "amount": {
+      "type": "number",
+      "required": true
+    },
+    "expirationDate": {
+      "type": "date",
+      "required": true
+    },
+    "isPermanent": {
+      "type": "boolean",
+      "required": true
+    },
+    "covered": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "promised": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "status": {
+      "type": "boolean",
+      "required": true
+    },
   },
   "validations": [],
   "relations": {
