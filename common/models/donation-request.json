@@ -12,7 +12,7 @@
     },
     "amount": {
       "type": "number",
-      "required": true
+      "required": false
     },
     "expirationDate": {
       "type": "date",
@@ -24,18 +24,18 @@
     },
     "covered": {
       "type": "number",
-      "required": true,
+      "required": false,
       "default": 0
     },
     "promised": {
       "type": "number",
-      "required": true,
+      "required": false,
       "default": 0
     },
     "status": {
       "type": "boolean",
-      "required": true
-    },
+      "required": false
+    }
   },
   "validations": [],
   "relations": {

@@ -62,13 +62,21 @@
   },
   "OrganizationReview": {
     "dataSource": "mLab",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "prototype.patchAttributes" : true,
+          "deleteById" : true,
+          "find" : true,
+          "sampleRemoteMethod": true
+        }
+      }
+    }
   },
   "DonationRequest": {
-    "dataSource": "mLab",
-    "public": false
-  },
-  "OneTimeRequest": {
     "dataSource": "mLab",
     "public": true,
     "options": {
@@ -84,22 +92,7 @@
       }
     }
   },
-  "PermanentRequest": {
-    "dataSource": "mLab",
-    "public": true,"options": {
-      "remoting": {
-        "sharedMethods": {
-          "*": false,
-          "create": true,
-          "prototype.patchAttributes" : false,
-          "deleteById" : false,
-          "find" : true,
-          "sampleRemoteMethod": true
-        }
-      }
-    }
-  },
-  "DonationResponse": {
+   "DonationResponse": {
     "dataSource": "mLab",
     "public": true
   },
