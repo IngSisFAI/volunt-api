@@ -47,6 +47,9 @@ module.exports = function(DonationRequest) {
     // en ambos casos la fecha de creación no se va a mostrar al usuario y debemos colocarle la fecha actual siempre
     ctx.req.body.creationDate = moment();
 
+    // idem el status, debe ser true, que significa abierta...
+    ctx.req.body.status = true;
+
     // debo controlar que el productoid ingresado sea valido, es decir, este dentro del modelo productos
 
     var product = app.models.Product;
@@ -59,7 +62,8 @@ module.exports = function(DonationRequest) {
         // si se encontro el producto
         console.log('el producto se encontro y es', producto.id);
         // next();
-      };
+      }
+      ;
     });
 
     // luego lo mas importante es saber si se esta creando un pedido permanente o particular
@@ -108,7 +112,7 @@ module.exports = function(DonationRequest) {
   DonationRequest.beforeRemote('prototype.patchAttributes',
     function(ctx, res, next) {
       var error = new Error();
-      var cre = moment();
+      var cre;
       console.log(ctx.req.params.id);
 
       // para ambos donationrequest se va a hacer una parte similar que es la siguiente
@@ -120,72 +124,81 @@ module.exports = function(DonationRequest) {
         } else {
           // si se encontro el pedido determino que se puede modificar solo el
           // expirationDate y amount, por lo que los otros valores los seteo a lo que tenia antes...
-          if  (!onetime) {
+          if (!onetime) {
             // es true con nulo, undefined, false y 0
             error.message = 'No tengo pedido de donacion';
             error.status = 404;
             next(error);
           } else {
-            console.log('el onetime es:', onetime);
+            console.log('el pedido es:', onetime);
+            // amount aca lo coloco igual que el que ya tenia antes de modificar,
+            // pero luego si no es permanente
+            // lo voy a dejar que se cambie
+            ctx.req.body.amount = onetime.amount;
             ctx.req.body.covered = onetime.covered;
             ctx.req.body.promised = onetime.promised;
             ctx.req.body.creationDate = onetime.creationDate;
             ctx.req.body.productId = onetime.productId;
-            cre.moment(onetime.creationDate);
+            ctx.req.body.isPermanent = onetime.isPermanent;
+            cre = moment(onetime.creationDate);
+
+            console.log('el cre adentro, que lo modificado es:', cre);
+
+            var exp = moment(ctx.req.body.expirationDate);
+            console.log('La fecha de expiracion', exp);
+            // busco cual era la creationDate
+            console.log('La fecha de creacion ', cre);
+
+            // ahora lo diferente si es permanente o particular
+            if (ctx.req.body.isPermanent) {
+              // es un pedido permanente
+
+              // si cambia el status a cerrado, estaria bien...
+
+              // vuelvo a controlar que la expirationDate modificada sea valida
+              // y a su vez mayor, en al menos 30 dias a la fecha de creacion
+
+              if (exp.isValid() && exp.isAfter(cre.add(30, 'days'), 'day')) {
+                console.log('La fecha de expiracion ', exp);
+                next();
+              } else {
+                error.message = 'La fecha de expiracion =+30 a la fecha de creacion';
+                error.status = 404;
+                next(error);
+              }
+            } else {
+              // es  un pedido particular
+
+              // vuelvo a controlar que la expirationDate modificada sea valida
+              // y a su vez mayor, en al menos 2 dias a la fecha de creacion
+
+              if (exp.isValid() && exp.isAfter(cre.add(2, 'days'), 'day')) {
+                console.log('La fecha de expiracion ', exp);
+                // next();
+              } else {
+                error.message = 'La fecha de expiracion =+2 a la fecha de creacion';
+                error.status = 404;
+                next(error);
+              }
+
+              // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+              // si cambia el status a cerrado, que hacemos?????
+              // lo dejamos por mas que tenga respuestas???
+              // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+              // ahora controlo que la cantidad sea mayor a lo covered, sino queda inconsistente
+              if (ctx.req.body.amount > ctx.req.body.covered) {
+                console.log('La cantidad es mayor a covered');
+                next();
+              } else {
+                error.message = 'La cantidad debe ser mayor a lo cubierto';
+                error.status = 404;
+                next(error);
+              }
+            }
           }
         }
       });
-
-      var exp = moment(ctx.req.body.expirationDate);
-      console.log('La fecha de expiracion', exp);
-      // busco cual era la creationDate
-      console.log('La fecha de creacion ', cre);
-
-      // ahora lo diferente si es permanente o particular
-      if (ctx.req.body.isPermanent) {
-        // es un pedido permanente
-
-        // si cambio el status a cerrado, no me deberia importar mas nada
-        // preguntar statuuuuussssssssssss que posee???
-        if (ctx.req.body.status) {
-          // hago algo porque cambiaria a cerrado
-          next();
-        } else {
-          // vuelvo a controlar que la expirationDate modificada sea valida
-          // y a su vez mayor, en al menos 30 dias a la fecha de creacion
-
-          if (exp.isValid() && exp.isAfter(cre.add(30, 'days'), 'day')) {
-            console.log('La fecha de expiracion ', exp);
-            next();
-          } else {
-            error.message = 'La fecha de expiracion =+30 a la fecha de creacion';
-            error.status = 404;
-            next(error);
-          }
-        }
-      } else { // es particular
-        // vuelvo a controlar que la expirationDate modificada sea valida
-        // y a su vez mayor, en al menos 2 dias a la fecha de creacion
-
-        if (exp.isValid() && exp.isAfter(cre.add(2, 'days'), 'day')) {
-          console.log('La fecha de expiracion ', exp);
-          // next();
-        } else {
-          error.message = 'La fecha de expiracion =+2 a la fecha de creacion';
-          error.status = 404;
-          next(error);
-        }
-
-        // ahora controlo que la cantidad sea mayor a lo covered, sino queda inconsistente
-        if (ctx.req.body.amount > ctx.req.body.covered) {
-          console.log('La cantidad es mayor a covered');
-          next();
-        } else {
-          error.message = 'La cantidad debe ser mayor a lo cubierto';
-          error.status = 404;
-          next(error);
-        }
-      }
     });
 
   DonationRequest.beforeRemote('deleteById',
@@ -201,36 +214,36 @@ module.exports = function(DonationRequest) {
         } else {
           // si se encontro el pedido determino que se puede modificar solo el
           // expirationDate y amount, por lo que los otros valores los seteo a lo que tenia antes...
-          if  (!onetime) {
+          if (!onetime) {
             error.message = 'No tengo pedido de donacion';
             error.status = 400;
             next(error);
+          } else {
+            // debo ver que ese pedido de donacion no tenga donaciones efectuadas(donationresponse),
+            // si es asi no se debe permitir borrar
+            var donationresponse = app.models.DonationResponse;
+            donationresponse.findOne({where: {donationRequestId: ctx.req.params.id}},
+              function(err, donres) {
+                if (err) {
+                  console.log(donres);
+                  error.message = 'Hubo un error en buscar respuestaDonaciones';
+                  error.status = 404;
+                  next(error);
+                } else {
+                  if (!donres) {
+                    console.log('no encontro una respuesta para ese pedido, se puede borrar');
+                    error.message = 'no es error';
+                    error.status = 400;
+                    next(error);// despues cambiar a next()
+                  } else {
+                    error.message = 'Hubo un error en buscar respuestaDonaciones';
+                    error.status = 400;
+                    next(error);
+                  }
+                }
+              });
           }
         }
-        // debo ver que ese pedido de donacion no tenga donaciones efectuadas(donationresponse),
-        // si es asi no se debe permitir borrar
-        var donationresponse = app.models.DonationResponse;
-        donationresponse.findOne({where: {donationRequestId: ctx.req.body.id}},
-          function(err, donres) {
-            if (err) {
-              console.log(donres);
-              error.message = 'Hubo un error en buscar respuestaDonaciones';
-              error.status = 404;
-              next(error);
-            } else {
-              if (donres == null) {
-                console.log('no encontro una respuesta para ese pedido, se puede borrar');
-                error.message = 'no es error';
-                error.status = 400;
-                next(error);// despues cambiar a next()
-              } else {
-                error.message = 'Hubo un error en buscar respuestaDonaciones';
-                error.status = 400;
-                next(error);
-              }
-            }
-          });
       });
     });
 };
-
