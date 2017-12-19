@@ -232,17 +232,19 @@ module.exports = function(DonationResponse) {
                     } else {
                       // si funciono todo bien, mando mail
                       console.log('funciono, lo que voy a guardar es lo mismo con status : ' +  p.donationRequest.status);
+                      let mail = {
+                        to: organizacion.email,
+                        from: 'Voluntariado <voluntariadouncoma2017@gmail.com>',
+                        subject: 'Nueva Respuesta a Pedido de Donación',
+                        html: cuerpomail};
 
-                      /*
-                  DonationResponse.app.models.Email.send({
-                    to: organizacion.email,
-                    from: 'Voluntariado <voluntariadouncoma2017@gmail.com>',
-                    subject: 'Nueva Respuesta a Pedido de Donación',
-                    html: cuerpomail}, function(err) {
-                    if (err) return console.log('> error sending email');
-                    console.log('> sending email to:', organizacion.email);
-                    });
-                    */
+                      DonationResponse.app.models.Email.send(mail,
+                        function(err) {
+                          if (err)
+                            throw err;
+                          else
+                        console.log('> sending email to:', organizacion.email);
+                        });
                       next();
                     }
                   });// de la actualizacion

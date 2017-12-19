@@ -9,16 +9,16 @@
     "transports": [
       {
         "type": "SMTP",
-        "host": "gmail.com",
-        "secure": false,
-        "port": 587,
+        "host": "smtp.gmail.com",
+        "secure": true,
+        "port": 465,
         "auth": {
           "user": "voluntariadouncoma2017@gmail.com",
-          "pass": "*"
+          "pass": "V0lunt4r10s"
         }
       }
     ]
-  }, 
+  },
   "mLab": {
     "host": "mlab.com",
     "port": 11476,

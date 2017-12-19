@@ -39,6 +39,9 @@
     "dataSource": "mLab",
     "public": true
   },
+  "Email":{
+    "dataSource":"myEmailDataSource"
+  },
   "Donner": {
     "dataSource": "mLab",
     "public": true,
