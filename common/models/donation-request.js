@@ -5,6 +5,8 @@ var app = require('../../server/server');
 
 const moment = require('moment');
 
+// agregar el control de la OS
+
 module.exports = function(DonationRequest) {
   // Disable related model relations "product"
   DonationRequest.disableRemoteMethodByName(
@@ -62,51 +64,63 @@ module.exports = function(DonationRequest) {
         // si se encontro el producto
         console.log('el producto se encontro y es', producto.id);
         // next();
-      }
-      ;
-    });
+        // luego debemos ver que la organizacionId que viene exista
+        var org = app.models.Organization;
+        org.findById(ctx.req.body.organizationId, function(err, organizacion) {
+          if (err || !organizacion) {
+            error.message = 'No se encontró la organizacion';
+            error.status = 404;
+            next(error);
+          } else {
+            // si se encontro la organizacion
+            console.log('la organizacion se encontro y es', organizacion.id);
+            // next();
 
-    // luego lo mas importante es saber si se esta creando un pedido permanente o particular
-    // eso viene definido como true en la propiedad isPermanent
+            // luego lo mas importante es saber si se esta creando un pedido permanente o particular
+            // eso viene definido como true en la propiedad isPermanent
 
-    if (ctx.req.body.isPermanent) {
-      // es un pedido permanente con lo que amount, covered y promised deberian ser nulos
-      ctx.req.body.amount = null;
-      ctx.req.body.covered = null;
-      ctx.req.body.promised = null;
+            if (ctx.req.body.isPermanent) {
+              // es un pedido permanente con lo que amount, covered y promised deberian ser nulos
+              ctx.req.body.amount = null;
+              ctx.req.body.covered = null;
+              ctx.req.body.promised = null;
 
-      // controlo que la fecha de expiracion sea valida y a su vez mayor, en al menos 30 dias a la fecha de creacion
-      if (exp.isValid() && exp.isAfter(moment().add(30, 'days'), 'day')) {
-        console.log('La fecha de expiracion es correcta');
-        next();
-      } else {
-        error.message = 'La fecha de expiracion debe ser al menos 30 dias mayor';
-        error.status = 400;
-        next(error);
-      }
-    } else {
-      // es un pedido particular
-      // controlo que la cantidad ingresada sea mayor a 0
-      console.log(ctx.req.body);
-      if (ctx.req.body.amount > 0) {
-        console.log('La cantidad es mayor a 0');
-        // next();
-      } else {
-        error.message = 'La cantidad debe obligatoriamente ser mayor a 0';
-        error.status = 400;
-        next(error);
-      }
+              // controlo que la fecha de expiracion sea valida y a su vez mayor, en al menos 30 dias a la fecha de creacion
+              if (exp.isValid() && exp.isAfter(moment().add(30, 'days'), 'day')) {
+                console.log('La fecha de expiracion es correcta');
+                next();
+              } else {
+                error.message = 'La fecha de expiracion debe ser al menos 30 dias mayor';
+                error.status = 400;
+                next(error);
+              }
+            } else {
+              // es un pedido particular
+              // controlo que la cantidad ingresada sea mayor a 0
+              console.log(ctx.req.body);
+              if (ctx.req.body.amount > 0) {
+                console.log('La cantidad es mayor a 0');
+                // next();
+              } else {
+                error.message = 'La cantidad debe obligatoriamente ser mayor a 0';
+                error.status = 400;
+                next(error);
+              }
 
-      // controlo que la fecha de expiracion sea valida y a su vez mayor, en al menos 2 dias a la fecha de creacion
-      if (exp.isValid() && exp.isAfter(moment().add(2, 'days'), 'day')) {
-        console.log('La fecha de expiracion es correcta');
-        next();
-      } else {
-        error.message = 'La fecha de expiracion debe ser al menos 2 dias mayor';
-        error.status = 400;
-        next(error);
-      }
-    }// del else de isPermanent
+              // controlo que la fecha de expiracion sea valida y a su vez mayor, en al menos 2 dias a la fecha de creacion
+              if (exp.isValid() && exp.isAfter(moment().add(2, 'days'), 'day')) {
+                console.log('La fecha de expiracion es correcta');
+                next();
+              } else {
+                error.message = 'La fecha de expiracion debe ser al menos 2 dias mayor';
+                error.status = 400;
+                next(error);
+              }
+            }// del else de isPermanent
+          }// de la organizacion
+        }); // tmb de la organizacion
+      }// del producto
+    }); // tmb del producto
   });
 
   DonationRequest.beforeRemote('prototype.patchAttributes',
