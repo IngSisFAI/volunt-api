@@ -62,7 +62,19 @@
   },
   "DonnerReview": {
     "dataSource": "mLab",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "prototype.patchAttributes" : true,
+          "deleteById" : true,
+          "find" : true,
+          "sampleRemoteMethod": true
+        }
+      }
+    }
   },
   "OrganizationReview": {
     "dataSource": "mLab",
