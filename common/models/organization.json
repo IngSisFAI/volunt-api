@@ -6,7 +6,12 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "reputation":{
+      "type":"integer",
+      "required":"false"
+    }
+  },
   "validations": [],
   "relations": {
     "contacts": {

@@ -23,6 +23,10 @@
     "dni":{
       "type": "string",
       "required": true
+    },
+    "reputation":{
+      "type":"integer",
+      "required":"false"
     }
   },
   "validations": [],

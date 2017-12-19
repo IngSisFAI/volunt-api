@@ -7,11 +7,10 @@
     "validateUpsert": true
   },
   "properties": {
-    "calification": {
-      "type": "number",
-      "required": true
+    "liked": {
+      "type": "boolean"
     },
-    "text": {
+    "description": {
       "type": "string"
     }
   },
