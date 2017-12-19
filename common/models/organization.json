@@ -10,6 +10,34 @@
     "reputation":{
       "type":"integer",
       "required":"false"
+    },
+    "inscriptionCode":{
+      "type":"string",
+      "required":"true"
+    },
+    "name":{
+      "type":"string",
+      "required":"true"
+    },
+    "urlInscriptionPapers":{
+      "type":"string",
+      "required":"true"
+    },
+    "address":{
+      "type":"string",
+      "required":"true"
+    },
+    "pendingApprobal":{
+      "type":"boolean",
+      "required":"true"
+    },
+    "webPage":{
+      "type":"string",
+      "required":"true"
+    },
+    "facebookPage":{
+      "type":"string",
+      "required":"true"
     }
   },
   "validations": [],
