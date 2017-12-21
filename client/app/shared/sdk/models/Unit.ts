@@ -2,15 +2,13 @@
 
 declare var Object: any;
 export interface UnitInterface {
-  "Name": string;
+  "name": string;
   "id"?: any;
-  "productId"?: any;
 }
 
 export class Unit implements UnitInterface {
-  "Name": string;
+  "name": string;
   "id": any;
-  "productId": any;
   constructor(data?: UnitInterface) {
     Object.assign(this, data);
   }
@@ -44,16 +42,12 @@ export class Unit implements UnitInterface {
       path: 'Units',
       idName: 'id',
       properties: {
-        "Name": {
-          name: 'Name',
+        "name": {
+          name: 'name',
           type: 'string'
         },
         "id": {
           name: 'id',
-          type: 'any'
-        },
-        "productId": {
-          name: 'productId',
           type: 'any'
         },
       },

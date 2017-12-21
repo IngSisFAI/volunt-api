@@ -2,12 +2,12 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models/User';
 import { Organization } from '../../models/Organization';
+import { Email } from '../../models/Email';
 import { Donner } from '../../models/Donner';
 import { Contact } from '../../models/Contact';
 import { DonnerReview } from '../../models/DonnerReview';
 import { OrganizationReview } from '../../models/OrganizationReview';
-import { OneTimeRequest } from '../../models/OneTimeRequest';
-import { PermanentRequest } from '../../models/PermanentRequest';
+import { DonationRequest } from '../../models/DonationRequest';
 import { DonationResponse } from '../../models/DonationResponse';
 import { Product } from '../../models/Product';
 import { Unit } from '../../models/Unit';
@@ -20,12 +20,12 @@ export class SDKModels {
   private models: Models = {
     User: User,
     Organization: Organization,
+    Email: Email,
     Donner: Donner,
     Contact: Contact,
     DonnerReview: DonnerReview,
     OrganizationReview: OrganizationReview,
-    OneTimeRequest: OneTimeRequest,
-    PermanentRequest: PermanentRequest,
+    DonationRequest: DonationRequest,
     DonationResponse: DonationResponse,
     Product: Product,
     Unit: Unit,

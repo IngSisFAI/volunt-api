@@ -51,12 +51,12 @@ import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
 import { UserApi } from './services/custom/User';
 import { OrganizationApi } from './services/custom/Organization';
+import { EmailApi } from './services/custom/Email';
 import { DonnerApi } from './services/custom/Donner';
 import { ContactApi } from './services/custom/Contact';
 import { DonnerReviewApi } from './services/custom/DonnerReview';
 import { OrganizationReviewApi } from './services/custom/OrganizationReview';
-import { OneTimeRequestApi } from './services/custom/OneTimeRequest';
-import { PermanentRequestApi } from './services/custom/PermanentRequest';
+import { DonationRequestApi } from './services/custom/DonationRequest';
 import { DonationResponseApi } from './services/custom/DonationResponse';
 import { ProductApi } from './services/custom/Product';
 import { UnitApi } from './services/custom/Unit';
@@ -93,12 +93,12 @@ export class SDKBrowserModule {
         RealTime,
         UserApi,
         OrganizationApi,
+        EmailApi,
         DonnerApi,
         ContactApi,
         DonnerReviewApi,
         OrganizationReviewApi,
-        OneTimeRequestApi,
-        PermanentRequestApi,
+        DonationRequestApi,
         DonationResponseApi,
         ProductApi,
         UnitApi,

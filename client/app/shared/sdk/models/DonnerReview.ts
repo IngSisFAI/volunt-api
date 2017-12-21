@@ -1,21 +1,26 @@
 /* tslint:disable */
-import {
-  DonationResponse
-} from '../index';
 
 declare var Object: any;
 export interface DonnerReviewInterface {
-  "Calification"?: string;
+  "liked"?: boolean;
+  "description"?: string;
   "id"?: any;
   "organizationId"?: any;
-  reviewedResponse?: DonationResponse;
+  "createdAt": Date;
+  "updatedAt": Date;
+  "reviewedResponseId"?: any;
+  reviewedResponse?: any;
 }
 
 export class DonnerReview implements DonnerReviewInterface {
-  "Calification": string;
+  "liked": boolean;
+  "description": string;
   "id": any;
   "organizationId": any;
-  reviewedResponse: DonationResponse;
+  "createdAt": Date;
+  "updatedAt": Date;
+  "reviewedResponseId": any;
+  reviewedResponse: any;
   constructor(data?: DonnerReviewInterface) {
     Object.assign(this, data);
   }
@@ -49,8 +54,12 @@ export class DonnerReview implements DonnerReviewInterface {
       path: 'DonnerReviews',
       idName: 'id',
       properties: {
-        "Calification": {
-          name: 'Calification',
+        "liked": {
+          name: 'liked',
+          type: 'boolean'
+        },
+        "description": {
+          name: 'description',
           type: 'string'
         },
         "id": {
@@ -61,15 +70,27 @@ export class DonnerReview implements DonnerReviewInterface {
           name: 'organizationId',
           type: 'any'
         },
+        "createdAt": {
+          name: 'createdAt',
+          type: 'Date'
+        },
+        "updatedAt": {
+          name: 'updatedAt',
+          type: 'Date'
+        },
+        "reviewedResponseId": {
+          name: 'reviewedResponseId',
+          type: 'any'
+        },
       },
       relations: {
         reviewedResponse: {
           name: 'reviewedResponse',
-          type: 'DonationResponse',
-          model: 'DonationResponse',
-          relationType: 'hasOne',
-                  keyFrom: 'id',
-          keyTo: 'donnerReviewId'
+          type: 'any',
+          model: '',
+          relationType: 'belongsTo',
+                  keyFrom: 'reviewedResponseId',
+          keyTo: 'id'
         },
       }
     }

@@ -14,6 +14,7 @@ import { Organization } from '../../models/Organization';
 import { SocketConnection } from '../../sockets/socket.connections';
 import { Contact } from '../../models/Contact';
 import { DonnerReview } from '../../models/DonnerReview';
+import { DonationRequest } from '../../models/DonationRequest';
 
 
 /**

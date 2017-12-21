@@ -2,23 +2,23 @@
 
 declare var Object: any;
 export interface DonationResponseInterface {
-  "CreationDate": string;
-  "Ammount": number;
-  "AlreadyDelivered": boolean;
+  "creationDate": Date;
+  "amount": number;
+  "alreadyDelivered": boolean;
   "id"?: any;
+  "donationRequestId"?: any;
   "donnerId"?: any;
-  "donnerReviewId"?: any;
-  respondsTo?: any;
+  donationRequest?: any;
 }
 
 export class DonationResponse implements DonationResponseInterface {
-  "CreationDate": string;
-  "Ammount": number;
-  "AlreadyDelivered": boolean;
+  "creationDate": Date;
+  "amount": number;
+  "alreadyDelivered": boolean;
   "id": any;
+  "donationRequestId": any;
   "donnerId": any;
-  "donnerReviewId": any;
-  respondsTo: any;
+  donationRequest: any;
   constructor(data?: DonationResponseInterface) {
     Object.assign(this, data);
   }
@@ -52,16 +52,16 @@ export class DonationResponse implements DonationResponseInterface {
       path: 'DonationResponses',
       idName: 'id',
       properties: {
-        "CreationDate": {
-          name: 'CreationDate',
-          type: 'string'
+        "creationDate": {
+          name: 'creationDate',
+          type: 'Date'
         },
-        "Ammount": {
-          name: 'Ammount',
+        "amount": {
+          name: 'amount',
           type: 'number'
         },
-        "AlreadyDelivered": {
-          name: 'AlreadyDelivered',
+        "alreadyDelivered": {
+          name: 'alreadyDelivered',
           type: 'boolean',
           default: false
         },
@@ -69,23 +69,23 @@ export class DonationResponse implements DonationResponseInterface {
           name: 'id',
           type: 'any'
         },
+        "donationRequestId": {
+          name: 'donationRequestId',
+          type: 'any'
+        },
         "donnerId": {
           name: 'donnerId',
           type: 'any'
         },
-        "donnerReviewId": {
-          name: 'donnerReviewId',
-          type: 'any'
-        },
       },
       relations: {
-        respondsTo: {
-          name: 'respondsTo',
+        donationRequest: {
+          name: 'donationRequest',
           type: 'any',
           model: '',
-          relationType: 'hasOne',
-                  keyFrom: 'id',
-          keyTo: 'donationResponseId'
+          relationType: 'belongsTo',
+                  keyFrom: 'donationRequestId',
+          keyTo: 'id'
         },
       }
     }

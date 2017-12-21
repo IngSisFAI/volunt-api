@@ -5,25 +5,21 @@ import {
 
 declare var Object: any;
 export interface ProductInterface {
-  "Name": string;
-  "Icon": string;
+  "name": string;
+  "icon": string;
   "id"?: any;
-  "productId"?: any;
-  "donationRequestId"?: any;
-  "oneTimeRequestId"?: any;
-  "permanentRequestId"?: any;
+  "parentProductId"?: any;
+  "unitId"?: any;
   parentProduct?: Product;
   unit?: Unit;
 }
 
 export class Product implements ProductInterface {
-  "Name": string;
-  "Icon": string;
+  "name": string;
+  "icon": string;
   "id": any;
-  "productId": any;
-  "donationRequestId": any;
-  "oneTimeRequestId": any;
-  "permanentRequestId": any;
+  "parentProductId": any;
+  "unitId": any;
   parentProduct: Product;
   unit: Unit;
   constructor(data?: ProductInterface) {
@@ -59,32 +55,24 @@ export class Product implements ProductInterface {
       path: 'Products',
       idName: 'id',
       properties: {
-        "Name": {
-          name: 'Name',
+        "name": {
+          name: 'name',
           type: 'string'
         },
-        "Icon": {
-          name: 'Icon',
+        "icon": {
+          name: 'icon',
           type: 'string'
         },
         "id": {
           name: 'id',
           type: 'any'
         },
-        "productId": {
-          name: 'productId',
+        "parentProductId": {
+          name: 'parentProductId',
           type: 'any'
         },
-        "donationRequestId": {
-          name: 'donationRequestId',
-          type: 'any'
-        },
-        "oneTimeRequestId": {
-          name: 'oneTimeRequestId',
-          type: 'any'
-        },
-        "permanentRequestId": {
-          name: 'permanentRequestId',
+        "unitId": {
+          name: 'unitId',
           type: 'any'
         },
       },
@@ -93,17 +81,17 @@ export class Product implements ProductInterface {
           name: 'parentProduct',
           type: 'Product',
           model: 'Product',
-          relationType: 'hasOne',
-                  keyFrom: 'id',
-          keyTo: 'productId'
+          relationType: 'belongsTo',
+                  keyFrom: 'parentProductId',
+          keyTo: 'id'
         },
         unit: {
           name: 'unit',
           type: 'Unit',
           model: 'Unit',
-          relationType: 'hasOne',
-                  keyFrom: 'id',
-          keyTo: 'productId'
+          relationType: 'belongsTo',
+                  keyFrom: 'unitId',
+          keyTo: 'id'
         },
       }
     }

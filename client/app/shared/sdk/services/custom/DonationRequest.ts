@@ -10,15 +10,15 @@ import { JSONSearchParams } from '../core/search.params';
 import { ErrorHandler } from '../core/error.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Rx';
-import { DonationResponse } from '../../models/DonationResponse';
+import { DonationRequest } from '../../models/DonationRequest';
 import { SocketConnection } from '../../sockets/socket.connections';
 
 
 /**
- * Api services for the `DonationResponse` model.
+ * Api services for the `DonationRequest` model.
  */
 @Injectable()
-export class DonationResponseApi extends BaseLoopBackApi {
+export class DonationRequestApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(Http) protected http: Http,
@@ -34,7 +34,7 @@ export class DonationResponseApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id DonationResponse id
+   * @param {any} id DonationRequest id
    *
    * @param {object} data Request data.
    *
@@ -46,13 +46,13 @@ export class DonationResponseApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `DonationResponse` object.)
+   * This usually means the response is a `DonationRequest` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DonationResponses/:id";
+    "/DonationRequests/:id";
     let _routeParams: any = {
       id: id
     };
@@ -66,9 +66,9 @@ export class DonationResponseApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `DonationResponse`.
+   * i.e. `DonationRequest`.
    */
   public getModelName() {
-    return "DonationResponse";
+    return "DonationRequest";
   }
 }

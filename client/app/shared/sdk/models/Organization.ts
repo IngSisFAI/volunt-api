@@ -1,11 +1,20 @@
 /* tslint:disable */
 import {
   Contact,
-  DonnerReview
+  DonnerReview,
+  DonationRequest
 } from '../index';
 
 declare var Object: any;
 export interface OrganizationInterface {
+  "reputation": any;
+  "inscriptionCode": string;
+  "name": string;
+  "urlInscriptionPapers": string;
+  "address": string;
+  "pendingApprobal": boolean;
+  "webPage": string;
+  "facebookPage": string;
   "realm"?: string;
   "username"?: string;
   "email": string;
@@ -15,10 +24,18 @@ export interface OrganizationInterface {
   accessTokens?: any[];
   contacts?: Contact[];
   donnerReviews?: DonnerReview[];
-  donationRequests?: any[];
+  donationRequests?: DonationRequest[];
 }
 
 export class Organization implements OrganizationInterface {
+  "reputation": any;
+  "inscriptionCode": string;
+  "name": string;
+  "urlInscriptionPapers": string;
+  "address": string;
+  "pendingApprobal": boolean;
+  "webPage": string;
+  "facebookPage": string;
   "realm": string;
   "username": string;
   "email": string;
@@ -28,7 +45,7 @@ export class Organization implements OrganizationInterface {
   accessTokens: any[];
   contacts: Contact[];
   donnerReviews: DonnerReview[];
-  donationRequests: any[];
+  donationRequests: DonationRequest[];
   constructor(data?: OrganizationInterface) {
     Object.assign(this, data);
   }
@@ -62,6 +79,38 @@ export class Organization implements OrganizationInterface {
       path: 'Organizations',
       idName: 'id',
       properties: {
+        "reputation": {
+          name: 'reputation',
+          type: 'any'
+        },
+        "inscriptionCode": {
+          name: 'inscriptionCode',
+          type: 'string'
+        },
+        "name": {
+          name: 'name',
+          type: 'string'
+        },
+        "urlInscriptionPapers": {
+          name: 'urlInscriptionPapers',
+          type: 'string'
+        },
+        "address": {
+          name: 'address',
+          type: 'string'
+        },
+        "pendingApprobal": {
+          name: 'pendingApprobal',
+          type: 'boolean'
+        },
+        "webPage": {
+          name: 'webPage',
+          type: 'string'
+        },
+        "facebookPage": {
+          name: 'facebookPage',
+          type: 'string'
+        },
         "realm": {
           name: 'realm',
           type: 'string'
@@ -114,8 +163,8 @@ export class Organization implements OrganizationInterface {
         },
         donationRequests: {
           name: 'donationRequests',
-          type: 'any[]',
-          model: '',
+          type: 'DonationRequest[]',
+          model: 'DonationRequest',
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'organizationId'

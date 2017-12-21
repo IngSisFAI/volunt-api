@@ -2,6 +2,11 @@
 
 declare var Object: any;
 export interface DonnerInterface {
+  "name": string;
+  "lastName": string;
+  "phoneNumber": string;
+  "dni": string;
+  "reputation": any;
   "realm"?: string;
   "username"?: string;
   "email": string;
@@ -14,6 +19,11 @@ export interface DonnerInterface {
 }
 
 export class Donner implements DonnerInterface {
+  "name": string;
+  "lastName": string;
+  "phoneNumber": string;
+  "dni": string;
+  "reputation": any;
   "realm": string;
   "username": string;
   "email": string;
@@ -56,6 +66,26 @@ export class Donner implements DonnerInterface {
       path: 'Donners',
       idName: 'id',
       properties: {
+        "name": {
+          name: 'name',
+          type: 'string'
+        },
+        "lastName": {
+          name: 'lastName',
+          type: 'string'
+        },
+        "phoneNumber": {
+          name: 'phoneNumber',
+          type: 'string'
+        },
+        "dni": {
+          name: 'dni',
+          type: 'string'
+        },
+        "reputation": {
+          name: 'reputation',
+          type: 'any'
+        },
         "realm": {
           name: 'realm',
           type: 'string'

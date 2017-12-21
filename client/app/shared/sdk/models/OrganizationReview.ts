@@ -2,18 +2,24 @@
 
 declare var Object: any;
 export interface OrganizationReviewInterface {
-  "Calification": number;
-  "Text"?: string;
+  "liked"?: boolean;
+  "description"?: string;
   "id"?: any;
   "donnerId"?: any;
+  "createdAt": Date;
+  "updatedAt": Date;
+  "reviewedRequestId"?: any;
   reviewedRequest?: any;
 }
 
 export class OrganizationReview implements OrganizationReviewInterface {
-  "Calification": number;
-  "Text": string;
+  "liked": boolean;
+  "description": string;
   "id": any;
   "donnerId": any;
+  "createdAt": Date;
+  "updatedAt": Date;
+  "reviewedRequestId": any;
   reviewedRequest: any;
   constructor(data?: OrganizationReviewInterface) {
     Object.assign(this, data);
@@ -48,12 +54,12 @@ export class OrganizationReview implements OrganizationReviewInterface {
       path: 'OrganizationReviews',
       idName: 'id',
       properties: {
-        "Calification": {
-          name: 'Calification',
-          type: 'number'
+        "liked": {
+          name: 'liked',
+          type: 'boolean'
         },
-        "Text": {
-          name: 'Text',
+        "description": {
+          name: 'description',
           type: 'string'
         },
         "id": {
@@ -64,15 +70,27 @@ export class OrganizationReview implements OrganizationReviewInterface {
           name: 'donnerId',
           type: 'any'
         },
+        "createdAt": {
+          name: 'createdAt',
+          type: 'Date'
+        },
+        "updatedAt": {
+          name: 'updatedAt',
+          type: 'Date'
+        },
+        "reviewedRequestId": {
+          name: 'reviewedRequestId',
+          type: 'any'
+        },
       },
       relations: {
         reviewedRequest: {
           name: 'reviewedRequest',
           type: 'any',
           model: '',
-          relationType: 'hasOne',
-                  keyFrom: 'id',
-          keyTo: 'organizationReviewId'
+          relationType: 'belongsTo',
+                  keyFrom: 'reviewedRequestId',
+          keyTo: 'id'
         },
       }
     }
