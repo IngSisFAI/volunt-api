@@ -175,6 +175,8 @@ module.exports = function(DonationResponse) {
                   // se encontro la OS del pedido de donacion
                   console.log('la OS es: ' + organizacion.email);
 
+                  var cantidadadonar = res.amount;// ya sabiamos que era mayor a 0
+
                   // esto se va a realizar solo si el pedido es particular
                   if (!p.donationRequest.isPermanent) {
                     // es un pedido particular

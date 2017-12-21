@@ -61,6 +61,29 @@ module.exports = function(Donnerreview) {
   Donnerreview.afterRemote('create', function(ctx, res, next) {
     var error = new Error();
     // deberia enviar un mail al donador para avisarle que un OS califico su respuesta
-    // a donacion
+    // a donacion... por lo que deberia desde donnerreview ir a donationresponse
+    // y de ahi recuperar el donner para conocer su mail
+    var donrev = app.models.DonnerReview;
+
+    donrev.find({
+      where: {id: res.id},
+      include: {
+        relation: 'donationResponse',
+        scope: {
+          include: ['donner'],
+        },
+      },
+    },  function(err, resultados) {
+      if (err) {
+        error.message = 'hubo un error';
+        error.status = 404;
+        next(error);
+      } else {
+        resultados.forEach(function(post) {
+          var p = post.toJSON();
+          console.log(p.reviewedResponse);
+        });
+      }// del else
+    });// del function
   });
 };// del final
