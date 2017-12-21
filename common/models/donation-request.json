@@ -43,6 +43,11 @@
       "type": "belongsTo",
       "model": "Product",
       "foreignKey": ""
+    },
+    "organization":{
+      "type": "belongsTo",
+      "model": "Organization",
+      "foreignKey": ""
     }
   },
   "acls": [],
