@@ -48,6 +48,16 @@
       "type": "belongsTo",
       "model": "Organization",
       "foreignKey": ""
+    },
+    "organizationReview":{
+      "type": "belongsTo",
+      "model": "OrganizationReview",
+      "foreignKey": ""
+    },
+    "donationResponse":{
+      "type": "belongsTo",
+      "model": "OrganizationReview",
+      "foreignKey": ""
     }
   },
   "acls": [],

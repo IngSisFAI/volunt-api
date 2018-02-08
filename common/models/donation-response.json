@@ -26,6 +26,16 @@
       "type": "belongsTo",
       "model": "DonationRequest",
       "foreignKey": ""
+    },
+    "donner": {
+      "type": "belongsTo",
+      "model": "Donner",
+      "foreignKey": ""
+    },
+    "donnerReview": {
+      "type": "belongsTo",
+      "model": "BonnerReview",
+      "foreignKey": ""
     }
   },
   "acls": [],

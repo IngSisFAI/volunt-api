@@ -26,6 +26,11 @@
       "type": "belongsTo",
       "model": "Unit",
       "foreignKey": ""
+    },
+    "donationRequests": {
+      "type": "hasMany",
+      "model": "DonationRequest",
+      "foreignKey": ""
     }
   },
   "acls": [],
