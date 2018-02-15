@@ -70,6 +70,7 @@
           "create": true,
           "prototype.patchAttributes" : true,
           "deleteById" : true,
+          "destroyAll" : true,
           "find" : true,
           "sampleRemoteMethod": true
         }
@@ -117,6 +118,7 @@
            "create": true,
            "prototype.patchAttributes" : true,
            "deleteById" : true,
+           "destroyAll" : true,
            "find" : true,
            "sampleRemoteMethod": true
          }
