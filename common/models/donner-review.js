@@ -30,10 +30,13 @@ module.exports = function(Donnerreview) {
   Donnerreview.disableRemoteMethodByName(
     'prototype.__destroyById__reviewedResponse');
 
+  // es la evaluacion que realiza una organizacion sobre una respuesta a donacion realizada por un donador.
+// Es decir la OS califica la respuesta de un donador...
+
   Donnerreview.beforeRemote('create', function(ctx, res, next) {
     var error = new Error();
 
-    // deberia primero verificar que la organizacion exista
+    // deberia  verificar que la organizacion exista
     var org = app.models.Organization;
     org.findById(ctx.req.body.organizationId, function(err, organizacion) {
       if (err) {
@@ -42,20 +45,66 @@ module.exports = function(Donnerreview) {
         next(error);
       } else {
         // se encontro la OS que esta haciendo el review
-        // ahora me fijo que el donationResponse que va a calificar exista
+        // ahora me fijo que el donationResponse que va a calificar exista y que haya sido esa
+        // OS la que genero el requerimiento
+
         var donresp = app.models.DonationResponse;
-        donresp.findById(ctx.req.body.reviewedResponseId, function(err, reviewresponse) {
+
+        donresp.find({
+          where: {id: ctx.req.body.reviewedResponseId},
+          include: {
+            relation: 'donationRequest',
+          },
+        },  function(err, resultados) {
           if (err) {
-            error.message = 'No se encontró la respuesta a donacion que se quiere evaluar';
+            error.message = 'hubo un error';
             error.status = 404;
             next(error);
           } else {
-            // se encontro la respuesta...ahora ya la OS puede evaluar la respuesta
-            next();
-          }
-        });// del donationresponse
+            console.log('resultados tiene:', resultados);
+            // es true con nulo, undefined, false y 0
+            if (resultados.length === 0) { // no funciona aca...nose que pasa...
+              error.message = 'No existe la respuesta a donacion que se quiere calificar';
+              error.status = 404;
+              next(error);
+            } else {
+              resultados.forEach(function(post) {
+                var p = post.toJSON();
+                console.log('el json tiene donationresponse con donationrequest es:', p);
+
+                // primero ver que no exista ya una calificacion... es decir
+                // que no haya ya sido calificado  el donador
+                // esto se hace buscando si el donationresponse
+                // tiene como indefinido el valor de donnerRewiewId
+
+                console.log('el review tiene: ', p.donnerReviewId);
+                if (p.donnerReviewId) {
+                  // no estaria funcionando porque ese valor no se cambia...
+                  // lo tendre que hacer yo?
+                  error.message = 'Ya se ha calificado esa respuesta a donacion.';
+                  error.status = 404;
+                  next(error);
+                } else {
+                  // esta bien, no ha sido calificada sigo
+
+                  // verifico que la organizacion que hizo el pedido de donacion sea la misma que ahora quiere
+                  // calificar al donador
+                  if (p.donationRequest.organizationId == ctx.req.body.organizationId) {
+                    // esta bien
+                    console.log('todo ok..');
+                    next();
+                  } else {
+                    error.message = 'Se esta calificando un pedido no generado por esa OS';
+                    error.status = 404;
+                    next(error);
+                  }
+                }// del else de ya esta calificada
+              });// del for each
+            }// del else
+          }// del else de resultados
+        });// del function y find
       }// del else
-    });
+    });// del find byid
   });
 
   Donnerreview.afterRemote('create', function(ctx, res, next) {
@@ -63,15 +112,12 @@ module.exports = function(Donnerreview) {
     // deberia enviar un mail al donador para avisarle que un OS califico su respuesta
     // a donacion... por lo que deberia desde donnerreview ir a donationresponse
     // y de ahi recuperar el donner para conocer su mail
-    var donrev = app.models.DonnerReview;
+    var donresp = app.models.DonationResponse;
 
-    donrev.find({
-      where: {id: res.id},
+    donresp.find({
+      where: {id: res.reviewedResponseId},
       include: {
-        relation: 'donationResponse',
-        scope: {
-          include: ['donner'],
-        },
+        relation: 'donner',
       },
     },  function(err, resultados) {
       if (err) {
@@ -81,9 +127,32 @@ module.exports = function(Donnerreview) {
       } else {
         resultados.forEach(function(post) {
           var p = post.toJSON();
-          console.log(p.reviewedResponse);
+          console.log('todo lo que recupere tiene: ', p);
+
+          // debo primero modificar donnerReviewecId dentro de donationResponse para
+          // que posea el id del donnerreview que se esta creando...
+          // donresp.prototype.updateAttributes()
+
+          console.log('el mail es: ', p.donner.email);
+          var cuerpomail = '';
+
+          cuerpomail = 'La OS a la que Ud donó ha calificado su donación';
+          let mail = {
+            to: p.donner.email,
+            from: 'Voluntariado <voluntariadouncoma2017@gmail.com>',
+            subject: 'Calificación realizada a donador',
+            html: cuerpomail};
+
+          Donnerreview.app.models.Email.send(mail,
+            function(err) {
+              if (err)
+                throw err;
+              else
+                console.log('> sending email to:', p.donner.email);
+            });
+          // next();
         });
       }// del else
-    });// del function
+    });// del function */
   });
 };// del final
