@@ -34,7 +34,7 @@
     },
     "donnerReview": {
       "type": "belongsTo",
-      "model": "BonnerReview",
+      "model": "DonnerReview",
       "foreignKey": ""
     }
   },
