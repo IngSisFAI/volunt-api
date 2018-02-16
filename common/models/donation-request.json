@@ -16,7 +16,7 @@
     },
     "expirationDate": {
       "type": "date",
-      "required": true
+      "required": false
     },
     "isPermanent": {
       "type": "boolean",
