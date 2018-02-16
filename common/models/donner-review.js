@@ -30,8 +30,9 @@ module.exports = function(Donnerreview) {
   Donnerreview.disableRemoteMethodByName(
     'prototype.__destroyById__reviewedResponse');
 
-  // es la evaluacion que realiza una organizacion sobre una respuesta a donacion realizada por un donador.
-// Es decir la OS califica la respuesta de un donador...
+  // es la evaluacion que realiza una organizacion sobre una respuesta a donacion
+  // realizada por un donador.
+  //  Es decir la OS califica la respuesta de un donador...
 
   Donnerreview.beforeRemote('create', function(ctx, res, next) {
     var error = new Error();
@@ -114,7 +115,7 @@ module.exports = function(Donnerreview) {
     // y de ahi recuperar el donner para conocer su mail
     var donresp = app.models.DonationResponse;
 
-    donresp.find({
+    donresp.findOne({
       where: {id: res.reviewedResponseId},
       include: {
         relation: 'donner',
@@ -125,35 +126,34 @@ module.exports = function(Donnerreview) {
         error.status = 404;
         next(error);
       } else {
-        resultados.forEach(function(post) {
-          var p = post.toJSON();
-          console.log('todo lo que recupere tiene: ', p);
+        // resultados.forEach(function(post) {
+        var p = resultados.toJSON();
+        console.log('todo lo que recupere tiene: ', p);
 
-          // debo primero modificar donnerReviewecId dentro de donationResponse para
-          // que posea el id del donnerreview que se esta creando...
-          // donresp.prototype.updateAttributes()
+        console.log('el mail es: ', p.donner.email);
+        var cuerpomail = '';
 
-          /// //////////////hacer hoy
+        cuerpomail = 'La OS a la que Ud donó ha calificado su donación';
+        let mail = {
+          to: p.donner.email,
+          from: 'Voluntariado <voluntariadouncoma2017@gmail.com>',
+          subject: 'Calificación realizada a donador',
+          html: cuerpomail};
 
-          console.log('el mail es: ', p.donner.email);
-          var cuerpomail = '';
-
-          cuerpomail = 'La OS a la que Ud donó ha calificado su donación';
-          let mail = {
-            to: p.donner.email,
-            from: 'Voluntariado <voluntariadouncoma2017@gmail.com>',
-            subject: 'Calificación realizada a donador',
-            html: cuerpomail};
-
-          Donnerreview.app.models.Email.send(mail,
+        Donnerreview.app.models.Email.send(mail,
             function(err) {
               if (err)
                 throw err;
               else
                 console.log('> sending email to:', p.donner.email);
             });
-          // next();
-        });
+
+        // debo primero modificar donnerReviewId dentro de donationResponse para
+        // que posea el id del donnerreview que se esta creando...
+        resultados.donnerReviewId = res.id;
+        resultados.save();
+        next();
+       // });
       }// del else
     });// del function */
   });
