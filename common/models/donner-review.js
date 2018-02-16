@@ -63,7 +63,7 @@ module.exports = function(Donnerreview) {
           } else {
             console.log('resultados tiene:', resultados);
             // es true con nulo, undefined, false y 0
-            if (resultados.length === 0) { // no funciona aca...nose que pasa...
+            if (resultados.length === 0) {
               error.message = 'No existe la respuesta a donacion que se quiere calificar';
               error.status = 404;
               next(error);
@@ -132,6 +132,8 @@ module.exports = function(Donnerreview) {
           // debo primero modificar donnerReviewecId dentro de donationResponse para
           // que posea el id del donnerreview que se esta creando...
           // donresp.prototype.updateAttributes()
+
+          /// //////////////hacer hoy
 
           console.log('el mail es: ', p.donner.email);
           var cuerpomail = '';
