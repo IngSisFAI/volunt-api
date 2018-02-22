@@ -50,7 +50,6 @@ var donationRequesSchema = {
   },
 };
 
-
 describe('Donation Request', (done) => {
   describe('/GET api/DonationRequests ', function() {
     this.timeout(100000);
