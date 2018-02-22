@@ -51,7 +51,7 @@ module.exports = function(Donnerreview) {
 
         var donresp = app.models.DonationResponse;
 
-        donresp.find({
+        donresp.findOne({
           where: {id: ctx.req.body.reviewedResponseId},
           include: {
             relation: 'donationRequest',
@@ -69,38 +69,39 @@ module.exports = function(Donnerreview) {
               error.status = 404;
               next(error);
             } else {
-              resultados.forEach(function(post) {
-                var p = post.toJSON();
-                console.log('el json tiene donationresponse con donationrequest es:', p);
+              // resultados.forEach(function(post) {
+              var p = resultados.toJSON();
+
+              console.log('el json tiene donationresponse con donationrequest es:', p);
 
                 // primero ver que no exista ya una calificacion... es decir
                 // que no haya ya sido calificado  el donador
                 // esto se hace buscando si el donationresponse
                 // tiene como indefinido el valor de donnerRewiewId
 
-                console.log('el review tiene: ', p.donnerReviewId);
-                if (p.donnerReviewId) {
+              console.log('el review tiene: ', p.donnerReviewId);
+              if (p.donnerReviewId) {
                   // no estaria funcionando porque ese valor no se cambia...
                   // lo tendre que hacer yo?
-                  error.message = 'Ya se ha calificado esa respuesta a donacion.';
-                  error.status = 404;
-                  next(error);
-                } else {
+                error.message = 'Ya se ha calificado esa respuesta a donacion.';
+                error.status = 404;
+                next(error);
+              } else {
                   // esta bien, no ha sido calificada sigo
 
                   // verifico que la organizacion que hizo el pedido de donacion sea la misma que ahora quiere
                   // calificar al donador
-                  if (p.donationRequest.organizationId == ctx.req.body.organizationId) {
+                if (p.donationRequest.organizationId == ctx.req.body.organizationId) {
                     // esta bien
-                    console.log('todo ok..');
-                    next();
-                  } else {
-                    error.message = 'Se esta calificando un pedido no generado por esa OS';
-                    error.status = 404;
-                    next(error);
-                  }
-                }// del else de ya esta calificada
-              });// del for each
+                  console.log('todo ok..');
+                  next();
+                } else {
+                  error.message = 'Se esta calificando un pedido no generado por esa OS';
+                  error.status = 404;
+                  next(error);
+                }
+              }// del else de ya esta calificada
+             // });// del for each
             }// del else
           }// del else de resultados
         });// del function y find
