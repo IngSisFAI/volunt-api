@@ -25,8 +25,8 @@
       "required": true
     },
     "reputation":{
-      "type":"integer",
-      "required":"false"
+      "type":"number",
+      "required": false
     }
   },
   "validations": [],
