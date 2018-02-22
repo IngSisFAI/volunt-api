@@ -38,7 +38,7 @@ module.exports = function(Organizationreview) {
         var donresp = app.models.DonationResponse;
 
         donresp.find({
-          where: {id: ctx.req.body.donationRequestId,
+          where: {donationRequestId: ctx.req.body.donationRequestId,
             donnerId: ctx.req.body.donnerId},
           //include: {
           //  relation: 'donationRequest',
@@ -49,7 +49,7 @@ module.exports = function(Organizationreview) {
             error.status = 404;
             next(error);
           } else {
-            console.log('resultados tiene el donreq:', resultados);
+            console.log('resultados tiene el donresp:', resultados);
             // es true con nulo, undefined, false y 0
             if (resultados.length === 0) {
               error.message = 'El donador no ha respondido al pedido de donacion que quiere calificar, por lo que no puede calificar';
@@ -62,7 +62,7 @@ module.exports = function(Organizationreview) {
               var orgrev = app.models.OrganizationReview;
 
               orgrev.find({
-                where: {id: ctx.req.body.donationRequestId,
+                where: {donationRequestId: ctx.req.body.donationRequestId,
                   donnerId: ctx.req.body.donnerId},
                 //include: {
                 //  relation: 'donationRequest',
@@ -74,7 +74,8 @@ module.exports = function(Organizationreview) {
                   next(error);
                 } else {
                   console.log('resultados tiene el org review:', resultados);
-                  if (!resultados.length === 0) {
+
+                  if (resultados.length !== 0) {
                     error.message = 'El donador ya ha calificado a esa organizacion en este pedido';
                     error.status = 404;
                     next(error);
@@ -96,6 +97,8 @@ module.exports = function(Organizationreview) {
     // deberia enviar un mail a la organizacion para avisarle que un donador califico su request
     //  por lo que deberia desde organizationreview ir a donationrequest
     // y de ahi recuperar la OS para conocer su mail
+
+    console.log('------------en el after-----------------');
     var donreq = app.models.DonationRequest;
 
     donreq.findOne({
@@ -123,7 +126,7 @@ module.exports = function(Organizationreview) {
           subject: 'Calificación realizada a OS',
           html: cuerpomail};
 
-        Donnerreview.app.models.Email.send(mail,
+        Organizationreview.app.models.Email.send(mail,
             function(err) {
               if (err)
                 throw err;

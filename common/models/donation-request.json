@@ -49,14 +49,14 @@
       "model": "Organization",
       "foreignKey": ""
     },
-    "organizationReview":{
-      "type": "belongsTo",
+    "organizationReviews":{
+      "type": "hasMany",
       "model": "OrganizationReview",
       "foreignKey": ""
     },
-    "donationResponse":{
-      "type": "belongsTo",
-      "model": "OrganizationReview",
+    "donationResponses":{
+      "type": "hasMany",
+      "model": "DonationResponse",
       "foreignKey": ""
     }
   },

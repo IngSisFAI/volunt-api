@@ -8,10 +8,12 @@
   },
   "properties": {
     "liked": {
-      "type": "boolean"
+      "type": "boolean",
+      "required": "true"
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "required": "true"
     }
   },
   "validations": [],
