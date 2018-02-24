@@ -29,6 +29,10 @@ module.exports = function(DonationResponse) {
   DonationResponse.disableRemoteMethodByName(
     'prototype.__destroyById__donationRequest');
 
+  //Desabilitamos el PATCH  Rest de las respuestas de donaciones!
+  DonationResponse.disableRemoteMethodByName(
+    'prototype.updateAttributes');
+
 //  "creationDate": "2017-12-05T12:01:01.521Z",
 //    "amount": 0,
 //    "alreadyDelivered": false,
@@ -258,5 +262,53 @@ module.exports = function(DonationResponse) {
       };// del else
     });
   });
+
+  DonationResponse.beforeRemote('deleteById',
+    function(ctx, res, next) {
+      var error = new Error();
+
+      // me fijo que el id del DonationResponse exista
+      DonationResponse.findById(ctx.req.params.id, function(err, donationResponse) {
+        if (err) {
+          error.message = 'No se encontró la respuesta a la donacion';
+          error.status = 404;
+          next(error);
+        } else {
+          // si se encontro la respuesta  determino que se puede modificar solo el status.
+          if (!donationResponse) {
+            error.message = 'No se encontro ningun pedido de donacion con ese id';
+            error.status = 400;
+            next(error);
+          } else {
+            //Una vez que ya tengo el donationResponse, le actualizo solo el estado a false.
+            donationResponse.status = false;
+            donationResponse.save();
+
+            cuerpomail = 'El donador ' + donationResponse.donner.name + ', ' + donationResponse.donner.lastName + ' canceló ' +
+                      'un pedido de donacion que habia realizado a una publicacion de ' + donationResponse.donationRequest.product.name  + ' de su organizacion.'
+
+            let mail = {
+              to: donationResponse.donationRequest.organizacion.email,
+              from: 'Voluntariado <voluntariadouncoma2017@gmail.com>',
+              subject: 'Cancelacion de un Pedido de Donación',
+              html: cuerpomail};
+
+            DonationResponse.app.models.Email.send(mail,
+              function(err) {
+                if (err)
+                  throw err;
+                else
+              console.log('> sending email to:', donationResponse.donationRequest.organizacion.email);
+              });
+
+
+
+            //retornamos el mensaje de exito.
+
+            ctx.res.send("Eliminacion correcta de la respuesta de donacion")
+          }
+        }
+      });
+    });
 };
 
