@@ -29,7 +29,7 @@ module.exports = function(DonationResponse) {
   DonationResponse.disableRemoteMethodByName(
     'prototype.__destroyById__donationRequest');
 
-  //Desabilitamos el PATCH  Rest de las respuestas de donaciones!
+  // Desabilitamos el PATCH  Rest de las respuestas de donaciones!
   DonationResponse.disableRemoteMethodByName(
     'prototype.updateAttributes');
 
@@ -120,7 +120,7 @@ module.exports = function(DonationResponse) {
     // lo que tratamos de buscar es todas las instancias necesitadas
 
     // buscamos las donaciones request
-   // var donationreq = app.models.DonationRequest;
+    // var donationreq = app.models.DonationRequest;
     // despues debemos buscar el nombre del producto que se dono
     // var prod = app.models.Product;
     // tambien el email de la organizacion social
@@ -180,6 +180,7 @@ module.exports = function(DonationResponse) {
                   console.log('la OS es: ' + organizacion.email);
 
                   var cantidadadonar = res.amount;// ya sabiamos que era mayor a 0
+                  var cantidadyacubierta = p.donationRequest.covered;
 
                   // esto se va a realizar solo si el pedido es particular
                   if (!p.donationRequest.isPermanent) {
@@ -190,9 +191,9 @@ module.exports = function(DonationResponse) {
                     // entiende nada
 
                     var cantidadrequerida = p.donationRequest.amount;
-                    var cantidadyacubierta = p.donationRequest.covered;
+
                     // prometida para que esta?? creo que no tiene sentido por ahora...
-                    var cantidadadonar = res.amount;// ya sabiamos que era mayor a 0
+                    // cantidadadonar = res.amount;// ya sabiamos que era mayor a 0
 
                     var cantidadfaltante = cantidadrequerida - cantidadyacubierta;
 
@@ -209,7 +210,7 @@ module.exports = function(DonationResponse) {
                         'la cantidad de productos solicitada, por lo que el pedido fue cerrado. Ud' +
                         'puede volver a abrilo en caso que el donador no cumpla con lo pactado';
                     } else {
-                      // todavia el pedido gueda abierto ya que no se cubrio la
+                      // todavia el pedido queda abierto ya que no se cubrio la
                       // cantidad solicitada
                       p.donationRequest.covered = p.donationRequest.covered + cantidadadonar;
 
@@ -219,6 +220,10 @@ module.exports = function(DonationResponse) {
                     }// del else de cantidades
                   } else {
                     // si es permanente
+                    // modificamos tambien lo cubierto
+                    p.donationRequest.covered = p.donationRequest.covered + cantidadadonar;
+
+
                     cuerpomail = 'El donador ' + donador.name + ', ' + donador.lastName + ' donó ' +
                       'la cantidad de ' + cantidadadonar + ' de productos a un pedido permanente ' +
                       'solicitado por Ud';
@@ -280,12 +285,12 @@ module.exports = function(DonationResponse) {
             error.status = 400;
             next(error);
           } else {
-            //Una vez que ya tengo el donationResponse, le actualizo solo el estado a false.
+            // Una vez que ya tengo el donationResponse, le actualizo solo el estado a false.
             donationResponse.status = false;
             donationResponse.save();
 
-            cuerpomail = 'El donador ' + donationResponse.donner.name + ', ' + donationResponse.donner.lastName + ' canceló ' +
-                      'un pedido de donacion que habia realizado a una publicacion de ' + donationResponse.donationRequest.product.name  + ' de su organizacion.'
+            var cuerpomail = 'El donador ' + donationResponse.donner.name + ', ' + donationResponse.donner.lastName + ' canceló ' +
+                      'un pedido de donacion que habia realizado a una publicacion de ' + donationResponse.donationRequest.product.name  + ' de su organizacion.';
 
             let mail = {
               to: donationResponse.donationRequest.organizacion.email,
@@ -301,11 +306,9 @@ module.exports = function(DonationResponse) {
               console.log('> sending email to:', donationResponse.donationRequest.organizacion.email);
               });
 
+            // retornamos el mensaje de exito.
 
-
-            //retornamos el mensaje de exito.
-
-            ctx.res.send("Eliminacion correcta de la respuesta de donacion")
+            ctx.res.send('Eliminacion correcta de la respuesta de donacion');
           }
         }
       });
