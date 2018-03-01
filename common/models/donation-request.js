@@ -80,10 +80,11 @@ module.exports = function(DonationRequest) {
             // eso viene definido como true en la propiedad isPermanent
 
             if (ctx.req.body.isPermanent) {
-              // es un pedido permanente con lo que amount, covered y promised deberian ser nulos
+              // es un pedido permanente con lo que amount y promised deberian ser nulos
               ctx.req.body.amount = null;
-              ctx.req.body.covered = null;
               ctx.req.body.promised = null;
+              // covered debe iniciar en 0 y se va sumando a medida que van donando
+              ctx.req.body.covered = 0;
 
               // controlo que la fecha de expiracion sea valida y a su vez mayor, en al menos 30 dias a la fecha de creacion
               if (exp.isValid() && exp.isAfter(moment().add(30, 'days'), 'day')) {
