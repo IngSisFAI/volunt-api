@@ -42,7 +42,7 @@ module.exports = function(Donnerreview) {
     org.findById(ctx.req.body.organizationId, function(err, organizacion) {
       if (err) {
         error.message = 'No se encontró la OS que esta generando el review';
-        error.status = 404;
+        error.status = 400;
         next(error);
       } else {
         // se encontro la OS que esta haciendo el review
@@ -58,15 +58,15 @@ module.exports = function(Donnerreview) {
           },
         }, function(err, resultados) {
           if (err) {
-            error.message = 'hubo un error';
-            error.status = 404;
+            error.message = 'No se encuentra la respuesta a donacion';
+            error.status = 400;
             next(error);
           } else {
             console.log('resultados tiene:', resultados);
             // es true con nulo, undefined, false y 0
             if (resultados.length === 0) {
               error.message = 'No existe la respuesta a donacion que se quiere calificar';
-              error.status = 404;
+              error.status = 400;
               next(error);
             } else {
               // resultados.forEach(function(post) {
@@ -123,8 +123,8 @@ module.exports = function(Donnerreview) {
       },
     }, function(err, resultados) {
       if (err) {
-        error.message = 'hubo un error';
-        error.status = 404;
+        error.message = 'No se encuentra la respuesta a donacion';
+        error.status = 400;
         next(error);
       } else {
         // resultados.forEach(function(post) {
@@ -168,7 +168,7 @@ module.exports = function(Donnerreview) {
       // que se pueda modificar una calificacion y mande los mails correspondientes del cambio.
       Donnerreview.findById(ctx.req.params.id, function(err, dreview) {
         if (err) {
-          error.message = 'Hubo un error desconocido en encontrar el review de la organizacion';
+          error.message = 'No se encuentra el review de la organizacion';
           error.status = 400;
           next(err);
         } else {
@@ -200,7 +200,7 @@ module.exports = function(Donnerreview) {
       // hay que buscar lo modificado y mandar un mail diciendo que se cambio un review
       Donnerreview.findById(ctx.req.params.id, function(err, dreview) {
         if (err) {
-          error.message = 'Hubo un error desconocido en encontrar el review de la organizacion';
+          error.message = 'No se encuentra  el review de la organizacion';
           error.status = 400;
           next(err);
         } else {
@@ -221,9 +221,9 @@ module.exports = function(Donnerreview) {
               include: {
                 relation: 'donner',
               },
-            }, function (err, resultados) {
+            }, function(err, resultados) {
               if (err) {
-                error.message = 'hubo un error';
+                error.message = 'No se encuentra la respuesta a donación.';
                 error.status = 404;
                 next(error);
               } else {

@@ -58,7 +58,7 @@ module.exports = function(DonationRequest) {
     product.findById(ctx.req.body.productId, function(err, producto) {
       if (err || producto == null) {
         error.message = 'No se encontró el producto';
-        error.status = 404;
+        error.status = 400;
         next(error);
       } else {
         // si se encontro el producto
@@ -69,7 +69,7 @@ module.exports = function(DonationRequest) {
         org.findById(ctx.req.body.organizationId, function(err, organizacion) {
           if (err || !organizacion) {
             error.message = 'No se encontró la organizacion';
-            error.status = 404;
+            error.status = 400;
             next(error);
           } else {
             // si se encontro la organizacion
@@ -92,7 +92,7 @@ module.exports = function(DonationRequest) {
                 next();
               } else {
                 error.message = 'La fecha de expiracion debe ser al menos 30 dias mayor';
-                error.status = 400;
+                error.status = 404;
                 next(error);
               }
             } else {
@@ -104,7 +104,7 @@ module.exports = function(DonationRequest) {
                 // next();
               } else {
                 error.message = 'La cantidad debe obligatoriamente ser mayor a 0';
-                error.status = 400;
+                error.status = 404;
                 next(error);
               }
 
@@ -114,7 +114,7 @@ module.exports = function(DonationRequest) {
                 next();
               } else {
                 error.message = 'La fecha de expiracion debe ser al menos 2 dias mayor';
-                error.status = 400;
+                error.status = 404;
                 next(error);
               }
             }// del else de isPermanent
@@ -141,7 +141,7 @@ module.exports = function(DonationRequest) {
           // expirationDate y amount, por lo que los otros valores los seteo a lo que tenia antes...
           if (!onetime) {
             // es true con nulo, undefined, false y 0
-            error.message = 'No tengo pedido de donacion';
+            error.message = 'No se encuentra el  pedido de donacion';
             error.status = 404;
             next(error);
           } else {
@@ -224,14 +224,14 @@ module.exports = function(DonationRequest) {
       DonationRequest.findById(ctx.req.params.id, function(err, onetime) {
         if (err) {
           error.message = 'No se encontró el pedido de donacion';
-          error.status = 404;
+          error.status = 400;
           next(error);
         } else {
           // si se encontro el pedido determino que se puede modificar solo el
           // expirationDate y amount, por lo que los otros valores los seteo a lo que tenia antes...
           if (!onetime) {
-            error.message = 'No tengo pedido de donacion';
-            error.status = 400;
+            error.message = 'No se encontro el pedido de donacion';
+            error.status = 404;
             next(error);
           } else {
             // debo ver que ese pedido de donacion no tenga donaciones efectuadas(donationresponse),
@@ -246,7 +246,7 @@ module.exports = function(DonationRequest) {
                   next(error);
                 } else {
                   if (!donres) {
-                    console.log('no encontro una respuesta para ese pedido, se puede borrar');
+                    console.log('No encontro una respuesta para ese pedido, se puede borrar');
                     error.message = 'no es error';
                     error.status = 400;
                     next(error);// despues cambiar a next()

@@ -54,7 +54,7 @@ module.exports = function(DonationResponse) {
     donationreq.findById(ctx.req.body.donationRequestId, function(err, donreq) {
       if (err) {
         error.message = 'No se encontró el pedido de donacion';
-        error.status = 404;
+        error.status = 400;
         next(error);
       } else {
         // se encontro el pedido
@@ -65,7 +65,7 @@ module.exports = function(DonationResponse) {
         donador.findById(ctx.req.body.donnerId, function(err, donadorrest) {
           if (err) {
             error.message = 'No se encontró el donador';
-            error.status = 404;
+            error.status = 400;
             next(error);
           } else {
             // se encontro el donador asi que seguimos
@@ -80,7 +80,7 @@ module.exports = function(DonationResponse) {
                 // esto pudo haber pasado porque una OS lo cerro unilaterlamente
                 // o porque covered fue ya igual a lo donado (ammount)
                 error.message = 'El pedido de donación se encuentra cerrado';
-                error.status = 400;
+                error.status = 404;
                 next(error);
               } else {
                 // el status es true por lo que el pedido esta abierto todavia
@@ -143,8 +143,8 @@ module.exports = function(DonationResponse) {
       },
     },  function(err, resultados) {
       if (err) {
-        error.message = 'hubo un error';
-        error.status = 404;
+        error.message = 'No encuentra la respuesta a donación.';
+        error.status = 400;
         next(error);
       } else {
         resultados.forEach(function(post) {
@@ -160,7 +160,7 @@ module.exports = function(DonationResponse) {
           don.findById(res.donnerId, function(err, donador) {
             if (err) {
               error.message = 'No se encontró el donador';
-              error.status = 404;
+              error.status = 400;
               next(error);
             } else {
               // se encontro el donador asi que seguimos
@@ -173,7 +173,7 @@ module.exports = function(DonationResponse) {
               org.findById(p.donationRequest.organizationId, function(err, organizacion) {
                 if (err) {
                   error.message = 'No se encontró la OS que genero el pedido de donacion';
-                  error.status = 404;
+                  error.status = 400;
                   next(error);
                 } else {
                   // se encontro la OS del pedido de donacion
@@ -223,7 +223,6 @@ module.exports = function(DonationResponse) {
                     // si es permanente
                     // modificamos lo cubierto... no usa promised
                     p.donationRequest.covered = p.donationRequest.covered + cantidadadonar;
-
 
                     cuerpomail = 'El donador ' + donador.name + ', ' + donador.lastName + ' donó ' +
                       'la cantidad de ' + cantidadadonar + ' de productos a un pedido permanente ' +
@@ -277,13 +276,13 @@ module.exports = function(DonationResponse) {
       DonationResponse.findById(ctx.req.params.id, function(err, donationResponse) {
         if (err) {
           error.message = 'No se encontró la respuesta a la donacion';
-          error.status = 404;
+          error.status = 400;
           next(error);
         } else {
           // si se encontro la respuesta  determino que se puede modificar solo el status.
           if (!donationResponse) {
             error.message = 'No se encontro ningun pedido de donacion con ese id';
-            error.status = 400;
+            error.status = 404;
             next(error);
           } else {
             // Una vez que ya tengo el donationResponse, le actualizo solo el estado a false.

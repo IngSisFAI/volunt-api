@@ -20,8 +20,8 @@ module.exports = function(Organizationreview) {
     var don = app.models.Donner;
     don.findById(ctx.req.body.donnerId, function(err, donner) {
       if (err) {
-        error.message = 'No se encontró el donador que esta generando la calificacion';
-        error.status = 404;
+        error.message = 'No se encontra el donador que esta generando la calificacion';
+        error.status = 400;
         next(error);
       } else {
         // se encontro el donador
@@ -45,8 +45,8 @@ module.exports = function(Organizationreview) {
           //},
         },  function(err, resultados) {
           if (err) {
-            error.message = 'hubo un error';
-            error.status = 404;
+            error.message = 'No se encuentra  la revision de la organizacion.';
+            error.status = 400;
             next(error);
           } else {
             console.log('resultados tiene el donresp:', resultados);
@@ -69,8 +69,8 @@ module.exports = function(Organizationreview) {
                 //},
               },  function(err, resultados) {
                 if (err) {
-                  error.message = 'hubo un error';
-                  error.status = 404;
+                  error.message = 'No se encuentra  la revision de la organizacion.';
+                  error.status = 400;
                   next(error);
                 } else {
                   console.log('resultados tiene el org review:', resultados);
@@ -108,8 +108,8 @@ module.exports = function(Organizationreview) {
       },
     },  function(err, resultados) {
       if (err) {
-        error.message = 'hubo un error';
-        error.status = 404;
+        error.message = 'No se encuentra el requerimiento de donación.';
+        error.status = 400;
         next(error);
       } else {
         // resultados.forEach(function(post) {
@@ -146,7 +146,6 @@ module.exports = function(Organizationreview) {
       }// del else
     });// del function
   });
-
 
   Organizationreview.beforeRemote('prototype.patchAttributes',
     function(ctx, res, next) {
@@ -208,8 +207,8 @@ module.exports = function(Organizationreview) {
               },
             },  function(err, resultados) {
               if (err) {
-                error.message = 'hubo un error';
-                error.status = 404;
+                error.message = 'No se encuentra el requerimiento de donación.';
+                error.status = 400;
                 next(error);
               } else {
                 // resultados.forEach(function(post) {
