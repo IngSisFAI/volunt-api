@@ -13,8 +13,8 @@
         "secure": true,
         "port": 465,
         "auth": {
-          "user": "voluntariadouncoma2017@gmail.com",
-          "pass": "V0lunt4r10s"
+          "user": "",
+          "pass": ""
         }
       }
     ]
@@ -22,9 +22,9 @@
   "database": {
     "host": "mlab.com",
     "port": 11476,
-    "url": "mongodb://root:123456@ds111476.mlab.com:11476/voluntariado",
-    "database": "voluntariado",
-    "password": "123456",
+    "url": "",
+    "database": "",
+    "password": "",
     "name": "mLab",
     "user": "root",
     "connector": "mongodb"

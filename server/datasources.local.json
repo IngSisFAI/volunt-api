@@ -13,8 +13,8 @@
         "secure": true,
         "port": 465,
         "auth": {
-          "user": "voluntariadouncoma2017@gmail.com",
-          "pass": "V0lunt4r10s"
+          "user": "",
+          "pass": ""
         }
       }
     ]
