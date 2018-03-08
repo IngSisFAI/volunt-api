@@ -15,36 +15,36 @@
     ]
   },
   "User": {
-    "dataSource": "mLab"
+    "dataSource": "database"
   },
   "AccessToken": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": false
   },
   "ACL": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": false
   },
   "Organization": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": true
   },
   "Email":{
     "dataSource":"myEmailDataSource"
   },
   "Donner": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": true,
     "options": {
       "remoting": {
@@ -57,11 +57,11 @@
     }
   },
   "Contact": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": true
   },
   "DonnerReview": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": true,
     "options": {
       "remoting": {
@@ -78,7 +78,7 @@
     }
   },
   "OrganizationReview": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": true,
     "options": {
       "remoting": {
@@ -94,7 +94,7 @@
     }
   },
   "DonationRequest": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": true,
     "options": {
       "remoting": {
@@ -110,7 +110,7 @@
     }
   },
    "DonationResponse": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": true,    "options": {
        "remoting": {
          "sharedMethods": {
@@ -126,11 +126,11 @@
      }
   },
   "Product": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": true
   },
   "Unit": {
-    "dataSource": "mLab",
+    "dataSource": "database",
     "public": true
   }
 }

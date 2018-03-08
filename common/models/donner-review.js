@@ -3,6 +3,8 @@
 'use strict';
 
 var app = require('../../server/server');
+const debug = require('debug')('info');
+
 
 const moment = require('moment');
 
@@ -62,7 +64,7 @@ module.exports = function(Donnerreview) {
             error.status = 400;
             next(error);
           } else {
-            console.log('resultados tiene:', resultados);
+            debug('resultados tiene:', resultados);
             // es true con nulo, undefined, false y 0
             if (resultados.length === 0) {
               error.message = 'No existe la respuesta a donacion que se quiere calificar';
@@ -72,14 +74,14 @@ module.exports = function(Donnerreview) {
               // resultados.forEach(function(post) {
               var p = resultados.toJSON();
 
-              console.log('el json tiene donationresponse con donationrequest es:', p);
+              debug('el json tiene donationresponse con donationrequest es:', p);
 
               // primero ver que no exista ya una calificacion... es decir
               // que no haya ya sido calificado  el donador
               // esto se hace buscando si el donationresponse
               // tiene como indefinido el valor de donnerRewiewId
 
-              console.log('el review tiene: ', p.donnerReviewId);
+              debug('el review tiene: ', p.donnerReviewId);
               if (p.donnerReviewId) {
                 // no estaria funcionando porque ese valor no se cambia...
                 // lo tendre que hacer yo?
@@ -92,8 +94,8 @@ module.exports = function(Donnerreview) {
                 // verifico que la organizacion que hizo el pedido de donacion sea la misma que ahora quiere
                 // calificar al donador
                 if (p.donationRequest.organizationId == ctx.req.body.organizationId) {
-                  // esta bien
-                  console.log('todo ok..');
+                    // esta bien
+                  debug('todo ok..');
                   next();
                 } else {
                   error.message = 'Se esta calificando un pedido no generado por esa OS';
@@ -129,9 +131,9 @@ module.exports = function(Donnerreview) {
       } else {
         // resultados.forEach(function(post) {
         var p = resultados.toJSON();
-        console.log('todo lo que recupere tiene: ', p);
+        debug('todo lo que recupere tiene: ', p);
 
-        console.log('el mail es: ', p.donner.email);
+        debug('el mail es: ', p.donner.email);
         var cuerpomail = '';
 
         cuerpomail = 'La OS a la que Ud donó ha calificado su donación';
@@ -143,12 +145,12 @@ module.exports = function(Donnerreview) {
         };
 
         Donnerreview.app.models.Email.send(mail,
-          function(err) {
-            if (err)
-              throw err;
-            else
-              console.log('> sending email to:', p.donner.email);
-          });
+            function(err) {
+              if (err)
+                throw err;
+              else
+                debug('> sending email to:', p.donner.email);
+            });
 
         // debo primero modificar donnerReviewId dentro de donationResponse para
         // que posea el id del donnerreview que se esta creando...

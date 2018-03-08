@@ -1,5 +1,7 @@
 'use strict';
 var path = require('path');
+const debug = require('debug')('info');
+
 
 module.exports = function(Donner) {
   // Disable related model relations "Donation Response"
@@ -88,7 +90,7 @@ module.exports = function(Donner) {
     });
 
   Donner.afterRemote('create', function(context, userInstance, next) {
-    console.log('> user.afterRemote triggered');
+    debug('> user.afterRemote triggered');
 
     var options = {
       type: 'email',
@@ -115,7 +117,7 @@ module.exports = function(Donner) {
       options.redirect;
 
     userInstance.verify(options, function(err, response) {
-      console.log(err);
+      debug(err);
       if (err) return next(err);
       next();
     });
@@ -135,10 +137,10 @@ module.exports = function(Donner) {
   });
 
   Donner.emailExists = function(mail, cb) {
-    console.log(mail);
+    debug(mail);
     Donner.findOne({where: {email: mail}}, function(err, Donner) {
       if (err) throw err;
-      console.log(Donner);
+      debug(Donner);
       cb(null, Donner != null);
     });
   };

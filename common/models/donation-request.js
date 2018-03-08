@@ -2,6 +2,7 @@
 'use strict';
 
 var app = require('../../server/server');
+const debug = require('debug')('info');
 
 const moment = require('moment');
 
@@ -62,7 +63,7 @@ module.exports = function(DonationRequest) {
         next(error);
       } else {
         // si se encontro el producto
-        console.log('el producto se encontro y es', producto.id);
+        debug('el producto se encontro y es', producto.id);
         // next();
         // luego debemos ver que la organizacionId que viene exista
         var org = app.models.Organization;
@@ -73,7 +74,7 @@ module.exports = function(DonationRequest) {
             next(error);
           } else {
             // si se encontro la organizacion
-            console.log('la organizacion se encontro y es', organizacion.id);
+            debug('la organizacion se encontro y es', organizacion.id);
             // next();
 
             // luego lo mas importante es saber si se esta creando un pedido permanente o particular
@@ -88,7 +89,7 @@ module.exports = function(DonationRequest) {
 
               // controlo que la fecha de expiracion sea valida y a su vez mayor, en al menos 30 dias a la fecha de creacion
               if (exp.isValid() && exp.isAfter(moment().add(30, 'days'), 'day')) {
-                console.log('La fecha de expiracion es correcta');
+                debug('La fecha de expiracion es correcta');
                 next();
               } else {
                 error.message = 'La fecha de expiracion debe ser al menos 30 dias mayor';
@@ -98,9 +99,9 @@ module.exports = function(DonationRequest) {
             } else {
               // es un pedido particular
               // controlo que la cantidad ingresada sea mayor a 0
-              console.log(ctx.req.body);
+              debug(ctx.req.body);
               if (ctx.req.body.amount > 0) {
-                console.log('La cantidad es mayor a 0');
+                debug('La cantidad es mayor a 0');
                 // next();
               } else {
                 error.message = 'La cantidad debe obligatoriamente ser mayor a 0';
@@ -110,7 +111,7 @@ module.exports = function(DonationRequest) {
 
               // controlo que la fecha de expiracion sea valida y a su vez mayor, en al menos 2 dias a la fecha de creacion
               if (exp.isValid() && exp.isAfter(moment().add(2, 'days'), 'day')) {
-                console.log('La fecha de expiracion es correcta');
+                debug('La fecha de expiracion es correcta');
                 next();
               } else {
                 error.message = 'La fecha de expiracion debe ser al menos 2 dias mayor';
@@ -128,7 +129,7 @@ module.exports = function(DonationRequest) {
     function(ctx, res, next) {
       var error = new Error();
       var cre;
-      console.log(ctx.req.params.id);
+      debug(ctx.req.params.id);
 
       // para ambos donationrequest se va a hacer una parte similar que es la siguiente
       DonationRequest.findById(ctx.req.params.id, function(err, onetime) {
@@ -145,7 +146,7 @@ module.exports = function(DonationRequest) {
             error.status = 404;
             next(error);
           } else {
-            console.log('el pedido es:', onetime);
+            debug('el pedido es:', onetime);
             // amount aca lo coloco igual que el que ya tenia antes de modificar,
             // pero luego si no es permanente
             // lo voy a dejar que se cambie
@@ -157,12 +158,12 @@ module.exports = function(DonationRequest) {
             ctx.req.body.isPermanent = onetime.isPermanent;
             cre = moment(onetime.creationDate);
 
-            console.log('el cre adentro, que lo modificado es:', cre);
+            debug('el cre adentro, que lo modificado es:', cre);
 
             var exp = moment(ctx.req.body.expirationDate);
-            console.log('La fecha de expiracion', exp);
+            debug('La fecha de expiracion', exp);
             // busco cual era la creationDate
-            console.log('La fecha de creacion ', cre);
+            debug('La fecha de creacion ', cre);
 
             // ahora lo diferente si es permanente o particular
             if (ctx.req.body.isPermanent) {
@@ -174,7 +175,7 @@ module.exports = function(DonationRequest) {
               // y a su vez mayor, en al menos 30 dias a la fecha de creacion
 
               if (exp.isValid() && exp.isAfter(cre.add(30, 'days'), 'day')) {
-                console.log('La fecha de expiracion ', exp);
+                debug('La fecha de expiracion ', exp);
                 next();
               } else {
                 error.message = 'La fecha de expiracion =+30 a la fecha de creacion';
@@ -188,7 +189,7 @@ module.exports = function(DonationRequest) {
               // y a su vez mayor, en al menos 2 dias a la fecha de creacion
 
               if (exp.isValid() && exp.isAfter(cre.add(2, 'days'), 'day')) {
-                console.log('La fecha de expiracion ', exp);
+                debug('La fecha de expiracion ', exp);
                 // next();
               } else {
                 error.message = 'La fecha de expiracion =+2 a la fecha de creacion';
@@ -203,7 +204,7 @@ module.exports = function(DonationRequest) {
 
               // ahora controlo que la cantidad sea mayor a lo covered, sino queda inconsistente
               if (ctx.req.body.amount > ctx.req.body.covered) {
-                console.log('La cantidad es mayor a covered');
+                debug('La cantidad es mayor a covered');
                 next();
               } else {
                 error.message = 'La cantidad debe ser mayor a lo cubierto';
@@ -240,13 +241,13 @@ module.exports = function(DonationRequest) {
             donationresponse.findOne({where: {donationRequestId: ctx.req.params.id}},
               function(err, donres) {
                 if (err) {
-                  console.log(donres);
+                  debug(donres);
                   error.message = 'Hubo un error en buscar respuestaDonaciones';
                   error.status = 404;
                   next(error);
                 } else {
                   if (!donres) {
-                    console.log('No encontro una respuesta para ese pedido, se puede borrar');
+                    debug('no encontro una respuesta para ese pedido, se puede borrar');
                     error.message = 'no es error';
                     error.status = 400;
                     next(error);// despues cambiar a next()

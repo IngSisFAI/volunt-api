@@ -2,12 +2,14 @@
 'use strict';
 
 var app = require('../../server/server');
+const debug = require('debug')('info');
+
 
 const moment = require('moment');
 
 module.exports = function(Organizationreview) {
   // es la evaluacion que realiza un donador sobre una pedido de donacion realizado por una OS.
-// Es decir el donador califica el pedido de la OS, sobre todo con respecto a como fue recepcionada su  donacion
+// Es decir el donador califica el pedido de la OS, principalmente con respecto a como fue recepcionada su  donacion
 // y cosas asi...
 
   Organizationreview.beforeRemote('create', function(ctx, res, next) {
@@ -49,7 +51,7 @@ module.exports = function(Organizationreview) {
             error.status = 400;
             next(error);
           } else {
-            console.log('resultados tiene el donresp:', resultados);
+            debug('resultados tiene el donresp:', resultados);
             // es true con nulo, undefined, false y 0
             if (resultados.length === 0) {
               error.message = 'El donador no ha respondido al pedido de donacion que quiere calificar, por lo que no puede calificar';
@@ -73,7 +75,7 @@ module.exports = function(Organizationreview) {
                   error.status = 400;
                   next(error);
                 } else {
-                  console.log('resultados tiene el org review:', resultados);
+                  debug('resultados tiene el org review:', resultados);
 
                   if (resultados.length !== 0) {
                     error.message = 'El donador ya ha calificado a esa organizacion en este pedido';
@@ -98,7 +100,7 @@ module.exports = function(Organizationreview) {
     //  por lo que deberia desde organizationreview ir a donationrequest
     // y de ahi recuperar la OS para conocer su mail
 
-    console.log('------------en el after-----------------');
+    debug('------------en el after-----------------');
     var donreq = app.models.DonationRequest;
 
     donreq.findOne({
@@ -114,9 +116,9 @@ module.exports = function(Organizationreview) {
       } else {
         // resultados.forEach(function(post) {
         var p = resultados.toJSON();
-        console.log('todo lo que recupere tiene: ', p);
+        debug('todo lo que recupere tiene: ', p);
 
-        console.log('el mail es: ', p.organization.email);
+        debug('el mail es: ', p.organization.email);
         var cuerpomail = '';
 
         cuerpomail = 'Un donador que le efectuó una donación ha calificado su pedido';
@@ -131,7 +133,7 @@ module.exports = function(Organizationreview) {
               if (err)
                 throw err;
               else
-                console.log('> sending email to:', p.organization.email);
+                debug('> sending email to:', p.organization.email);
             });
 
         /* esto no se hace porque es a mucho..un request tiene muchos reviews
