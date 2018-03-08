@@ -114,7 +114,7 @@ module.exports = function(DonationResponse) {
     var error = new Error();
 
     // aca debemos primero buscar nuevamente el donationrequest al cual
-    // se dono para cambiar el covered y posiblemente el status
+    // se dono para cambiar el promised y posiblemente el status
 
     // como ya sabemos que estaria todo bien,
     // lo que tratamos de buscar es todas las instancias necesitadas
@@ -192,7 +192,8 @@ module.exports = function(DonationResponse) {
 
                     var cantidadrequerida = p.donationRequest.amount;
 
-                    // prometida para que esta?? creo que no tiene sentido por ahora...
+                    // promised se modifica siempre...
+                    // lo que nose toca es covered, eso lo hace donationrequest
                     // cantidadadonar = res.amount;// ya sabiamos que era mayor a 0
 
                     var cantidadfaltante = cantidadrequerida - cantidadyacubierta;
@@ -203,7 +204,7 @@ module.exports = function(DonationResponse) {
                       // se debe cerrar el pedido ya que se cumplio con lo solicitado
                       // es decir debo poner el status en false
                       // y ademas sumar a cantidadyacubierta + cantidadadonar
-                      p.donationRequest.covered = cantidadrequerida;
+                      p.donationRequest.promised = cantidadrequerida;
                       p.donationRequest.status = false;
 
                       cuerpomail = 'El donador ' + donador.name + ', ' + donador.lastName + ' donó ' +
@@ -212,7 +213,7 @@ module.exports = function(DonationResponse) {
                     } else {
                       // todavia el pedido queda abierto ya que no se cubrio la
                       // cantidad solicitada
-                      p.donationRequest.covered = p.donationRequest.covered + cantidadadonar;
+                      p.donationRequest.promised = p.donationRequest.promised + cantidadadonar;
 
                       cuerpomail = 'El donador ' + donador.name + ', ' + donador.lastName + ' donó ' +
                         'la cantidad de ' + cantidadadonar + ' de productos. El pedido sigue ' +
@@ -220,7 +221,7 @@ module.exports = function(DonationResponse) {
                     }// del else de cantidades
                   } else {
                     // si es permanente
-                    // modificamos tambien lo cubierto
+                    // modificamos lo cubierto... no usa promised
                     p.donationRequest.covered = p.donationRequest.covered + cantidadadonar;
 
 

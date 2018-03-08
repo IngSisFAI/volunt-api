@@ -146,4 +146,98 @@ module.exports = function(Organizationreview) {
       }// del else
     });// del function
   });
+
+
+  Organizationreview.beforeRemote('prototype.patchAttributes',
+    function(ctx, res, next) {
+      var error = new Error();
+      console.log(ctx.req.params.id);
+
+      // que se pueda modificar una calificacion y mande los mails correspondientes del cambio.
+      Organizationreview.findById(ctx.req.params.id, function(err, oreview) {
+        if (err) {
+          error.message = 'Hubo un error desconocido en encontrar el review del donador';
+          error.status = 400;
+          next(err);
+        } else {
+          // si se encontro el review, y determino que se puede modificar la description y el liked
+          if (!oreview) {
+            // es true con nulo, undefined, false y 0
+            error.message = 'No se encuentra el review';
+            error.status = 404;
+            next(error);
+          } else {
+            console.log('el review es:', oreview);
+            // a los atributos que no se permiten modificar se vuelve a asignar con lo que tenia
+            // aca lo coloco igual que el que ya tenia antes de modificar
+            ctx.req.body.donnerId = oreview.donnerId;
+            ctx.req.body.donationRequestId = oreview.donationRequestId;
+            next();
+          }
+        }
+      }); // del findbyid
+    });
+
+  // el ctx posee la instancia que esta siendo modificada
+  // el res posee el json que se creo, se usa en afterremote
+  Organizationreview.afterRemote('prototype.patchAttributes',
+    function(ctx, res, next) {
+      var error = new Error();
+      console.log(ctx.req.params.id);
+
+      // hay que buscar lo modificado y mandar un mail diciendo que se cambio un review
+      Organizationreview.findById(ctx.req.params.id, function(err, oreview) {
+        if (err) {
+          error.message = 'Hubo un error desconocido en encontrar el review del donador';
+          error.status = 400;
+          next(err);
+        } else {
+          // si se encontro el review
+          if (!oreview) {
+            // es true con nulo, undefined, false y 0
+            error.message = 'No se encuentra el review';
+            error.status = 404;
+            next(error);
+          } else {
+            var donreq = app.models.DonationRequest;
+
+            donreq.findOne({
+              where: {id: res.donationRequestId},
+              include: {
+                relation: 'organization',
+              },
+            },  function(err, resultados) {
+              if (err) {
+                error.message = 'hubo un error';
+                error.status = 404;
+                next(error);
+              } else {
+                // resultados.forEach(function(post) {
+                var p = resultados.toJSON();
+                console.log('todo lo que recupere tiene: ', p);
+
+                console.log('el mail es: ', p.organization.email);
+                var cuerpomail = '';
+
+                cuerpomail = 'Un donador que le efectuó una donación ha modificado su calificacion';
+                let mail = {
+                  to: p.organization.email,
+                  from: 'Voluntariado <voluntariadouncoma2017@gmail.com>',
+                  subject: 'Calificación realizada a OS',
+                  html: cuerpomail};
+
+                Organizationreview.app.models.Email.send(mail,
+                  function(err) {
+                    if (err)
+                      throw err;
+                    else
+                      console.log('> sending email to:', p.organization.email);
+                  });
+                next();
+              }// del else
+            });// del fundone
+          }
+        }
+      }); // del findbyid
+    });
 };// del final

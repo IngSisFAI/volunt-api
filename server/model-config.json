@@ -69,8 +69,8 @@
           "*": false,
           "create": true,
           "prototype.patchAttributes" : true,
-          "deleteById" : true,
-          "destroyAll" : true,
+          "deleteById" : false,
+          "destroyAll" : false,
           "find" : true,
           "sampleRemoteMethod": true
         }
@@ -86,7 +86,7 @@
           "*": false,
           "create": true,
           "prototype.patchAttributes" : true,
-          "deleteById" : true,
+          "deleteById" : false,
           "find" : true,
           "sampleRemoteMethod": true
         }
@@ -116,9 +116,9 @@
          "sharedMethods": {
            "*": false,
            "create": true,
-           "prototype.patchAttributes" : true,
+           "prototype.patchAttributes" : false,
            "deleteById" : true,
-           "destroyAll" : true,
+           "destroyAll" : false,
            "find" : true,
            "sampleRemoteMethod": true
          }
