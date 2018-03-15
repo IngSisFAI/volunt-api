@@ -313,5 +313,67 @@ module.exports = function(DonationResponse) {
         }
       });
     });
+
+  DonationResponse.remoteMethod('donationArrival', {
+    accepts: [{
+      arg: 'id',
+      type: 'string',
+      required: true,
+    },
+    {
+      arg: 'resId',
+      type: 'string',
+      required: true,
+    }],
+    http: {
+      'verb': 'GET',
+      'path': '/:id/donationArrival',
+    },
+    returns: {},
+  });
+
+  DonationResponse.donationArrival = function(id, cb) {
+   // var donresp = app.models.DonationResponse;
+    var error = new Error();
+    DonationResponse.findOne({
+      where: {id: id},
+      include: {
+        relation: 'donationRequest',
+      },
+    }, function(err, resultados) {
+      if (err) {
+        error.message = 'No se encuentra la respuesta a donacion';
+        error.status = 400;
+        cb(error);
+      } else {
+        console.log('resultados tiene:', resultados);
+        // es true con nulo, undefined, false y 0
+        if (resultados.length === 0) {
+          error.message = 'No existe la respuesta a donacion ';
+          error.status = 400;
+          cb(error);
+        } else {
+          // resultados.forEach(function(post) {
+          var p = resultados.toJSON();
+          // aca debo pasar de el ispending a false en donationresponse y
+          // en donation request debo restar del promised y sumar al covered
+
+          resultados.ispending = false;
+          resultados.donationRequest.promised = p.donationRequest.promised - p.amount;
+          resultados.donationRequest.covered = p.donationRequest.promised + p.amount;
+
+          resultados.save();
+          cb(resultados);
+        }
+      }
+    });// del function y find
+  };
+
+  /*     DonationRequest.findOne({where: {email: mail}}, function(err, Donner) {
+          if (err) throw err;
+          console.log(Donner);
+          cb(null, Donner != null);
+        });
+      }; */
 };
 
