@@ -29,7 +29,7 @@
     },
     "pendingApprobal":{
       "type":"boolean",
-      "required":"true"
+      "required":"false"
     },
     "webPage":{
       "type":"string",
