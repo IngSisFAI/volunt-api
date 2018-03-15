@@ -9,11 +9,11 @@
   "properties": {
     "liked": {
       "type": "boolean",
-      "required": "true"
+      "required": true
     },
     "description": {
       "type": "string",
-      "required": "true"
+      "required": true
     }
   },
   "validations": [],

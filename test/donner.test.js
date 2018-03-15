@@ -40,8 +40,52 @@ var donnerSchema = {
 };
 
 describe('Donner', (done) => {
-  before(function() {
+  before((done) => {
     // runs before all tests in this block
+    console.log('Deleting Donners..');
+    chai.request(server)
+      .delete('/api/Donners')
+      .end((err, res) => {
+        done();
+      });
+  });
+
+  describe('/POST api/Donner ', function() {
+    this.timeout(100000);
+    it('it should post one Donner', (done) => {
+      chai.request(server)
+        .post('/api/Donners')
+        .send({
+          name: 'Test',
+          lastName: 'User',
+          phoneNumber: '+549299874563',
+          dni: '11222555',
+          email: 'test@user.com',
+          password: '12345',
+          reputation: 0,
+        })
+        .end((err, res) => {
+          res.body.should.be.a('object');
+          res.body.should.be.jsonSchema(donnerSchema);
+          res.should.have.status(200);
+          done();
+        });
+    });
+
+    it('it should login a  Donner', (done) => {
+      chai.request(server)
+        .post('/api/Donners/login')
+        .send({
+          username: 'test@user.com',
+          password: '12345',
+        })
+        .end((err, res) => {
+          res.body.should.be.a('object');
+          res.body.should.be.jsonSchema(donnerSchema);
+          res.should.have.status(200);
+          done();
+        });
+    });
   });
 
   describe('/GET api/Donner ', function() {
@@ -58,30 +102,5 @@ describe('Donner', (done) => {
         });
     });
   });
-
-  describe('/POST api/Donner ', function() {
-    this.timeout(100000);
-    it('it should post one Donner', (done) => {
-      chai.request(server)
-        .post('/api/Donners')
-        .send({
-          name: 'Test',
-          lastName: 'User',
-          phoneNumber: '+549299874563',
-          dni: '11222555',
-          email: 'test@user.com',
-          password: '12345',
-          reputation: 0,
-        }
-        )
-        .end((err, res) => {
-          res.body.should.be.a('object');
-          res.body.should.be.jsonSchema(donnerSchema);
-          res.should.have.status(200);
-          done();
-        });
-    });
-  });
-  ;
 });
 
