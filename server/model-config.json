@@ -120,7 +120,8 @@
            "deleteById" : true,
            "destroyAll" : false,
            "find" : true,
-           "sampleRemoteMethod": true
+           "sampleRemoteMethod": true,
+           "donationArrival": true
          }
        }
      }

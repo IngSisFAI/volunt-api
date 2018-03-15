@@ -14,9 +14,6 @@
       "type": "number",
       "required": true
     },
-    "isPending": {
-      "type": "boolean"
-    },
     "alreadyDelivered": {
       "type": "boolean",
       "required": true,

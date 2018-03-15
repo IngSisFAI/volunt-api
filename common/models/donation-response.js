@@ -323,18 +323,19 @@ module.exports = function(DonationResponse) {
       required: true,
     },
     {
-      arg: 'resId',
-      type: 'string',
+      arg: 'data',
+      type: 'object',
       required: true,
+      http: {source: 'body'},
     }],
     http: {
-      'verb': 'GET',
+      'verb': 'POST',
       'path': '/:id/donationArrival',
     },
     returns: {},
   });
 
-  DonationResponse.donationArrival = function(id, cb) {
+  DonationResponse.donationArrival = function(id, data, cb) {
    // var donresp = app.models.DonationResponse;
     var error = new Error();
     DonationResponse.findOne({
@@ -342,30 +343,37 @@ module.exports = function(DonationResponse) {
       include: {
         relation: 'donationRequest',
       },
-    }, function(err, resultados) {
+    }, function(err, donres) {
       if (err) {
         error.message = 'No se encuentra la respuesta a donacion';
         error.status = 400;
         cb(error);
       } else {
-        console.log('resultados tiene:', resultados);
+        debug('resultados tiene:', donres);
         // es true con nulo, undefined, false y 0
-        if (resultados.length === 0) {
+        if (!donres) {
           error.message = 'No existe la respuesta a donacion ';
           error.status = 400;
           cb(error);
         } else {
           // resultados.forEach(function(post) {
-          var p = resultados.toJSON();
-          // aca debo pasar de el ispending a false en donationresponse y
+         // var p = donres.toJSON();
+          // aca debo pasar de el alreadyDelivered a true en donationresponse y
           // en donation request debo restar del promised y sumar al covered
+          debug(data);
+          let amount = data.amount;
 
-          resultados.ispending = false;
-          resultados.donationRequest.promised = p.donationRequest.promised - p.amount;
-          resultados.donationRequest.covered = p.donationRequest.promised + p.amount;
+          donres.alreadyDelivered = true;
+         // si entrego menos de lo que se tenia en promised hay que cambiarlo
+          donres.donationRequest().promised = donres.donationRequest().promised - donres.amount + amount;
+          donres.donationRequest().promised = donres.donationRequest().promised - amount;
+          donres.donationRequest().covered = donres.donationRequest().covered + amount;
 
-          resultados.save();
-          cb(resultados);
+          donres.amount = amount;
+          donres.save();
+          debug('llego hasta aca...');
+          donres.donationRequest().save();
+          cb();
         }
       }
     });// del function y find
