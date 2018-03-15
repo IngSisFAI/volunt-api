@@ -1,0 +1,1 @@
+{"_id":{"$oid":"5a206be88b199213565d6446"},"ammount":10,"status":true,"closingDate":{"$date":"2017-11-30T20:35:52.503Z"},"creationDate":{"$date":"2017-11-30T20:35:52.503Z"},"productId":{"$oid":"5a16d509c70d0516c5173516"}}

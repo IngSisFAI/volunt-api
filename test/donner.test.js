@@ -40,6 +40,10 @@ var donnerSchema = {
 };
 
 describe('Donner', (done) => {
+  before(function() {
+    // runs before all tests in this block
+  });
+
   describe('/GET api/Donner ', function() {
     this.timeout(100000);
     it('it should get all Donners', (done) => {

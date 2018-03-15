@@ -14,7 +14,7 @@
       "type": "number",
       "required": true
     },
-    "status": {
+    "isPending": {
       "type": "boolean"
     },
     "alreadyDelivered": {

@@ -2,6 +2,7 @@
 'use strict';
 
 var app = require('../../server/server');
+const debug = require('debug')('info');
 
 const moment = require('moment');
 
@@ -50,7 +51,7 @@ module.exports = function(DonationResponse) {
     // ahora debería verificar que existe el pedido de donación asociado
     // es decir el donation request
     var donationreq = app.models.DonationRequest;
-    console.log('el donationRequestid que viene es:' + ctx.req.body.donationRequestId);
+    debug('el donationRequestid que viene es:' + ctx.req.body.donationRequestId);
     donationreq.findById(ctx.req.body.donationRequestId, function(err, donreq) {
       if (err) {
         error.message = 'No se encontró el pedido de donacion';
@@ -69,7 +70,7 @@ module.exports = function(DonationResponse) {
             next(error);
           } else {
             // se encontro el donador asi que seguimos
-            console.log('Se encontro el donador');
+            debug('Se encontro el donador');
             // ahora debemos ver que no haya expirado el pedido
             var exp = moment(donreq.expirationDate);
             if (exp.isValid() && exp.isSameOrAfter(moment())) {
@@ -89,7 +90,7 @@ module.exports = function(DonationResponse) {
                 // el amount de la respuesta (donationrequest)
                 // debe ser mayor a 0.. el productoId
                 if (ctx.req.body.amount > 0) {
-                  console.log('La cantidad es mayor a 0');
+                  debug('La cantidad es mayor a 0');
                   next();
                 } else {
                   error.message = 'La cantidad debe ser mayor a 0';
@@ -129,7 +130,7 @@ module.exports = function(DonationResponse) {
     // var don = app.models.Donner;
     // User.find({include: ['posts', 'orders']}, function() { /* ... */ });
 
-    console.log('res tiene:' + res.donationRequestId);
+    debug('res tiene:' + res.donationRequestId);
 
     var donresp = app.models.DonationResponse;
 
@@ -149,7 +150,7 @@ module.exports = function(DonationResponse) {
       } else {
         resultados.forEach(function(post) {
           var p = post.toJSON();
-          console.log(p.donationRequest);
+          debug(p.donationRequest);
 
           // como no se como recuperar toda la instancia de donner y de organization
           // desde la consulta de arriba,lo hago de a uno...
@@ -165,10 +166,10 @@ module.exports = function(DonationResponse) {
             } else {
               // se encontro el donador asi que seguimos
 
-              console.log('el donador es:' + donador.name + ', ' + donador.lastName);
+              debug('el donador es:' + donador.name + ', ' + donador.lastName);
 
               // busco tambien el email de la organizacion social
-              console.log('la OS que viene en el json es: ' + p.donationRequest.organizationId);
+              debug('la OS que viene en el json es: ' + p.donationRequest.organizationId);
               var org = app.models.Organization;
               org.findById(p.donationRequest.organizationId, function(err, organizacion) {
                 if (err) {
@@ -177,7 +178,7 @@ module.exports = function(DonationResponse) {
                   next(error);
                 } else {
                   // se encontro la OS del pedido de donacion
-                  console.log('la OS es: ' + organizacion.email);
+                  debug('la OS es: ' + organizacion.email);
 
                   var cantidadadonar = res.amount;// ya sabiamos que era mayor a 0
                   var cantidadyacubierta = p.donationRequest.covered;
@@ -202,6 +203,7 @@ module.exports = function(DonationResponse) {
 
                     if (cantidadadonar >= cantidadfaltante) {
                       // se debe cerrar el pedido ya que se cumplio con lo solicitado
+                      // es decir debo poner el status en false
                       // es decir debo poner el status en false
                       // y ademas sumar a cantidadyacubierta + cantidadadonar
                       p.donationRequest.promised = cantidadrequerida;
@@ -232,8 +234,8 @@ module.exports = function(DonationResponse) {
                     // ahora debo modificar el donationRequest para que refleje los
                     // cambios en las cantidades y/o status
 
-                 // console.log('lo que tengo ahora en el donationrequest es : ' +  p.donationRequest.toString());
-                  console.log('el mail dice: ' + cuerpomail);
+                 // debug('lo que tengo ahora en el donationrequest es : ' +  p.donationRequest.toString());
+                  debug('el mail dice: ' + cuerpomail);
                   var pedido = app.models.DonationRequest;
                   pedido.upsert(p.donationRequest, function(err, resp) {
                     if (err) {
@@ -242,7 +244,7 @@ module.exports = function(DonationResponse) {
                       next(error);
                     } else {
                       // si funciono todo bien, mando mail
-                      console.log('funciono, lo que voy a guardar es lo mismo con status : ' +  p.donationRequest.status);
+                      debug('funciono, lo que voy a guardar es lo mismo con status : ' +  p.donationRequest.status);
                       let mail = {
                         to: organizacion.email,
                         from: 'Voluntariado <voluntariadouncoma2017@gmail.com>',
@@ -254,7 +256,7 @@ module.exports = function(DonationResponse) {
                           if (err)
                             throw err;
                           else
-                        console.log('> sending email to:', organizacion.email);
+                        debug('> sending email to:', organizacion.email);
                         });
                       next();
                     }
