@@ -104,7 +104,8 @@
           "prototype.patchAttributes" : true,
           "deleteById" : true,
           "find" : true,
-          "sampleRemoteMethod": true
+          "sampleRemoteMethod": true,
+          "findById" : true
         }
       }
     }
