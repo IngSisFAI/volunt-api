@@ -18,3 +18,7 @@ coverage
 node_modules
 npm-debug.log
 ./server/credentials.json
+
+test/sampleBdJson/
+
+server/datasources\.local\.json
