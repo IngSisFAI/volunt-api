@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "nodemon .",
-    "test": "mocha  --recursive ./test/ ./test/*.test.js"
+    "test": "mocha  ./test/*.test.js -S"
   },
   "dependencies": {
     "chai-json-schema": "^1.5.0",

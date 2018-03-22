@@ -5,10 +5,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const jsonSchema = require('chai-json-schema');
 const server = require('../server/server');
-const fs = require('fs');
-const should = chai.should();
-const expect = chai.expect();
-
+const expect = chai.expect;
 chai.use(chaiHttp);
 chai.use(jsonSchema);
 
@@ -52,7 +49,7 @@ describe('Donner', (done) => {
 
   describe('/POST api/Donner ', function() {
     this.timeout(100000);
-    it('it should post one Donner', (done) => {
+    it('it should post one Donner and login', (done) => {
       chai.request(server)
         .post('/api/Donners')
         .send({
@@ -61,29 +58,25 @@ describe('Donner', (done) => {
           phoneNumber: '+549299874563',
           dni: '11222555',
           email: 'test@user.com',
+          username: 'test@user.com',
           password: '12345',
           reputation: 0,
         })
         .end((err, res) => {
-          res.body.should.be.a('object');
-          res.body.should.be.jsonSchema(donnerSchema);
-          res.should.have.status(200);
-          done();
-        });
-    });
-
-    it('it should login a  Donner', (done) => {
-      chai.request(server)
-        .post('/api/Donners/login')
-        .send({
-          username: 'test@user.com',
-          password: '12345',
-        })
-        .end((err, res) => {
-          res.body.should.be.a('object');
-          res.body.should.be.jsonSchema(donnerSchema);
-          res.should.have.status(200);
-          done();
+          expect(res.body).to.be.jsonSchema(donnerSchema);
+          expect(res).to.have.status(200);
+          chai.request(server)
+            .post('/api/Donners/login')
+            .send({
+              username: 'test@user.com',
+              password: '12345',
+            })
+            .end((err, res) => {
+              console.log(res.body);
+              expect(res.body).to.be.a('object');
+              expect(res).to.have.status(200);
+              done();
+            });
         });
     });
   });
@@ -94,10 +87,10 @@ describe('Donner', (done) => {
       chai.request(server)
         .get('/api/Donners')
         .end((err, res) => {
-          res.body.should.be.a('array');
+          expect(res.body).to.be.an('array');
           for (let i = 0; i < res.body.length; i++)
-            res.body[i].should.be.jsonSchema(donnerSchema);
-          res.should.have.status(200);
+            expect(res.body[i]).to.be.jsonSchema(donnerSchema);
+          expect(res).to.have.status(200);
           done();
         });
     });
