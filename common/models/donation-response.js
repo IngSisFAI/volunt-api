@@ -370,6 +370,9 @@ module.exports = function(DonationResponse) {
           donres.donationRequest().covered = donres.donationRequest().covered + amount;
 
           donres.amount = amount;
+          // cambiar el estado a false cuando se cumple con lo solicitado
+          // XXXXXXXXXXXXXXX
+
           donres.save();
           debug('llego hasta aca...');
           donres.donationRequest().save();
@@ -378,12 +381,9 @@ module.exports = function(DonationResponse) {
       }
     });// del function y find
   };
-
-  /*     DonationRequest.findOne({where: {email: mail}}, function(err, Donner) {
-          if (err) throw err;
-          console.log(Donner);
-          cb(null, Donner != null);
-        });
-      }; */
 };
+
+// el pedido no se cierra solo hay que hacer un endpoint para cerrarlo
+
+
 

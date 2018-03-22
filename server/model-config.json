@@ -38,7 +38,16 @@
   },
   "Organization": {
     "dataSource": "database",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": true,
+          "create": true,
+          "sampleRemoteMethod": true
+        }
+      }
+    }
   },
   "Email":{
     "dataSource":"myEmailDataSource"
