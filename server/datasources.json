@@ -25,7 +25,7 @@
     "url": "mongodb://root:123456@ds111476.mlab.com:11476/voluntariado",
     "database": "voluntariado",
     "password": "123456",
-    "name": "mLab",
+    "name": "database",
     "user": "root",
     "connector": "mongodb"
   }
