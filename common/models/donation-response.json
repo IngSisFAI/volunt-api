@@ -18,7 +18,13 @@
       "type": "boolean",
       "required": true,
       "default": false
-    }
+    },
+    "isCanceled": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+
   },
   "validations": [],
   "relations": {

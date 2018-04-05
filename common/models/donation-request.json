@@ -32,7 +32,7 @@
       "required": false,
       "default": 0
     },
-    "status": {
+    "isOpen": {
       "type": "boolean",
       "required": false
     }
