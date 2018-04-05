@@ -23,7 +23,23 @@
       "type":"string",
       "required":true
     },
-    "address":{
+    "street":{
+      "type":"string",
+      "required": true
+    },
+    "streetNumber":{
+      "type":"string",
+      "required": true
+    },
+    "province":{
+      "type":"string",
+      "required": true
+    },
+    "city":{
+      "type":"string",
+      "required": true
+    },
+    "postalCode":{
       "type":"string",
       "required": true
     },
@@ -38,7 +54,12 @@
     "facebookPage":{
       "type":"string",
       "required":true
+    },
+    "logoUrl":{
+      "type":"string",
+      "required":true
     }
+
   },
   "validations": [],
   "relations": {
