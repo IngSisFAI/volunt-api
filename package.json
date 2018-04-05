@@ -22,6 +22,7 @@
     "loopback-connector-mongodb": "^1.18.1",
     "loopback-ds-timestamp-mixin": "^3.4.1",
     "moment": "~> 2.19.3",
+    "node-cron": "^1.2.1",
     "nodemon": "^1.17.2",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^2.3.2"
