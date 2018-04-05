@@ -50,8 +50,8 @@ module.exports = function(DonationRequest) {
     // en ambos casos la fecha de creación no se va a mostrar al usuario y debemos colocarle la fecha actual siempre
     ctx.req.body.creationDate = moment();
 
-    // idem el status, debe ser true, que significa abierta...
-    ctx.req.body.status = true;
+    // idem el isopen, debe ser true, que significa abierta...
+    ctx.req.body.isOpen = true;
 
     // debo controlar que el productoid ingresado sea valido, es decir, este dentro del modelo productos
 
@@ -169,7 +169,7 @@ module.exports = function(DonationRequest) {
             if (ctx.req.body.isPermanent) {
               // es un pedido permanente
 
-              // si cambia el status a cerrado, estaria bien...
+              // si cambia el isopen a cerrado, estaria bien...
 
               // vuelvo a controlar que la expirationDate modificada sea valida
               // y a su vez mayor, en al menos 30 dias a la fecha de creacion
@@ -198,7 +198,7 @@ module.exports = function(DonationRequest) {
               }
 
               // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-              // si cambia el status a cerrado, que hacemos?????
+              // si cambia el isopen a cerrado, que hacemos?????
               // lo dejamos por mas que tenga respuestas???
               // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
@@ -248,9 +248,9 @@ module.exports = function(DonationRequest) {
                 } else {
                   if (!donres) {
                     debug('no encontro una respuesta para ese pedido, se puede borrar');
-                    error.message = 'no es error';
-                    error.status = 400;
-                    next(error);// despues cambiar a next()
+                    // error.message = 'no es error';
+                    // error.status = 400;
+                    next();
                   } else {
                     error.message = 'Hubo un error en buscar respuestaDonaciones';
                     error.status = 400;
@@ -262,4 +262,55 @@ module.exports = function(DonationRequest) {
         }
       });
     });
-};
+
+// el pedido no se cierra solo hay que hacer un endpoint para cerrarlo
+
+  DonationRequest.remoteMethod('closeRequest', {
+    accepts: [{
+      arg: 'id',
+      type: 'string',
+      required: true,
+    },
+    {
+      arg: 'data',
+      type: 'object',
+      required: true,
+      http: {source: 'body'},
+    }],
+    http: {
+      'verb': 'POST',
+      'path': '/:id/closeRequest',
+    },
+    returns: {},
+  });
+
+  DonationRequest.closeRequest = function(id, data, cb) {
+    // var donresp = app.models.DonationResponse;
+    var error = new Error();
+    DonationRequest.findOne({
+      where: {id: id},
+    }, function(err, donreq) {
+      if (err) {
+        error.message = 'No se encuentra el pedido de donacion';
+        error.status = 400;
+        cb(error);
+      } else {
+        debug('el json tiene:', donreq);
+        // es true con nulo, undefined, false y 0
+        if (!donreq) {
+          error.message = 'No existe el pedido de donacion ';
+          error.status = 400;
+          cb(error);
+        } else {
+          // aca debemos solo cambiar el isopen a false
+          donreq.isOpen = false;
+
+          donreq.save();
+          debug('llego hasta aca...');
+
+          cb();
+        }
+      }
+    });// del function y find
+  };
+};// ultimo

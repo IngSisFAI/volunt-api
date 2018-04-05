@@ -76,7 +76,7 @@ module.exports = function(DonationResponse) {
             if (exp.isValid() && exp.isSameOrAfter(moment())) {
               // la fecha de expiracion es igual o mayor a la fecha actual
 
-              if (!donreq.status) {
+              if (!donreq.isOpen) {
                 // el pedido de donacion ya estaba cerrado...
                 // esto pudo haber pasado porque una OS lo cerro unilaterlamente
                 // o porque covered fue ya igual a lo donado (ammount)
@@ -84,7 +84,7 @@ module.exports = function(DonationResponse) {
                 error.status = 404;
                 next(error);
               } else {
-                // el status es true por lo que el pedido esta abierto todavia
+                // el isopen es true por lo que el pedido esta abierto todavia
 
                 // solo controlo que la cantidad sea mayor a 0
                 // el amount de la respuesta (donationrequest)
@@ -97,7 +97,7 @@ module.exports = function(DonationResponse) {
                   error.status = 404;
                   next(error);
                 }
-              }// de status
+              }// de isopen
             } else {
               // error porque la fecha de expiracion ya expiro por lo que el
               // pedido ya no es valido
@@ -115,7 +115,7 @@ module.exports = function(DonationResponse) {
     var error = new Error();
 
     // aca debemos primero buscar nuevamente el donationrequest al cual
-    // se dono para cambiar el promised y posiblemente el status
+    // se dono para cambiar el promised
 
     // como ya sabemos que estaria todo bien,
     // lo que tratamos de buscar es todas las instancias necesitadas
@@ -202,15 +202,15 @@ module.exports = function(DonationResponse) {
                     var cuerpomail = '';
 
                     if (cantidadadonar >= cantidadfaltante) {
-                      // se debe cerrar el pedido ya que se cumplio con lo solicitado
-                      // es decir debo poner el status en false
-                      // es decir debo poner el status en false
-                      // y ademas sumar a cantidadyacubierta + cantidadadonar
+                      // no se debe cerrar el pedido por mas que que se haya cumplido
+                      // con lo solicitado
+                      // se debe sumar a cantidadyacubierta + cantidadadonar
                       p.donationRequest.promised = cantidadrequerida;
-                      p.donationRequest.status = false;
+
+                      // p.donationRequest.status = false;
 
                       cuerpomail = 'El donador ' + donador.name + ', ' + donador.lastName + ' donó ' +
-                        'la cantidad de productos solicitada, por lo que el pedido fue cerrado. Ud' +
+                        'la cantidad de productos solicitada, por lo que el pedido debe ser cerrado. Ud' +
                         'puede volver a abrilo en caso que el donador no cumpla con lo pactado';
                     } else {
                       // todavia el pedido queda abierto ya que no se cubrio la
@@ -232,7 +232,7 @@ module.exports = function(DonationResponse) {
                   }
 
                     // ahora debo modificar el donationRequest para que refleje los
-                    // cambios en las cantidades y/o status
+                    // cambios en las cantidades
 
                  // debug('lo que tengo ahora en el donationrequest es : ' +  p.donationRequest.toString());
                   debug('el mail dice: ' + cuerpomail);
@@ -244,7 +244,7 @@ module.exports = function(DonationResponse) {
                       next(error);
                     } else {
                       // si funciono todo bien, mando mail
-                      debug('funciono, lo que voy a guardar es lo mismo con status : ' +  p.donationRequest.status);
+                      debug('funciono, lo que voy a guardar es lo mismo con isopen : ' +  p.donationRequest.isOpen);
                       let mail = {
                         to: organizacion.email,
                         from: 'Voluntariado <voluntariadouncoma2017@gmail.com>',
@@ -281,15 +281,32 @@ module.exports = function(DonationResponse) {
           error.status = 400;
           next(error);
         } else {
-          // si se encontro la respuesta  determino que se puede modificar solo el status.
+          // si se encontro la respuesta  determino que se puede modificar solo el isCanceled.
           if (!donationResponse) {
             error.message = 'No se encontro ningun pedido de donacion con ese id';
             error.status = 404;
             next(error);
           } else {
-            // Una vez que ya tengo el donationResponse, le actualizo solo el estado a false.
-            donationResponse.status = false;
-            donationResponse.save();
+            // Una vez que ya tengo el donationResponse, le actualizo solo el isCanceled a true.
+            donationResponse.isCanceled = true;
+
+            // ademas debo buscar el donation request y restarle la cantidad que habia
+            // querido donar a promised.
+            var donrequest = app.models.DonationRequest;
+
+            donrequest.findById(ctx.req.params.id, function(err, donreq) {
+              if (err) {
+                error.message = 'No se encontró el requerimiento de  donacion';
+                error.status = 400;
+                next(error);
+              } else {
+                donreq.promised = donreq.promised - donationResponse.amount;
+
+                // guardo las dos cosas....
+                donationResponse.save();
+                donreq.save();
+              }
+            });
 
             var cuerpomail = 'El donador ' + donationResponse.donner.name + ', ' + donationResponse.donner.lastName + ' canceló ' +
                       'un pedido de donacion que habia realizado a una publicacion de ' + donationResponse.donationRequest.product.name  + ' de su organizacion.';
@@ -370,8 +387,7 @@ module.exports = function(DonationResponse) {
           donres.donationRequest().covered = donres.donationRequest().covered + amount;
 
           donres.amount = amount;
-          // cambiar el estado a false cuando se cumple con lo solicitado
-          // XXXXXXXXXXXXXXX
+          // no se cambia el isopen de donationrequest...
 
           donres.save();
           debug('llego hasta aca...');
@@ -384,6 +400,4 @@ module.exports = function(DonationResponse) {
 };
 
 // el pedido no se cierra solo hay que hacer un endpoint para cerrarlo
-
-
 
