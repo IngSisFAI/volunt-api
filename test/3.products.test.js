@@ -33,7 +33,8 @@ var productSchema = {
   type: 'object',
   required: [
     'name',
-    'icon'],
+    'icon',
+    'unitId'],
   properties: {
     name: {
       type: 'string',
@@ -41,6 +42,10 @@ var productSchema = {
     icon: {
       type: 'string',
     },
+    unitId: {
+      type: 'string',
+    },
+
   },
 };
 
@@ -61,23 +66,26 @@ describe('Product', (done) => {
     this.timeout(100000);
     it('it should post one Product', (done) => {
       chai.request(server)
-        .post('/api/Products')
-        .send({
-          name: 'leche en polvo',
-          icon: '12345',
-        })
+        .get('/api/Units')
         .end((err, res) => {
-          res.body.should.be.a('object');
-          res.body.should.be.jsonSchema(productSchema);
-          res.should.have.status(200);
-          done();
+
+          console.log('Llegue a ...');
+          console.log(res.body[0]);
+          chai.request(server).post('/api/Products')
+            .send({
+              name: 'leche en polvo',
+              icon: '12345',
+              unitId: res.body[0].id
+            })
+            .end((err, res) => {
+              res.body.should.be.a('object');
+              res.body.should.be.jsonSchema(productSchema);
+              res.should.have.status(200);
+              done();
+            });
         });
     });
   });
-
-
-
-
 
 
   describe('/GET api/Product ', function() {
@@ -87,6 +95,8 @@ describe('Product', (done) => {
         .get('/api/Products')
         .end((err, res) => {
           res.body.should.be.a('array');
+          console.log("El objeto es.....");
+          console.log(res.body[0]);
           for (let i = 0; i < res.body.length; i++)
             res.body[i].should.be.jsonSchema(productSchema);
           res.should.have.status(200);

@@ -28,7 +28,7 @@ chai.use(jsonSchema);
   "id": "5ab4219f648cbf4a00dc050a"
 } */
 
-var productSchema = {
+var unitSchema = {
   title: 'Unit request schema v1',
   type: 'object',
   required: [

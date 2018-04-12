@@ -12,7 +12,7 @@ const expect = chai.expect();
 chai.use(chaiHttp);
 chai.use(jsonSchema);
 
-var donationRequesSchema = {
+var donationRequestSchema = {
   title: 'Donnation request schema v1',
   type: 'object',
   required: ['creationDate',
@@ -21,7 +21,9 @@ var donationRequesSchema = {
     'isPermanent',
     'covered',
     'promised',
-    'status'],
+    'isOpen',
+    'productId',
+    'organizationId'],
   properties: {
     creationDate: {
       type: 'string',
@@ -44,11 +46,31 @@ var donationRequesSchema = {
       type: 'number',
       minimum: 0,
     },
-    status: {
+    isOpen: {
       type: 'boolean',
+    },
+    productId: {
+      type: 'string',
+    },
+    organizationId: {
+      type: 'string',
     },
   },
 };
+
+// esto se ejecuta primero de todo
+describe('donationRequest', (done) => {
+  before((done) => {
+// runs before all tests in this block
+    console.log('Deleting donations requests..');
+    chai.request(server)
+      .delete('/api/donationRequests')
+      .end((err, res) => {
+        done();
+      });
+  });
+});
+
 
 describe('Donation Request', (done) => {
   describe('/GET api/DonationRequests ', function() {
@@ -59,7 +81,7 @@ describe('Donation Request', (done) => {
         .end((err, res) => {
           res.body.should.be.a('array');
           for (let i = 0; i < res.body.length; i++)
-            res.body[i].should.be.jsonSchema(donationRequesSchema);
+            res.body[i].should.be.jsonSchema(donationRequestSchema);
           res.should.have.status(200);
           done();
         });

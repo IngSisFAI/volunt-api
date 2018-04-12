@@ -155,6 +155,19 @@
   },
   "Unit": {
     "dataSource": "database",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "prototype.patchAttributes" : true,
+          "deleteById" : true,
+          "find" : true,
+          "sampleRemoteMethod": true,
+          "destroyAll" : true
+        }
+      }
+    }
   }
 }
