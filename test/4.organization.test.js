@@ -12,20 +12,6 @@ const expect = chai.expect();
 chai.use(chaiHttp);
 chai.use(jsonSchema);
 
-/* {
-  "inscriptionCode": "8888",
-  "name": "OSayudandoTest",
-  "urlInscriptionPapers": "IP1",
-  "address": "BsAs 1400",
-  "pendingApprobal": true,
-  "webPage": "http://njcdnv",
-  "facebookPage": "http://njcdnv",
-  "realm": "agustina.buccella1@fi.uncoma.edu.ar",
-  "username": "agustina.buccella1@fi.uncoma.edu.ar",
-  "email": "agustina.buccella1@fi.uncoma.edu.ar",
-  "emailVerified": false,
-  "id": "5ab4219f648cbf4a00dc050a"
-} */
 
 var organizationSchema = {
   title: 'Organization request schema v1',
@@ -94,8 +80,14 @@ describe('Organization', (done) => {
   name: 'OSayudandoTest',
   urlInscriptionPapers: 'IP1',
   address: 'BsAs 1400',
-  webPage: 'http://njcdnv',
-  facebookPage: 'http://njcdnv',
+  webPage: 'http://facebookPage.com',
+  facebookPage: 'http://facebookPage.com',
+  street: 'Av. Argentina',
+  streetNumber: 1280,
+  province: 'Neuquen',
+  city: 'Neuquen',
+  postalCode: 8300,
+  logoUrl: 'https://cdn.dribbble.com/users/37879/screenshots/2037889/ong_logo-07.png',
 })
 .end((err, res) => {
   res.body.should.be.a('object');
