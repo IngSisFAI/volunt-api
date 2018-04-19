@@ -31,8 +31,6 @@ var organizationSchema = {
   title: 'Organization request schema v1',
   type: 'object',
   required: [
-    'email',
-    'emailVerified',
     'inscriptionCode',
     'name',
     'urlInscriptionPapers',

@@ -8,12 +8,11 @@ const server = require('../server/server');
 const fs = require('fs');
 const should = chai.should();
 const expect = chai.expect();
-
 chai.use(chaiHttp);
 chai.use(jsonSchema);
 
 var donationRequestSchema = {
-  title: 'Donnation request schema v1',
+  title: 'Donation request schema v1',
   type: 'object',
   required: ['creationDate',
     'amount',
@@ -62,11 +61,49 @@ var donationRequestSchema = {
 describe('donationRequest', (done) => {
   before((done) => {
 // runs before all tests in this block
-    console.log('Deleting donations requests..');
+    console.log('Deleting donation requests..');
     chai.request(server)
       .delete('/api/donationRequests')
       .end((err, res) => {
         done();
+      });
+  });
+});
+
+
+describe('/POST api/donationRequest ', function() {
+  this.timeout(100000);
+  it('it should post one donation requests', (done) => {
+     chai.request(server)
+      //recupero el producto que cree antes
+      .get('/api/Products')
+      .end((err, resp) => {
+      //recupero la organization que cree antes
+        chai.request(server)
+      .get('/api/Organizations')
+      .end((err, reso) => {
+        console.log('Llegue a ...');
+        console.log(resp.body[0]);
+        console.log(reso.body[0]);
+        chai.request(server).post('/api/donationRequests')
+          .send({
+            creationDate: '2018-04-12',
+            amount: 10,
+            expirationDate: '2018-04-25',
+            isPermanent: 'false',
+            covered: 0,
+            promised: 0,
+            isOpen: 'true',
+            productId: resp.body[0].id,
+            organizationId: reso.body[0].id
+          })
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.body.should.be.jsonSchema(donationRequestSchema);
+            res.should.have.status(200);
+            done();
+          });
+      });
       });
   });
 });
