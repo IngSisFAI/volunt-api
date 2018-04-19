@@ -70,44 +70,43 @@ describe('donationRequest', (done) => {
   });
 });
 
-
 describe('/POST api/donationRequest ', function() {
   this.timeout(100000);
   it('it should post one donation requests', (done) => {
-     chai.request(server)
-      //recupero el producto que cree antes
+    chai.request(server)
+      // recupero el producto que cree antes
       .get('/api/Products')
       .end((err, resp) => {
-      //recupero la organization que cree antes
+      // recupero la organization que cree antes
         chai.request(server)
-      .get('/api/Organizations')
-      .end((err, reso) => {
-        console.log('Llegue a ...');
-        console.log(resp.body[0]);
-        console.log(reso.body[0]);
-        chai.request(server).post('/api/donationRequests')
-          .send({
-            creationDate: '2018-04-12',
-            amount: 10,
-            expirationDate: '2018-04-25',
-            isPermanent: 'false',
-            covered: 0,
-            promised: 0,
-            isOpen: 'true',
-            productId: resp.body[0].id,
-            organizationId: reso.body[0].id
-          })
-          .end((err, res) => {
-            res.body.should.be.a('object');
-            res.body.should.be.jsonSchema(donationRequestSchema);
-            res.should.have.status(200);
-            done();
+          .get('/api/Organizations')
+          .end((err, reso) => {
+            console.log('Llegue a ...');
+            console.log(resp.body[0]);
+            console.log(reso.body[0]);
+            chai.request(server).post('/api/donationRequests')
+              .send({
+                creationDate: '2018-04-12',
+                amount: 10,
+                expirationDate: '2100-04-25',
+                isPermanent: false,
+                covered: 0,
+                promised: 0,
+                isOpen: 'true',
+                productId: resp.body[0].id,
+                organizationId: reso.body[0].id,
+              })
+              .end((err, res) => {
+                console.log(res.body);
+                res.body.should.be.a('object');
+                res.body.should.be.jsonSchema(donationRequestSchema);
+                res.should.have.status(200);
+                done();
+              });
           });
-      });
       });
   });
 });
-
 
 describe('Donation Request', (done) => {
   describe('/GET api/DonationRequests ', function() {
