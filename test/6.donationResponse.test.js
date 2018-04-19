@@ -16,10 +16,10 @@ var donationResponseSchema = {
   type: 'object',
   required: ['creationDate',
     'amount',
-   'alreadyDelivered',
-  'isCanceled',
-  'donationRequestId',
-  'donnerId'],
+    'alreadyDelivered',
+    'isCanceled',
+    'donationRequestId',
+    'donnerId'],
   properties: {
     creationDate: {
       type: 'string',
@@ -54,17 +54,15 @@ describe('donationResponse', (done) => {
         done();
       });
   });
-});
 
-
-describe('/POST api/donationResponse ', function() {
-  this.timeout(100000);
-  it('it should post one donation response', (done) => {
-    chai.request(server)
-    //recupero el donation request que cree antes
+  describe('/POST api/donationResponse ', function() {
+    this.timeout(100000);
+    it('it should post one donation response', (done) => {
+      chai.request(server)
+    // recupero el donation request que cree antes
       .get('/api/donationRequests')
       .end((err, respdonation) => {
-        //recupero el donador que cree antes
+        // recupero el donador que cree antes
         chai.request(server)
           .get('/api/Donners')
           .end((err, resdonner) => {
@@ -78,7 +76,7 @@ describe('/POST api/donationResponse ', function() {
                 alreadyDelivered: false,
                 isCanceled: false,
                 donationRequestId: respdonation.body[0].id,
-                donnerId: resdonner.body[0].id
+                donnerId: resdonner.body[0].id,
               })
               .end((err, res) => {
                 res.body.should.be.a('object');
@@ -88,15 +86,14 @@ describe('/POST api/donationResponse ', function() {
               });
           });
       });
+    });
   });
-});
 
-
-describe('Donation Response', (done) => {
-  describe('/GET api/DonationResponse ', function() {
-    this.timeout(100000);
-    it('it should get all donation responses', (done) => {
-      chai.request(server)
+  describe('Donation Response', (done) => {
+    describe('/GET api/DonationResponse ', function() {
+      this.timeout(100000);
+      it('it should get all donation responses', (done) => {
+        chai.request(server)
         .get('/api/DonationResponses')
         .end((err, res) => {
           res.body.should.be.a('array');
@@ -105,7 +102,7 @@ describe('Donation Response', (done) => {
           res.should.have.status(200);
           done();
         });
+      });
     });
   });
 });
-
