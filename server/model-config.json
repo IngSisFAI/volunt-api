@@ -79,7 +79,7 @@
           "create": true,
           "prototype.patchAttributes" : true,
           "deleteById" : false,
-          "destroyAll" : false,
+          "destroyAll" : true,
           "find" : true,
           "sampleRemoteMethod": true
         }
@@ -97,7 +97,8 @@
           "prototype.patchAttributes" : true,
           "deleteById" : false,
           "find" : true,
-          "sampleRemoteMethod": true
+          "sampleRemoteMethod": true,
+          "destroyAll" : true
         }
       }
     }
@@ -114,7 +115,8 @@
           "deleteById" : true,
           "find" : true,
           "sampleRemoteMethod": true,
-          "findById" : true
+          "findById" : true,
+          "destroyAll" : true
         }
       }
     }
@@ -128,7 +130,7 @@
            "create": true,
            "prototype.patchAttributes" : false,
            "deleteById" : true,
-           "destroyAll" : false,
+           "destroyAll" : true,
            "find" : true,
            "sampleRemoteMethod": true,
            "donationArrival": true

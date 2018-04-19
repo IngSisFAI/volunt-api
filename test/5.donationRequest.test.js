@@ -63,7 +63,7 @@ describe('donationRequest', (done) => {
 // runs before all tests in this block
     console.log('Deleting donation requests..');
     chai.request(server)
-      .delete('/api/donationRequests')
+      .delete('/api/DonationRequests')
       .end((err, res) => {
         done();
       });
@@ -92,7 +92,7 @@ describe('/POST api/donationRequest ', function() {
                 isPermanent: false,
                 covered: 0,
                 promised: 0,
-                isOpen: 'true',
+                isOpen: true,
                 productId: resp.body[0].id,
                 organizationId: reso.body[0].id,
               })
