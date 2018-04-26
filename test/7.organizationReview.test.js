@@ -46,7 +46,7 @@ describe('Organization Review', (done) => {
 // runs before all tests in this block
     console.log('Deleting Organizations Reviews..');
     chai.request(server)
-      .delete('/api/OrganizationReview')
+      .delete('/api/OrganizationReviews')
       .end((err, res) => {
         done();
       });
@@ -57,11 +57,10 @@ describe('Organization Review', (done) => {
     this.timeout(100000);
     it('it should post one Organization Review', (done) => {
       chai.request(server)
-        .get('/api/Donner')
+        .get('/api/Donners')
         .end((err, res) => {
-
       chai.request(server)
-        .get('/api/DonationRequest')
+        .get('/api/DonationRequests')
         .end((err, respuesta) => {
           console.log('Llegue a ...');
           console.log(res.body[0]);
@@ -69,8 +68,8 @@ describe('Organization Review', (done) => {
             .send({
               liked: true,
               description: 'Hola esto es una descripcion',
-              donnerId: res.body[0].id
-              unitId: respuesta.body[0].id
+              donnerId: res.body[0].id,
+              donationRequestId: respuesta.body[0].id,
             })
             .end((err, res) => {
               res.body.should.be.a('object');
