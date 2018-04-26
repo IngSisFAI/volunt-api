@@ -7,14 +7,19 @@ import {
 
 declare var Object: any;
 export interface OrganizationInterface {
-  "reputation": any;
+  "reputation"?: any;
   "inscriptionCode": string;
   "name": string;
   "urlInscriptionPapers": string;
-  "address": string;
-  "pendingApprobal": boolean;
+  "street": string;
+  "streetNumber": string;
+  "province": string;
+  "city": string;
+  "postalCode": string;
+  "pendingApprobal"?: boolean;
   "webPage": string;
   "facebookPage": string;
+  "logoUrl": string;
   "realm"?: string;
   "username"?: string;
   "email": string;
@@ -32,10 +37,15 @@ export class Organization implements OrganizationInterface {
   "inscriptionCode": string;
   "name": string;
   "urlInscriptionPapers": string;
-  "address": string;
+  "street": string;
+  "streetNumber": string;
+  "province": string;
+  "city": string;
+  "postalCode": string;
   "pendingApprobal": boolean;
   "webPage": string;
   "facebookPage": string;
+  "logoUrl": string;
   "realm": string;
   "username": string;
   "email": string;
@@ -95,8 +105,24 @@ export class Organization implements OrganizationInterface {
           name: 'urlInscriptionPapers',
           type: 'string'
         },
-        "address": {
-          name: 'address',
+        "street": {
+          name: 'street',
+          type: 'string'
+        },
+        "streetNumber": {
+          name: 'streetNumber',
+          type: 'string'
+        },
+        "province": {
+          name: 'province',
+          type: 'string'
+        },
+        "city": {
+          name: 'city',
+          type: 'string'
+        },
+        "postalCode": {
+          name: 'postalCode',
           type: 'string'
         },
         "pendingApprobal": {
@@ -109,6 +135,10 @@ export class Organization implements OrganizationInterface {
         },
         "facebookPage": {
           name: 'facebookPage',
+          type: 'string'
+        },
+        "logoUrl": {
+          name: 'logoUrl',
           type: 'string'
         },
         "realm": {

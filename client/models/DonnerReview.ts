@@ -2,14 +2,15 @@
 
 declare var Object: any;
 export interface DonnerReviewInterface {
-  "liked"?: boolean;
-  "description"?: string;
+  "liked": boolean;
+  "description": string;
   "id"?: any;
   "organizationId"?: any;
   "createdAt": Date;
   "updatedAt": Date;
-  "reviewedResponseId"?: any;
-  reviewedResponse?: any;
+  "donationResponseId"?: any;
+  organization?: any;
+  donationResponse?: any;
 }
 
 export class DonnerReview implements DonnerReviewInterface {
@@ -19,8 +20,9 @@ export class DonnerReview implements DonnerReviewInterface {
   "organizationId": any;
   "createdAt": Date;
   "updatedAt": Date;
-  "reviewedResponseId": any;
-  reviewedResponse: any;
+  "donationResponseId": any;
+  organization: any;
+  donationResponse: any;
   constructor(data?: DonnerReviewInterface) {
     Object.assign(this, data);
   }
@@ -78,18 +80,26 @@ export class DonnerReview implements DonnerReviewInterface {
           name: 'updatedAt',
           type: 'Date'
         },
-        "reviewedResponseId": {
-          name: 'reviewedResponseId',
+        "donationResponseId": {
+          name: 'donationResponseId',
           type: 'any'
         },
       },
       relations: {
-        reviewedResponse: {
-          name: 'reviewedResponse',
+        organization: {
+          name: 'organization',
           type: 'any',
           model: '',
           relationType: 'belongsTo',
-                  keyFrom: 'reviewedResponseId',
+                  keyFrom: 'organizationId',
+          keyTo: 'id'
+        },
+        donationResponse: {
+          name: 'donationResponse',
+          type: 'any',
+          model: '',
+          relationType: 'belongsTo',
+                  keyFrom: 'donationResponseId',
           keyTo: 'id'
         },
       }

@@ -1,56 +1,49 @@
 /* tslint:disable */
+import {
+  Organization
+} from '../index';
 
 declare var Object: any;
-export interface DonnerInterface {
-  "name": string;
-  "lastName": string;
-  "phoneNumber": string;
-  "dni": string;
-  "reputation": any;
+export interface ContactInterface {
   "realm"?: string;
   "username"?: string;
   "email": string;
   "emailVerified"?: boolean;
   "id"?: any;
+  "organizationId"?: any;
   "password"?: string;
   accessTokens?: any[];
-  organizationReviews?: any[];
-  donationResponses?: any[];
+  organization?: Organization;
 }
 
-export class Donner implements DonnerInterface {
-  "name": string;
-  "lastName": string;
-  "phoneNumber": string;
-  "dni": string;
-  "reputation": any;
+export class Contact implements ContactInterface {
   "realm": string;
   "username": string;
   "email": string;
   "emailVerified": boolean;
   "id": any;
+  "organizationId": any;
   "password": string;
   accessTokens: any[];
-  organizationReviews: any[];
-  donationResponses: any[];
-  constructor(data?: DonnerInterface) {
+  organization: Organization;
+  constructor(data?: ContactInterface) {
     Object.assign(this, data);
   }
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Donner`.
+   * i.e. `Contact`.
    */
   public static getModelName() {
-    return "Donner";
+    return "Contact";
   }
   /**
   * @method factory
   * @author Jonathan Casarrubias
   * @license MIT
-  * This method creates an instance of Donner for dynamic purposes.
+  * This method creates an instance of Contact for dynamic purposes.
   **/
-  public static factory(data: DonnerInterface): Donner{
-    return new Donner(data);
+  public static factory(data: ContactInterface): Contact{
+    return new Contact(data);
   }
   /**
   * @method getModelDefinition
@@ -61,31 +54,11 @@ export class Donner implements DonnerInterface {
   **/
   public static getModelDefinition() {
     return {
-      name: 'Donner',
-      plural: 'Donners',
-      path: 'Donners',
+      name: 'Contact',
+      plural: 'Contacts',
+      path: 'Contacts',
       idName: 'id',
       properties: {
-        "name": {
-          name: 'name',
-          type: 'string'
-        },
-        "lastName": {
-          name: 'lastName',
-          type: 'string'
-        },
-        "phoneNumber": {
-          name: 'phoneNumber',
-          type: 'string'
-        },
-        "dni": {
-          name: 'dni',
-          type: 'string'
-        },
-        "reputation": {
-          name: 'reputation',
-          type: 'any'
-        },
         "realm": {
           name: 'realm',
           type: 'string'
@@ -106,6 +79,10 @@ export class Donner implements DonnerInterface {
           name: 'id',
           type: 'any'
         },
+        "organizationId": {
+          name: 'organizationId',
+          type: 'any'
+        },
         "password": {
           name: 'password',
           type: 'string'
@@ -120,21 +97,13 @@ export class Donner implements DonnerInterface {
                   keyFrom: 'id',
           keyTo: 'userId'
         },
-        organizationReviews: {
-          name: 'organizationReviews',
-          type: 'any[]',
-          model: '',
-          relationType: 'hasMany',
-                  keyFrom: 'id',
-          keyTo: 'donnerId'
-        },
-        donationResponses: {
-          name: 'donationResponses',
-          type: 'any[]',
-          model: '',
-          relationType: 'hasMany',
-                  keyFrom: 'id',
-          keyTo: 'donnerId'
+        organization: {
+          name: 'organization',
+          type: 'Organization',
+          model: 'Organization',
+          relationType: 'belongsTo',
+                  keyFrom: 'organizationId',
+          keyTo: 'id'
         },
       }
     }

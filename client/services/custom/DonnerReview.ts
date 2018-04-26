@@ -10,15 +10,15 @@ import { JSONSearchParams } from '../core/search.params';
 import { ErrorHandler } from '../core/error.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Rx';
-import { Unit } from '../../models/Unit';
+import { DonnerReview } from '../../models/DonnerReview';
 import { SocketConnection } from '../../sockets/socket.connections';
 
 
 /**
- * Api services for the `Unit` model.
+ * Api services for the `DonnerReview` model.
  */
 @Injectable()
-export class UnitApi extends BaseLoopBackApi {
+export class DonnerReviewApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(Http) protected http: Http,
@@ -32,30 +32,26 @@ export class UnitApi extends BaseLoopBackApi {
   }
 
   /**
-   * Patch an existing model instance or insert a new one into the data source.
+   * Delete all matching records.
    *
-   * @param {object} data Request data.
+   * @param {object} where filter.where object
    *
-   *  - `data` – `{object}` - Model instance data
+   * @param {object} options 
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
    *   from the server.
    *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Unit` object.)
-   * </em>
+   * The number of instances deleted
    */
-  public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "PATCH";
+  public destroyAll(where: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Units";
+    "/DonnerReviews";
     let _routeParams: any = {};
-    let _postBody: any = {
-      data: data
-    };
+    let _postBody: any = {};
     let _urlParams: any = {};
+    if (typeof where !== 'undefined' && where !== null) _urlParams.where = where;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
@@ -63,7 +59,7 @@ export class UnitApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id Unit id
+   * @param {any} id DonnerReview id
    *
    * @param {object} data Request data.
    *
@@ -75,13 +71,13 @@ export class UnitApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Unit` object.)
+   * This usually means the response is a `DonnerReview` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Units/:id";
+    "/DonnerReviews/:id";
     let _routeParams: any = {
       id: id
     };
@@ -95,9 +91,9 @@ export class UnitApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Unit`.
+   * i.e. `DonnerReview`.
    */
   public getModelName() {
-    return "Unit";
+    return "DonnerReview";
   }
 }

@@ -10,15 +10,16 @@ import { JSONSearchParams } from '../core/search.params';
 import { ErrorHandler } from '../core/error.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Rx';
-import { Donner } from '../../models/Donner';
+import { Contact } from '../../models/Contact';
 import { SocketConnection } from '../../sockets/socket.connections';
+import { Organization } from '../../models/Organization';
 
 
 /**
- * Api services for the `Donner` model.
+ * Api services for the `Contact` model.
  */
 @Injectable()
-export class DonnerApi extends BaseLoopBackApi {
+export class ContactApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(Http) protected http: Http,
@@ -34,7 +35,7 @@ export class DonnerApi extends BaseLoopBackApi {
   /**
    * Find a related item by id for accessTokens.
    *
-   * @param {any} id Donner id
+   * @param {any} id Contact id
    *
    * @param {any} fk Foreign key for accessTokens
    *
@@ -44,13 +45,13 @@ export class DonnerApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Donner` object.)
+   * This usually means the response is a `Contact` object.)
    * </em>
    */
   public findByIdAccessTokens(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/:id/accessTokens/:fk";
+    "/Contacts/:id/accessTokens/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -64,7 +65,7 @@ export class DonnerApi extends BaseLoopBackApi {
   /**
    * Delete a related item by id for accessTokens.
    *
-   * @param {any} id Donner id
+   * @param {any} id Contact id
    *
    * @param {any} fk Foreign key for accessTokens
    *
@@ -77,7 +78,7 @@ export class DonnerApi extends BaseLoopBackApi {
   public destroyByIdAccessTokens(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/:id/accessTokens/:fk";
+    "/Contacts/:id/accessTokens/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -91,7 +92,7 @@ export class DonnerApi extends BaseLoopBackApi {
   /**
    * Update a related item by id for accessTokens.
    *
-   * @param {any} id Donner id
+   * @param {any} id Contact id
    *
    * @param {any} fk Foreign key for accessTokens
    *
@@ -105,13 +106,13 @@ export class DonnerApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Donner` object.)
+   * This usually means the response is a `Contact` object.)
    * </em>
    */
   public updateByIdAccessTokens(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/:id/accessTokens/:fk";
+    "/Contacts/:id/accessTokens/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -125,9 +126,39 @@ export class DonnerApi extends BaseLoopBackApi {
   }
 
   /**
-   * Queries accessTokens of Donner.
+   * Fetches belongsTo relation organization.
    *
-   * @param {any} id Donner id
+   * @param {any} id Contact id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Contact` object.)
+   * </em>
+   */
+  public getOrganization(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/Contacts/:id/organization";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Queries accessTokens of Contact.
+   *
+   * @param {any} id Contact id
    *
    * @param {object} filter 
    *
@@ -137,13 +168,13 @@ export class DonnerApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Donner` object.)
+   * This usually means the response is a `Contact` object.)
    * </em>
    */
   public getAccessTokens(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/:id/accessTokens";
+    "/Contacts/:id/accessTokens";
     let _routeParams: any = {
       id: id
     };
@@ -157,7 +188,7 @@ export class DonnerApi extends BaseLoopBackApi {
   /**
    * Creates a new instance in accessTokens of this model.
    *
-   * @param {any} id Donner id
+   * @param {any} id Contact id
    *
    * @param {object} data Request data.
    *
@@ -169,13 +200,13 @@ export class DonnerApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Donner` object.)
+   * This usually means the response is a `Contact` object.)
    * </em>
    */
   public createAccessTokens(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/:id/accessTokens";
+    "/Contacts/:id/accessTokens";
     let _routeParams: any = {
       id: id
     };
@@ -190,7 +221,7 @@ export class DonnerApi extends BaseLoopBackApi {
   /**
    * Deletes all accessTokens of this model.
    *
-   * @param {any} id Donner id
+   * @param {any} id Contact id
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -201,7 +232,7 @@ export class DonnerApi extends BaseLoopBackApi {
   public deleteAccessTokens(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/:id/accessTokens";
+    "/Contacts/:id/accessTokens";
     let _routeParams: any = {
       id: id
     };
@@ -212,9 +243,9 @@ export class DonnerApi extends BaseLoopBackApi {
   }
 
   /**
-   * Counts accessTokens of Donner.
+   * Counts accessTokens of Contact.
    *
-   * @param {any} id Donner id
+   * @param {any} id Contact id
    *
    * @param {object} where Criteria to match model instances
    *
@@ -229,7 +260,7 @@ export class DonnerApi extends BaseLoopBackApi {
   public countAccessTokens(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/:id/accessTokens/count";
+    "/Contacts/:id/accessTokens/count";
     let _routeParams: any = {
       id: id
     };
@@ -253,13 +284,13 @@ export class DonnerApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Donner` object.)
+   * This usually means the response is a `Contact` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners";
+    "/Contacts";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -270,34 +301,9 @@ export class DonnerApi extends BaseLoopBackApi {
   }
 
   /**
-   * Delete all matching records.
-   *
-   * @param {object} where filter.where object
-   *
-   * @param {object} options 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * The number of instances deleted
-   */
-  public destroyAll(where: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "DELETE";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners";
-    let _routeParams: any = {};
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof where !== 'undefined' && where !== null) _urlParams.where = where;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id Donner id
+   * @param {any} id Contact id
    *
    * @param {object} data Request data.
    *
@@ -309,13 +315,13 @@ export class DonnerApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Donner` object.)
+   * This usually means the response is a `Contact` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/:id";
+    "/Contacts/:id";
     let _routeParams: any = {
       id: id
     };
@@ -345,17 +351,17 @@ export class DonnerApi extends BaseLoopBackApi {
    *   populated with the actual data once the response is returned
    *   from the server.
    *
-   * El cuerpo de respuesta contiene propiedades de la AccessToken creada durante el inicio de la sesión.
-   * Dependiendo del valor del parámetro `include`, el cuerpo puede contener propiedades adicionales:
+   * The response body contains properties of the AccessToken created on login.
+   * Depending on the value of `include` parameter, the body may contain additional properties:
    * 
-   *   - `user` - `U+007BUserU+007D` - Datos del usuario conectado actualmente. (`include=user`)
+   *   - `user` - `U+007BUserU+007D` - Data of the currently logged in user. (`include=user`)
    * 
    *
    */
   public login(credentials: any, include: any = 'user', rememberMe: boolean = true, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/login";
+    "/Contacts/login";
     let _routeParams: any = {};
     let _postBody: any = {
       credentials: credentials
@@ -391,7 +397,7 @@ export class DonnerApi extends BaseLoopBackApi {
   public logout(customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/logout";
+    "/Contacts/logout";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
@@ -404,7 +410,7 @@ export class DonnerApi extends BaseLoopBackApi {
   /**
    * Trigger user's identity verification with configured verifyOptions
    *
-   * @param {any} id Donner id
+   * @param {any} id Contact id
    *
    * @param {object} data Request data.
    *
@@ -419,7 +425,7 @@ export class DonnerApi extends BaseLoopBackApi {
   public verify(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/:id/verify";
+    "/Contacts/:id/verify";
     let _routeParams: any = {
       id: id
     };
@@ -447,7 +453,7 @@ export class DonnerApi extends BaseLoopBackApi {
   public confirm(uid: any, token: any, redirect: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/confirm";
+    "/Contacts/confirm";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
@@ -474,7 +480,7 @@ export class DonnerApi extends BaseLoopBackApi {
   public resetPassword(options: any, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/reset";
+    "/Contacts/reset";
     let _routeParams: any = {};
     let _postBody: any = {
       options: options
@@ -502,7 +508,7 @@ export class DonnerApi extends BaseLoopBackApi {
   public changePassword(oldPassword: any, newPassword: any, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/change-password";
+    "/Contacts/change-password";
     let _routeParams: any = {};
     let _postBody: any = {
       data: {
@@ -531,7 +537,7 @@ export class DonnerApi extends BaseLoopBackApi {
   public setPassword(newPassword: any, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/reset-password";
+    "/Contacts/reset-password";
     let _routeParams: any = {};
     let _postBody: any = {
       data: {
@@ -544,39 +550,9 @@ export class DonnerApi extends BaseLoopBackApi {
   }
 
   /**
-   * <em>
-         * (The remote method definition does not provide any description.)
-         * </em>
-   *
-   * @param {object} data Request data.
-   *
-   * This method expects a subset of model properties as request parameters.
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * Data properties:
-   *
-   *  - `emailExists` – `{boolean}` - 
-   */
-  public emailExists(email: any, customHeaders?: Function): Observable<any> {
-    let _method: string = "POST";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/emailExists";
-    let _routeParams: any = {};
-    let _postBody: any = {
-      email: email
-    };
-    let _urlParams: any = {};
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
    * Creates a new instance in accessTokens of this model.
    *
-   * @param {any} id Donner id
+   * @param {any} id Contact id
    *
    * @param {object} data Request data.
    *
@@ -588,13 +564,13 @@ export class DonnerApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Donner` object.)
+   * This usually means the response is a `Contact` object.)
    * </em>
    */
   public createManyAccessTokens(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Donners/:id/accessTokens";
+    "/Contacts/:id/accessTokens";
     let _routeParams: any = {
       id: id
     };
@@ -607,8 +583,8 @@ export class DonnerApi extends BaseLoopBackApi {
   }
   /**
    * @ngdoc method
-   * @name sdk.Donner#getCurrent
-   * @methodOf sdk.Donner
+   * @name sdk.Contact#getCurrent
+   * @methodOf sdk.Contact
    *
    * @description
    *
@@ -621,7 +597,7 @@ export class DonnerApi extends BaseLoopBackApi {
    */
   public getCurrent(filter: LoopBackFilter = {}): Observable<any> {
     let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() + "/Donners" + "/:id";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() + "/Contacts" + "/:id";
     let id: any = this.auth.getCurrentUserId();
     if (id == null)
     id = '__anonymous__';
@@ -633,8 +609,8 @@ export class DonnerApi extends BaseLoopBackApi {
   }
   /**
    * Get data of the currently logged user that was returned by the last
-   * call to {@link sdk.Donner#login} or
-   * {@link sdk.Donner#getCurrent}. Return null when there
+   * call to {@link sdk.Contact#login} or
+   * {@link sdk.Contact#getCurrent}. Return null when there
    * is no user logged in or the data of the current user were not fetched
    * yet.
    *
@@ -645,7 +621,7 @@ export class DonnerApi extends BaseLoopBackApi {
   }
   /**
    * Get data of the currently logged access tokern that was returned by the last
-   * call to {@link sdk.Donner#login}
+   * call to {@link sdk.Contact#login}
    *
    * @returns object An AccessToken instance.
    */
@@ -653,7 +629,7 @@ export class DonnerApi extends BaseLoopBackApi {
     return this.auth.getToken();
   }
   /**
-   * @name sdk.Donner#isAuthenticated
+   * @name sdk.Contact#isAuthenticated
    *
    * @returns {boolean} True if the current user is authenticated (logged in).
    */
@@ -662,7 +638,7 @@ export class DonnerApi extends BaseLoopBackApi {
   }
 
   /**
-   * @name sdk.Donner#getCurrentId
+   * @name sdk.Contact#getCurrentId
    *
    * @returns object Id of the currently logged-in user or null.
    */
@@ -672,9 +648,9 @@ export class DonnerApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Donner`.
+   * i.e. `Contact`.
    */
   public getModelName() {
-    return "Donner";
+    return "Contact";
   }
 }

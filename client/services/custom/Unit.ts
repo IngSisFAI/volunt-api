@@ -10,15 +10,15 @@ import { JSONSearchParams } from '../core/search.params';
 import { ErrorHandler } from '../core/error.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Rx';
-import { DonationResponse } from '../../models/DonationResponse';
+import { Unit } from '../../models/Unit';
 import { SocketConnection } from '../../sockets/socket.connections';
 
 
 /**
- * Api services for the `DonationResponse` model.
+ * Api services for the `Unit` model.
  */
 @Injectable()
-export class DonationResponseApi extends BaseLoopBackApi {
+export class UnitApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(Http) protected http: Http,
@@ -32,9 +32,34 @@ export class DonationResponseApi extends BaseLoopBackApi {
   }
 
   /**
+   * Delete all matching records.
+   *
+   * @param {object} where filter.where object
+   *
+   * @param {object} options 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * The number of instances deleted
+   */
+  public destroyAll(where: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "DELETE";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/Units";
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof where !== 'undefined' && where !== null) _urlParams.where = where;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id DonationResponse id
+   * @param {any} id Unit id
    *
    * @param {object} data Request data.
    *
@@ -46,13 +71,13 @@ export class DonationResponseApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `DonationResponse` object.)
+   * This usually means the response is a `Unit` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DonationResponses/:id";
+    "/Units/:id";
     let _routeParams: any = {
       id: id
     };
@@ -66,9 +91,9 @@ export class DonationResponseApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `DonationResponse`.
+   * i.e. `Unit`.
    */
   public getModelName() {
-    return "DonationResponse";
+    return "Unit";
   }
 }

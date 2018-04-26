@@ -1,44 +1,56 @@
 /* tslint:disable */
 
 declare var Object: any;
-export interface ContactInterface {
+export interface DonnerInterface {
+  "name": string;
+  "lastName": string;
+  "phoneNumber": string;
+  "dni": string;
+  "reputation"?: number;
   "realm"?: string;
   "username"?: string;
   "email": string;
   "emailVerified"?: boolean;
   "id"?: any;
-  "organizationId"?: any;
   "password"?: string;
   accessTokens?: any[];
+  organizationReviews?: any[];
+  donationResponses?: any[];
 }
 
-export class Contact implements ContactInterface {
+export class Donner implements DonnerInterface {
+  "name": string;
+  "lastName": string;
+  "phoneNumber": string;
+  "dni": string;
+  "reputation": number;
   "realm": string;
   "username": string;
   "email": string;
   "emailVerified": boolean;
   "id": any;
-  "organizationId": any;
   "password": string;
   accessTokens: any[];
-  constructor(data?: ContactInterface) {
+  organizationReviews: any[];
+  donationResponses: any[];
+  constructor(data?: DonnerInterface) {
     Object.assign(this, data);
   }
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Contact`.
+   * i.e. `Donner`.
    */
   public static getModelName() {
-    return "Contact";
+    return "Donner";
   }
   /**
   * @method factory
   * @author Jonathan Casarrubias
   * @license MIT
-  * This method creates an instance of Contact for dynamic purposes.
+  * This method creates an instance of Donner for dynamic purposes.
   **/
-  public static factory(data: ContactInterface): Contact{
-    return new Contact(data);
+  public static factory(data: DonnerInterface): Donner{
+    return new Donner(data);
   }
   /**
   * @method getModelDefinition
@@ -49,11 +61,31 @@ export class Contact implements ContactInterface {
   **/
   public static getModelDefinition() {
     return {
-      name: 'Contact',
-      plural: 'Contacts',
-      path: 'Contacts',
+      name: 'Donner',
+      plural: 'Donners',
+      path: 'Donners',
       idName: 'id',
       properties: {
+        "name": {
+          name: 'name',
+          type: 'string'
+        },
+        "lastName": {
+          name: 'lastName',
+          type: 'string'
+        },
+        "phoneNumber": {
+          name: 'phoneNumber',
+          type: 'string'
+        },
+        "dni": {
+          name: 'dni',
+          type: 'string'
+        },
+        "reputation": {
+          name: 'reputation',
+          type: 'number'
+        },
         "realm": {
           name: 'realm',
           type: 'string'
@@ -74,10 +106,6 @@ export class Contact implements ContactInterface {
           name: 'id',
           type: 'any'
         },
-        "organizationId": {
-          name: 'organizationId',
-          type: 'any'
-        },
         "password": {
           name: 'password',
           type: 'string'
@@ -91,6 +119,22 @@ export class Contact implements ContactInterface {
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'userId'
+        },
+        organizationReviews: {
+          name: 'organizationReviews',
+          type: 'any[]',
+          model: '',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'donnerId'
+        },
+        donationResponses: {
+          name: 'donationResponses',
+          type: 'any[]',
+          model: '',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'donnerId'
         },
       }
     }

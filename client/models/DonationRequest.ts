@@ -4,15 +4,17 @@ declare var Object: any;
 export interface DonationRequestInterface {
   "creationDate": Date;
   "amount"?: number;
-  "expirationDate": Date;
+  "expirationDate"?: Date;
   "isPermanent": boolean;
   "covered"?: number;
   "promised"?: number;
-  "status"?: boolean;
+  "isOpen"?: boolean;
   "id"?: any;
   "organizationId"?: any;
   "productId"?: any;
   organization?: any;
+  organizationReviews?: any[];
+  donationResponses?: any[];
   product?: any;
 }
 
@@ -23,11 +25,13 @@ export class DonationRequest implements DonationRequestInterface {
   "isPermanent": boolean;
   "covered": number;
   "promised": number;
-  "status": boolean;
+  "isOpen": boolean;
   "id": any;
   "organizationId": any;
   "productId": any;
   organization: any;
+  organizationReviews: any[];
+  donationResponses: any[];
   product: any;
   constructor(data?: DonationRequestInterface) {
     Object.assign(this, data);
@@ -88,8 +92,8 @@ export class DonationRequest implements DonationRequestInterface {
           type: 'number',
           default: 0
         },
-        "status": {
-          name: 'status',
+        "isOpen": {
+          name: 'isOpen',
           type: 'boolean'
         },
         "id": {
@@ -113,6 +117,22 @@ export class DonationRequest implements DonationRequestInterface {
           relationType: 'belongsTo',
                   keyFrom: 'organizationId',
           keyTo: 'id'
+        },
+        organizationReviews: {
+          name: 'organizationReviews',
+          type: 'any[]',
+          model: '',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'donationRequestId'
+        },
+        donationResponses: {
+          name: 'donationResponses',
+          type: 'any[]',
+          model: '',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'donationRequestId'
         },
         product: {
           name: 'product',

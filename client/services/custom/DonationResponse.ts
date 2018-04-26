@@ -10,15 +10,15 @@ import { JSONSearchParams } from '../core/search.params';
 import { ErrorHandler } from '../core/error.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Rx';
-import { DonnerReview } from '../../models/DonnerReview';
+import { DonationResponse } from '../../models/DonationResponse';
 import { SocketConnection } from '../../sockets/socket.connections';
 
 
 /**
- * Api services for the `DonnerReview` model.
+ * Api services for the `DonationResponse` model.
  */
 @Injectable()
-export class DonnerReviewApi extends BaseLoopBackApi {
+export class DonationResponseApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(Http) protected http: Http,
@@ -32,27 +32,53 @@ export class DonnerReviewApi extends BaseLoopBackApi {
   }
 
   /**
-   * Patch attributes for a model instance and persist it into the data source.
+   * Delete all matching records.
    *
-   * @param {any} id DonnerReview id
+   * @param {object} where filter.where object
    *
-   * @param {object} data Request data.
-   *
-   *  - `data` – `{object}` - An object of model property name/value pairs
+   * @param {object} options 
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
    *   from the server.
    *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `DonnerReview` object.)
-   * </em>
+   * The number of instances deleted
    */
-  public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "PATCH";
+  public destroyAll(where: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/DonnerReviews/:id";
+    "/DonationResponses";
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof where !== 'undefined' && where !== null) _urlParams.where = where;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param {object} data Request data.
+   *
+   *  - `id` – `{string}` - 
+   *
+   *  - `data` – `{object}` - 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `` – `{}` - 
+   */
+  public donationArrival(id: any, data: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/DonationResponses/:id/donationArrival";
     let _routeParams: any = {
       id: id
     };
@@ -66,9 +92,9 @@ export class DonnerReviewApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `DonnerReview`.
+   * i.e. `DonationResponse`.
    */
   public getModelName() {
-    return "DonnerReview";
+    return "DonationResponse";
   }
 }

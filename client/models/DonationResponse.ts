@@ -5,20 +5,28 @@ export interface DonationResponseInterface {
   "creationDate": Date;
   "amount": number;
   "alreadyDelivered": boolean;
+  "isCanceled": boolean;
   "id"?: any;
   "donationRequestId"?: any;
   "donnerId"?: any;
+  "donnerReviewId"?: any;
   donationRequest?: any;
+  donner?: any;
+  donnerReview?: any;
 }
 
 export class DonationResponse implements DonationResponseInterface {
   "creationDate": Date;
   "amount": number;
   "alreadyDelivered": boolean;
+  "isCanceled": boolean;
   "id": any;
   "donationRequestId": any;
   "donnerId": any;
+  "donnerReviewId": any;
   donationRequest: any;
+  donner: any;
+  donnerReview: any;
   constructor(data?: DonationResponseInterface) {
     Object.assign(this, data);
   }
@@ -65,6 +73,11 @@ export class DonationResponse implements DonationResponseInterface {
           type: 'boolean',
           default: false
         },
+        "isCanceled": {
+          name: 'isCanceled',
+          type: 'boolean',
+          default: false
+        },
         "id": {
           name: 'id',
           type: 'any'
@@ -77,6 +90,10 @@ export class DonationResponse implements DonationResponseInterface {
           name: 'donnerId',
           type: 'any'
         },
+        "donnerReviewId": {
+          name: 'donnerReviewId',
+          type: 'any'
+        },
       },
       relations: {
         donationRequest: {
@@ -85,6 +102,22 @@ export class DonationResponse implements DonationResponseInterface {
           model: '',
           relationType: 'belongsTo',
                   keyFrom: 'donationRequestId',
+          keyTo: 'id'
+        },
+        donner: {
+          name: 'donner',
+          type: 'any',
+          model: '',
+          relationType: 'belongsTo',
+                  keyFrom: 'donnerId',
+          keyTo: 'id'
+        },
+        donnerReview: {
+          name: 'donnerReview',
+          type: 'any',
+          model: '',
+          relationType: 'belongsTo',
+                  keyFrom: 'donnerReviewId',
           keyTo: 'id'
         },
       }

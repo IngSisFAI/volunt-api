@@ -8,8 +8,9 @@ export interface OrganizationReviewInterface {
   "donnerId"?: any;
   "createdAt": Date;
   "updatedAt": Date;
-  "reviewedRequestId"?: any;
-  reviewedRequest?: any;
+  "donationRequestId"?: any;
+  donner?: any;
+  donationRequest?: any;
 }
 
 export class OrganizationReview implements OrganizationReviewInterface {
@@ -19,8 +20,9 @@ export class OrganizationReview implements OrganizationReviewInterface {
   "donnerId": any;
   "createdAt": Date;
   "updatedAt": Date;
-  "reviewedRequestId": any;
-  reviewedRequest: any;
+  "donationRequestId": any;
+  donner: any;
+  donationRequest: any;
   constructor(data?: OrganizationReviewInterface) {
     Object.assign(this, data);
   }
@@ -78,18 +80,26 @@ export class OrganizationReview implements OrganizationReviewInterface {
           name: 'updatedAt',
           type: 'Date'
         },
-        "reviewedRequestId": {
-          name: 'reviewedRequestId',
+        "donationRequestId": {
+          name: 'donationRequestId',
           type: 'any'
         },
       },
       relations: {
-        reviewedRequest: {
-          name: 'reviewedRequest',
+        donner: {
+          name: 'donner',
           type: 'any',
           model: '',
           relationType: 'belongsTo',
-                  keyFrom: 'reviewedRequestId',
+                  keyFrom: 'donnerId',
+          keyTo: 'id'
+        },
+        donationRequest: {
+          name: 'donationRequest',
+          type: 'any',
+          model: '',
+          relationType: 'belongsTo',
+                  keyFrom: 'donationRequestId',
           keyTo: 'id'
         },
       }

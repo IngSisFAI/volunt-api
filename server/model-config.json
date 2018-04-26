@@ -110,6 +110,7 @@
       "remoting": {
         "sharedMethods": {
           "*": false,
+          "closeRequest": true,
           "create": true,
           "prototype.patchAttributes" : true,
           "deleteById" : true,
