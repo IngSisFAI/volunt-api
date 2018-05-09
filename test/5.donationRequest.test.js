@@ -58,7 +58,7 @@ var donationRequestSchema = {
 };
 
 // esto se ejecuta primero de todo
-describe('Organization', (done) => {
+describe('DonationRequest', (done) => {
   before((done) => {
     chai.request(server)
       .delete('/api/DonationRequests')
@@ -79,11 +79,12 @@ describe('Organization', (done) => {
           chai.request(server)
             .get('/api/Organizations')
             .end((err, reso) => {
-              console.log('Llegue a ...');
-              console.log(resp.body[0]);
-              console.log(reso.body[0]);
+            //  console.log('Llegue a ...');
+            //  console.log(resp.body[0]);
+             // console.log(reso.body[0]);
               chai.request(server).post('/api/donationRequests')
                 .send({
+                  // no importa que se manda, siempre va a tomar la fecha actual
                   creationDate: '2018-04-12',
                   amount: 10,
                   expirationDate: '2100-04-25',
