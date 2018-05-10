@@ -22,6 +22,10 @@
       "type": "boolean",
       "required": true
     },
+    "description": {
+      "type": "string",
+      "required": true
+    },
     "covered": {
       "type": "number",
       "required": false,

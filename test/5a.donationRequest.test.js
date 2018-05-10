@@ -130,7 +130,7 @@ describe('DonationRequest Retest 1', (done) => {
             });
         });
     });
- /*   it('it should fail adding a new permanent donationrequest: expiration date must be 30 days' +
+    it('it should fail adding a new permanent donationrequest: expiration date must be 30 days' +
       ' greater than creation date', (done) => {
       chai.request(server)
       // recupero el producto que cree antes
@@ -164,7 +164,6 @@ describe('DonationRequest Retest 1', (done) => {
             });
         });
     });
-    */
     it('it should fail adding a new onetime donationrequest: expiration date must be 2 days' +
       ' greater than creation date', (done) => {
       chai.request(server)
@@ -181,8 +180,8 @@ describe('DonationRequest Retest 1', (done) => {
               chai.request(server).post('/api/donationRequests')
                 .send({
                   creationDate: '2018-04-12',
-                  amount: 10,
-                  expirationDate: '2018-05-10',
+                  amount: 0,
+                  expirationDate: '2018-06-10',
                   isPermanent: false,
                   covered: 0,
                   promised: 0,
@@ -214,7 +213,7 @@ describe('DonationRequest Retest 1', (done) => {
               chai.request(server).post('/api/donationRequests')
                 .send({
                   creationDate: '2018-04-12',
-                  amount: 9,
+                  amount: 0,
                   expirationDate: '2018-04-20',
                   isPermanent: false,
                   covered: 0,
