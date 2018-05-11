@@ -16,7 +16,8 @@ var donnerSchema = {
     'name',
     'lastName',
     'phoneNumber',
-    'dni'],
+    'dni',
+    'cityId'],
   properties: {
     name: {
       type: 'string',
@@ -32,6 +33,9 @@ var donnerSchema = {
     },
     reputation: {
       type: 'number',
+    },
+    cityId: {
+      type: 'string',
     },
   },
 };
@@ -51,31 +55,37 @@ describe('Donner', (done) => {
     this.timeout(100000);
     it('it should post one Donner and login', (done) => {
       chai.request(server)
-        .post('/api/Donners')
-        .send({
-          name: 'Test',
-          lastName: 'User',
-          phoneNumber: '+549299874563',
-          dni: '11222555',
-          email: 'test@user.com',
-          username: 'test@user.com',
-          password: '12345',
-          reputation: 0,
-        })
-        .end((err, res) => {
-          expect(res.body).to.be.jsonSchema(donnerSchema);
-          expect(res).to.have.status(200);
+      // recupero las ciudades
+        .get('/api/Cities')
+        .end((err, allcities) => {
           chai.request(server)
-            .post('/api/Donners/login')
+            .post('/api/Donners')
             .send({
+              name: 'Test',
+              lastName: 'User',
+              phoneNumber: '+549299874563',
+              dni: '11222555',
+              email: 'test@user.com',
               username: 'test@user.com',
               password: '12345',
+              reputation: 0,
+              cityId: allcities.body[0].id,
             })
             .end((err, res) => {
-              console.log(res.body);
-              expect(res.body).to.be.a('object');
+              expect(res.body).to.be.jsonSchema(donnerSchema);
               expect(res).to.have.status(200);
-              done();
+              chai.request(server)
+                .post('/api/Donners/login')
+                .send({
+                  username: 'test@user.com',
+                  password: '12345',
+                })
+                .end((err, res) => {
+                  console.log(res.body);
+                  expect(res.body).to.be.a('object');
+                  expect(res).to.have.status(200);
+                  done();
+                });
             });
         });
     });

@@ -31,18 +31,6 @@
       "type":"string",
       "required": true
     },
-    "province":{
-      "type":"string",
-      "required": true
-    },
-    "city":{
-      "type":"string",
-      "required": true
-    },
-    "postalCode":{
-      "type":"string",
-      "required": true
-    },
     "pendingApprobal":{
       "type":"boolean",
       "required": false
@@ -63,6 +51,11 @@
   },
   "validations": [],
   "relations": {
+    "cities": {
+      "type": "belongsTo",
+      "model": "City",
+      "foreignKey": ""
+    },
     "contacts": {
       "type": "hasMany",
       "model": "Contact",
