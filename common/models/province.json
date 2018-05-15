@@ -1,6 +1,6 @@
 {
   "name": "Province",
-  "base": "Provinces",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
