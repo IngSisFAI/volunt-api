@@ -39,6 +39,9 @@
     "isOpen": {
       "type": "boolean",
       "required": false
+    },
+    "description":{
+      "type":"string"
     }
   },
   "validations": [],
