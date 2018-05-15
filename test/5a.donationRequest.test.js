@@ -22,6 +22,7 @@ var donationRequestSchema = {
     'covered',
     'promised',
     'isOpen',
+    'description',
     'productId',
     'organizationId'],
   properties: {
@@ -49,6 +50,9 @@ var donationRequestSchema = {
     isOpen: {
       type: 'boolean',
     },
+    description: {
+      type: 'string',
+    },
     productId: {
       type: 'string',
     },
@@ -57,7 +61,6 @@ var donationRequestSchema = {
     },
   },
 };
-
 // esto se ejecuta primero de todo
 describe('DonationRequest Retest 1', (done) => {
  /* before((done) => {
@@ -90,6 +93,7 @@ describe('DonationRequest Retest 1', (done) => {
                   covered: 0,
                   promised: 0,
                   isOpen: true,
+                  description: 'Leche',
                   productId: '1',
                   organizationId: reso.body[0].id,
                 })
@@ -119,6 +123,7 @@ describe('DonationRequest Retest 1', (done) => {
               covered: 0,
               promised: 0,
               isOpen: true,
+              description: 'Leche',
               productId: resp.body[0].id,
               organizationId: '1',
             })
@@ -152,6 +157,7 @@ describe('DonationRequest Retest 1', (done) => {
                   covered: 0,
                   promised: 0,
                   isOpen: true,
+                  description: 'Leche',
                   productId: resp.body[0].id,
                   organizationId: reso.body[0].id,
                 })
@@ -186,6 +192,7 @@ describe('DonationRequest Retest 1', (done) => {
                   covered: 0,
                   promised: 0,
                   isOpen: true,
+                  description: 'Leche',
                   productId: resp.body[0].id,
                   organizationId: reso.body[0].id,
                 })
@@ -219,6 +226,7 @@ describe('DonationRequest Retest 1', (done) => {
                   covered: 0,
                   promised: 0,
                   isOpen: true,
+                  description: 'Leche',
                   productId: resp.body[0].id,
                   organizationId: reso.body[0].id,
                 })

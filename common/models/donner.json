@@ -31,7 +31,7 @@
   },
   "validations": [],
   "relations": {
-      "cities": {
+      "city": {
         "type": "belongsTo",
         "model": "City",
         "foreignKey": ""

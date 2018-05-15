@@ -21,6 +21,7 @@ var donationRequestSchema = {
     'covered',
     'promised',
     'isOpen',
+    'description',
     'productId',
     'organizationId'],
   properties: {
@@ -47,6 +48,9 @@ var donationRequestSchema = {
     },
     isOpen: {
       type: 'boolean',
+    },
+    description: {
+      type: 'string',
     },
     productId: {
       type: 'string',
@@ -92,6 +96,7 @@ describe('DonationRequest', (done) => {
                   covered: 0,
                   promised: 0,
                   isOpen: true,
+                  description: 'Leche',
                   productId: resp.body[0].id,
                   organizationId: reso.body[0].id,
                 })

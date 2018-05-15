@@ -46,7 +46,7 @@ describe('City', (done) => {
     it('it should post one City', (done) => {
       chai.request(server)
       // recupero las ciudades
-        .get('/api/Cities')
+        .get('/api/Provinces')
         .end((err, allprovinces) => {
           chai.request(server)
           .post('/api/Cities')

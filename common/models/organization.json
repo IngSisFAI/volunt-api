@@ -37,21 +37,21 @@
     },
     "webPage":{
       "type":"string",
-      "required":true
+      "required":false
     },
     "facebookPage":{
       "type":"string",
-      "required":true
+      "required":false
     },
     "logoUrl":{
       "type":"string",
-      "required":true
+      "required":false
     }
 
   },
   "validations": [],
   "relations": {
-    "cities": {
+    "city": {
       "type": "belongsTo",
       "model": "City",
       "foreignKey": ""

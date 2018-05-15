@@ -13,7 +13,7 @@
   },
   "validations": [],
   "relations": {
-    "provinces": {
+    "province": {
       "type": "belongsTo",
       "model": "Province",
       "foreignKey": ""

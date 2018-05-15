@@ -12,7 +12,6 @@ const expect = chai.expect();
 chai.use(chaiHttp);
 chai.use(jsonSchema);
 
-
 var organizationSchema = {
   title: 'Organization request schema v1',
   type: 'object',
@@ -20,9 +19,9 @@ var organizationSchema = {
     'inscriptionCode',
     'name',
     'urlInscriptionPapers',
-    'address',
-    'webPage',
-    'facebookPage'],
+    'street',
+    'streetNumber',
+    'cityId'],
   properties: {
     username: {
       type: 'string',
@@ -42,13 +41,13 @@ var organizationSchema = {
     urlInscriptionPapers: {
       type: 'string',
     },
-    address: {
+    street: {
       type: 'string',
     },
-    webPage: {
+    streetNumber: {
       type: 'string',
     },
-    facebookPage: {
+    cityId: {
       type: 'string',
     },
   },
@@ -69,7 +68,7 @@ describe('Organization', (done) => {
 
   describe('/POST api/Organization ', function() {
     this.timeout(100000);
-     it('it should fail to login: wrong password', (done) => {
+    it('it should fail to login: wrong password', (done) => {
       chai.request(server)
         .post('/api/Organizations/login')
         .send({

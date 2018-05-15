@@ -16,7 +16,8 @@ var donnerSchema = {
     'name',
     'lastName',
     'phoneNumber',
-    'dni'],
+    'dni',
+    'cityId'],
   properties: {
     name: {
       type: 'string',
@@ -32,6 +33,9 @@ var donnerSchema = {
     },
     reputation: {
       type: 'number',
+    },
+    cityId: {
+      type: 'string',
     },
   },
 };
@@ -58,12 +62,12 @@ describe('Donner Extratest ', (done) => {
               password: '111',
             })
             .end((err, res) => {
-              //console.log(res.body);
+              // console.log(res.body);
               expect(res.body).to.be.a('object');
               expect(res).to.have.status(401);
               done();
             });
-        });
+    });
     it('it should fail to login: wrong username', (done) => {
       chai.request(server)
         .post('/api/Donners/login')
@@ -72,13 +76,13 @@ describe('Donner Extratest ', (done) => {
           password: '12345',
         })
         .end((err, res) => {
-          //console.log(res.body);
+          // console.log(res.body);
           expect(res.body).to.be.a('object');
           expect(res).to.have.status(401);
           done();
         });
     });
-    });
+  });
 
   describe('/GET api/Donner ', function() {
     this.timeout(100000);

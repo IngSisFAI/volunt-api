@@ -12,7 +12,6 @@ const expect = chai.expect();
 chai.use(chaiHttp);
 chai.use(jsonSchema);
 
-
 var organizationSchema = {
   title: 'Organization request schema v1',
   type: 'object',
@@ -20,9 +19,9 @@ var organizationSchema = {
     'inscriptionCode',
     'name',
     'urlInscriptionPapers',
-    'address',
-    'webPage',
-    'facebookPage'],
+    'street',
+    'streetNumber',
+    'cityId'],
   properties: {
     username: {
       type: 'string',
@@ -42,13 +41,13 @@ var organizationSchema = {
     urlInscriptionPapers: {
       type: 'string',
     },
-    address: {
+    street: {
       type: 'string',
     },
-    webPage: {
+    streetNumber: {
       type: 'string',
     },
-    facebookPage: {
+    cityId: {
       type: 'string',
     },
   },
@@ -70,45 +69,44 @@ describe('Organization', (done) => {
     this.timeout(100000);
     it('it should post one Organization', (done) => {
       chai.request(server)
-.post('/api/Organizations')
-.send({
-  username: 'agustina.buccella@fi.uncoma.edu.ar',
-  password: ' ',
-  email: 'agustina.buccella@fi.uncoma.edu.ar',
-  emailVerified: 'true',
-  inscriptionCode: '8888',
-  name: 'OSayudandoTest',
-  urlInscriptionPapers: 'IP1',
-  address: 'BsAs 1400',
-  webPage: 'http://facebookPage.com',
-  facebookPage: 'http://facebookPage.com',
-  street: 'Av. Argentina',
-  streetNumber: 1280,
-  province: 'Neuquen',
-  city: 'Neuquen',
-  postalCode: 8300,
-  logoUrl: 'https://cdn.dribbble.com/users/37879/screenshots/2037889/ong_logo-07.png',
-})
-.end((err, res) => {
-  res.body.should.be.a('object');
-  res.body.should.be.jsonSchema(organizationSchema);
-  res.should.have.status(200);
-  done();
-});
+      // recupero las ciudades
+        .get('/api/Cities')
+        .end((err, allcities) => {
+          chai.request(server)
+            .post('/api/Organizations')
+            .send({
+              username: 'agustina.buccella@fi.uncoma.edu.ar',
+              password: '12345',
+              email: 'agustina.buccella@fi.uncoma.edu.ar',
+              emailVerified: 'true',
+              inscriptionCode: '8888',
+              name: 'OSayudandoTest',
+              urlInscriptionPapers: 'IP1',
+              street: 'Av. Argentina',
+              streetNumber: 1280,
+              cityId: allcities.body[0].id,
+            })
+            .end((err, res) => {
+              res.body.should.be.a('object');
+              res.body.should.be.jsonSchema(organizationSchema);
+              res.should.have.status(200);
+              done();
+            });
+        });
     });
 
     it('it should login an Organization', (done) => {
       chai.request(server)
-.post('/api/Organizations/login')
-.send({
-  username: 'agustina.buccella@fi.uncoma.edu.ar',
-  password: '12345',
-})
-.end((err, res) => {
-  res.body.should.be.a('object');
-  res.should.have.status(200);
-  done();
-});
+        .post('/api/Organizations/login')
+        .send({
+          username: 'agustina.buccella@fi.uncoma.edu.ar',
+          password: '12345',
+        })
+        .end((err, res) => {
+          res.body.should.be.a('object');
+          res.should.have.status(200);
+          done();
+        });
     });
   });
 
@@ -116,14 +114,14 @@ describe('Organization', (done) => {
     this.timeout(100000);
     it('it should get all Organization', (done) => {
       chai.request(server)
-.get('/api/Organizations')
-.end((err, res) => {
-  res.body.should.be.a('array');
-  for (let i = 0; i < res.body.length; i++)
-    res.body[i].should.be.jsonSchema(organizationSchema);
-  res.should.have.status(200);
-  done();
-});
+        .get('/api/Organizations')
+        .end((err, res) => {
+          res.body.should.be.a('array');
+          for (let i = 0; i < res.body.length; i++)
+            res.body[i].should.be.jsonSchema(organizationSchema);
+          res.should.have.status(200);
+          done();
+        });
     });
   });
 });
