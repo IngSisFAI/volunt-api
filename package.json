@@ -8,6 +8,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "nodemon .",
+    "prod": "node .",
     "test": "mocha  ./test/*.test.js -S",
     "build:sdk": "./node_modules/.bin/lb-sdk ./server/server.js ./client -d ng2web -i enabled"
   },
