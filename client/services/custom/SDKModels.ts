@@ -11,6 +11,8 @@ import { DonationRequest } from '../../models/DonationRequest';
 import { DonationResponse } from '../../models/DonationResponse';
 import { Product } from '../../models/Product';
 import { Unit } from '../../models/Unit';
+import { City } from '../../models/City';
+import { Province } from '../../models/Province';
 
 export interface Models { [name: string]: any }
 
@@ -29,6 +31,8 @@ export class SDKModels {
     DonationResponse: DonationResponse,
     Product: Product,
     Unit: Unit,
+    City: City,
+    Province: Province,
     
   };
 

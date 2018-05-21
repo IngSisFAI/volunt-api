@@ -10,5 +10,7 @@ export * from './DonationRequest';
 export * from './DonationResponse';
 export * from './Product';
 export * from './Unit';
+export * from './City';
+export * from './Province';
 export * from './BaseModels';
 export * from './FireLoopRef';

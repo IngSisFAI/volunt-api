@@ -22,9 +22,9 @@
   "database": {
     "host": "mlab.com",
     "port": 11476,
-    "url": "mongodb://root:123456@ds111476.mlab.com:11476/voluntariado",
+    "url": "mongodb://root:1234567@ds111476.mlab.com:11476/voluntariado",
     "database": "voluntariado",
-    "password": "123456",
+    "password": "1234567",
     "name": "database",
     "user": "root",
     "connector": "mongodb"
