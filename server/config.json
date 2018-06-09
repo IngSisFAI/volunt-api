@@ -9,6 +9,9 @@
       "normalizeHttpPath": false,
       "xml": false
     },
+    "errorHandler": {
+      "disableStackTrace": true
+    },
     "json": {
       "strict": false,
       "limit": "100kb"

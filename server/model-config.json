@@ -130,11 +130,11 @@
            "*": false,
            "create": true,
            "prototype.patchAttributes" : false,
-           "deleteById" : true,
            "destroyAll" : true,
            "find" : true,
            "sampleRemoteMethod": true,
-           "donationArrival": true
+           "donationArrival": true,
+           "cancel":true
          }
        }
      }

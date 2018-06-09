@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 'use strict';
 
-var app = require('../../server/server');
+let app = require('../../server/server');
 const debug = require('debug')('info');
 
 const moment = require('moment');
@@ -42,7 +42,7 @@ module.exports = function(DonationResponse) {
 //    "donnerId": "string"
 
   DonationResponse.beforeRemote('create', function(ctx, res, next) {
-    var error = new Error();
+    let error = new Error();
 
     // la fecha de creación no se va a mostrar al usuario y
     // debemos colocarle la fecha actual siempre
@@ -50,7 +50,7 @@ module.exports = function(DonationResponse) {
 
     // ahora debería verificar que existe el pedido de donación asociado
     // es decir el donation request
-    var donationreq = app.models.DonationRequest;
+    let donationreq = app.models.DonationRequest;
     debug('el donationRequestid que viene es:' + ctx.req.body.donationRequestId);
     donationreq.findById(ctx.req.body.donationRequestId, function(err, donreq) {
       if (err) {
@@ -62,7 +62,7 @@ module.exports = function(DonationResponse) {
         // next();
 
         // me fijo si el donador existe donnerId esValido
-        var donador = app.models.Donner;
+        let donador = app.models.Donner;
         donador.findById(ctx.req.body.donnerId, function(err, donadorrest) {
           if (err) {
             error.message = 'No se encontró el donador';
@@ -72,7 +72,7 @@ module.exports = function(DonationResponse) {
             // se encontro el donador asi que seguimos
             debug('Se encontro el donador');
             // ahora debemos ver que no haya expirado el pedido
-            var exp = moment(donreq.expirationDate);
+            let exp = moment(donreq.expirationDate);
             if (exp.isValid() && exp.isSameOrAfter(moment())) {
               // la fecha de expiracion es igual o mayor a la fecha actual
 
@@ -112,7 +112,7 @@ module.exports = function(DonationResponse) {
   });
 
   DonationResponse.afterRemote('create', function(ctx, res, next) {
-    var error = new Error();
+    let error = new Error();
 
     // aca debemos primero buscar nuevamente el donationrequest al cual
     // se dono para cambiar el promised
@@ -121,18 +121,18 @@ module.exports = function(DonationResponse) {
     // lo que tratamos de buscar es todas las instancias necesitadas
 
     // buscamos las donaciones request
-    // var donationreq = app.models.DonationRequest;
+    // let donationreq = app.models.DonationRequest;
     // despues debemos buscar el nombre del producto que se dono
-    // var prod = app.models.Product;
+    // let prod = app.models.Product;
     // tambien el email de la organizacion social
-    // var org = app.models.Organization;
+    // let org = app.models.Organization;
     // tambien el nombre y apellido del donador
-    // var don = app.models.Donner;
+    // let don = app.models.Donner;
     // User.find({include: ['posts', 'orders']}, function() { /* ... */ });
 
     debug('res tiene:' + res.donationRequestId);
 
-    var donresp = app.models.DonationResponse;
+    let donresp = app.models.DonationResponse;
 
     donresp.find({
       where: {id: res.id},
@@ -149,7 +149,7 @@ module.exports = function(DonationResponse) {
         next(error);
       } else {
         resultados.forEach(function(post) {
-          var p = post.toJSON();
+          let p = post.toJSON();
           debug(p.donationRequest);
 
           // como no se como recuperar toda la instancia de donner y de organization
@@ -157,7 +157,7 @@ module.exports = function(DonationResponse) {
 
           // busco el donador que esta en donnerId de res para conseguir
           // su nombre y apellido
-          var don = app.models.Donner;
+          let don = app.models.Donner;
           don.findById(res.donnerId, function(err, donador) {
             if (err) {
               error.message = 'No se encontró el donador';
@@ -170,7 +170,7 @@ module.exports = function(DonationResponse) {
 
               // busco tambien el email de la organizacion social
               debug('la OS que viene en el json es: ' + p.donationRequest.organizationId);
-              var org = app.models.Organization;
+              let org = app.models.Organization;
               org.findById(p.donationRequest.organizationId, function(err, organizacion) {
                 if (err) {
                   error.message = 'No se encontró la OS que genero el pedido de donacion';
@@ -180,8 +180,8 @@ module.exports = function(DonationResponse) {
                   // se encontro la OS del pedido de donacion
                   debug('la OS es: ' + organizacion.email);
 
-                  var cantidadadonar = res.amount;// ya sabiamos que era mayor a 0
-                  var cantidadyacubierta = p.donationRequest.covered;
+                  let cantidadadonar = res.amount;// ya sabiamos que era mayor a 0
+                  let cantidadyacubierta = p.donationRequest.covered;
 
                   // esto se va a realizar solo si el pedido es particular
                   if (!p.donationRequest.isPermanent) {
@@ -191,15 +191,15 @@ module.exports = function(DonationResponse) {
                     // defini variables nuevas para dar mas semantica...sino no se
                     // entiende nada
 
-                    var cantidadrequerida = p.donationRequest.amount;
+                    let cantidadrequerida = p.donationRequest.amount;
 
                     // promised se modifica siempre...
                     // lo que nose toca es covered, eso lo hace donationrequest
                     // cantidadadonar = res.amount;// ya sabiamos que era mayor a 0
 
-                    var cantidadfaltante = cantidadrequerida - cantidadyacubierta;
+                    let cantidadfaltante = cantidadrequerida - cantidadyacubierta;
 
-                    var cuerpomail = '';
+                    let cuerpomail = '';
 
                     if (cantidadadonar >= cantidadfaltante) {
                       // no se debe cerrar el pedido por mas que que se haya cumplido
@@ -236,7 +236,7 @@ module.exports = function(DonationResponse) {
 
                  // debug('lo que tengo ahora en el donationrequest es : ' +  p.donationRequest.toString());
                   debug('el mail dice: ' + cuerpomail);
-                  var pedido = app.models.DonationRequest;
+                  let pedido = app.models.DonationRequest;
                   pedido.upsert(p.donationRequest, function(err, resp) {
                     if (err) {
                       error.message = 'No actualizo el pedido de donacion';
@@ -270,80 +270,92 @@ module.exports = function(DonationResponse) {
     });
   });
 
-  DonationResponse.beforeRemote('deleteById',
-    function(ctx, res, next) {
-      var error = new Error();
+  DonationResponse.remoteMethod('cancel', {
+    accepts: [{
+      arg: 'id',
+      type: 'string',
+      required: true,
+    }],
+    http: {
+      'verb': 'POST',
+      'path': '/:id/cancel',
+    },
+    returns: {},
+  });
+
+  DonationResponse.cancel = function(id, cb) {
+    let error = new Error();
 
       // me fijo que el id del DonationResponse exista
-      DonationResponse.findById(ctx.req.params.id, function(err, donationResponse) {
-        if (err) {
-          error.message = 'No se encontró la respuesta a la donacion';
-          error.status = 400;
-          next(error);
-        } else {
+    DonationResponse.findById(id, function(err, donationResponse) {
+      if (err) {
+        error.message = 'No se encontró la respuesta a la donacion';
+        error.status = 400;
+        cb(error);
+      } else {
           // si se encontro la respuesta  determino que se puede modificar solo el isCanceled.
-          if (!donationResponse) {
-            error.message = 'No se encontro ningun pedido de donacion con ese id';
-            error.status = 404;
-            next(error);
-          } else {
-            // Una vez que ya tengo el donationResponse, le actualizo solo el isCanceled a true.
-            donationResponse.isCanceled = true;
+        if (!donationResponse) {
+          error.message = 'No se encontro ningun pedido de donacion con ese id';
+          error.status = 404;
+          cb(error);
+        } else {
+          // Una vez que ya tengo el donationResponse, le actualizo solo el isCanceled a true.
+          donationResponse.isCanceled = true;
 
-            // ademas debo buscar el donation request y restarle la cantidad que habia
-            // querido donar a promised.
-            var donrequest = app.models.DonationRequest;
+          // ademas debo buscar el donation request y restarle la cantidad que habia
+          // querido donar a promised.
+          let donrequest = app.models.DonationRequest;
 
-            donrequest.findById(ctx.req.params.id, function(err, donreq) {
-              if (err) {
-                error.message = 'No se encontró el requerimiento de  donacion';
-                error.status = 400;
-                next(error);
-              } else {
+          donrequest.findById(donationResponse.donationRequestId, function(err, donreq) {
+            if (err) {
+              error.message = 'No se encontró el requerimiento de  donacion';
+              error.status = 400;
+              cb(error);
+            } else {
+              console.log('Found request: ', donreq);
+              if (donreq) {
                 donreq.promised = donreq.promised - donationResponse.amount;
 
-                // guardo las dos cosas....
+              // guardo las dos cosas....
                 donationResponse.save();
                 donreq.save();
+                console.log(donationResponse.donner());
+                let cuerpomail = 'El donador ' + donationResponse.donner.name + ', ' +
+                    donationResponse.donner.lastName + ' canceló ' +
+                    'un pedido de donacion que habia realizado a una publicacion de ' +
+                    donreq.product.name + ' de su organizacion.';
+
+                let mail = {
+                  to: donreq.organization.email,
+                  from: 'Voluntariado <voluntariadouncoma2017@gmail.com>',
+                  subject: 'Cancelacion de un Pedido de Donación',
+                  html: cuerpomail,
+                };
+
+                DonationResponse.app.models.Email.send(mail,
+                    function(err) {
+                      if (err)
+                        throw err;
+                      else
+                        console.log('> sending email to:', donationResponse.donationRequest.organizacion.email);
+                    });
+
+                  // retornamos el mensaje de exito. 
+
+                cb(null, 'Eliminacion correcta de la respuesta de donacion');
               }
-            });
-
-            var cuerpomail = 'El donador ' + donationResponse.donner.name + ', ' + donationResponse.donner.lastName + ' canceló ' +
-                      'un pedido de donacion que habia realizado a una publicacion de ' + donationResponse.donationRequest.product.name  + ' de su organizacion.';
-
-            let mail = {
-              to: donationResponse.donationRequest.organizacion.email,
-              from: 'Voluntariado <voluntariadouncoma2017@gmail.com>',
-              subject: 'Cancelacion de un Pedido de Donación',
-              html: cuerpomail};
-
-            DonationResponse.app.models.Email.send(mail,
-              function(err) {
-                if (err)
-                  throw err;
-                else
-              console.log('> sending email to:', donationResponse.donationRequest.organizacion.email);
-              });
-
-            // retornamos el mensaje de exito.
-
-            ctx.res.send('Eliminacion correcta de la respuesta de donacion');
-          }
+            }
+          });
         }
-      });
+      }
     });
+  };
 
   DonationResponse.remoteMethod('donationArrival', {
     accepts: [{
       arg: 'id',
       type: 'string',
       required: true,
-    },
-    {
-      arg: 'data',
-      type: 'object',
-      required: true,
-      http: {source: 'body'},
     }],
     http: {
       'verb': 'POST',
@@ -352,9 +364,9 @@ module.exports = function(DonationResponse) {
     returns: {},
   });
 
-  DonationResponse.donationArrival = function(id, data, cb) {
-   // var donresp = app.models.DonationResponse;
-    var error = new Error();
+  DonationResponse.donationArrival = function(id, cb) {
+   // let donresp = app.models.DonationResponse;
+    let error = new Error();
     DonationResponse.findOne({
       where: {id: id},
       include: {
@@ -374,11 +386,11 @@ module.exports = function(DonationResponse) {
           cb(error);
         } else {
           // resultados.forEach(function(post) {
-         // var p = donres.toJSON();
+         // let p = donres.toJSON();
           // aca debo pasar de el alreadyDelivered a true en donationresponse y
           // en donation request debo restar del promised y sumar al covered
-          debug(data);
-          let amount = data.amount;
+
+          let amount = donres.amount;
 
           donres.alreadyDelivered = true;
          // si entrego menos de lo que se tenia en promised hay que cambiarlo
