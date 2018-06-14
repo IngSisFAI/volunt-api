@@ -350,10 +350,10 @@ export class ContactApi extends BaseLoopBackApi {
    *   populated with the actual data once the response is returned
    *   from the server.
    *
-   * The response body contains properties of the AccessToken created on login.
-   * Depending on the value of `include` parameter, the body may contain additional properties:
+   * El cuerpo de respuesta contiene propiedades de la AccessToken creada durante el inicio de la sesión.
+   * Dependiendo del valor del parámetro `include`, el cuerpo puede contener propiedades adicionales:
    * 
-   *   - `user` - `U+007BUserU+007D` - Data of the currently logged in user. (`include=user`)
+   *   - `user` - `U+007BUserU+007D` - Datos del usuario conectado actualmente. (`include=user`)
    * 
    *
    */

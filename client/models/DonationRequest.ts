@@ -6,6 +6,7 @@ export interface DonationRequestInterface {
   "amount"?: number;
   "expirationDate"?: Date;
   "isPermanent": boolean;
+  "description"?: string;
   "covered"?: number;
   "promised"?: number;
   "isOpen"?: boolean;
@@ -23,6 +24,7 @@ export class DonationRequest implements DonationRequestInterface {
   "amount": number;
   "expirationDate": Date;
   "isPermanent": boolean;
+  "description": string;
   "covered": number;
   "promised": number;
   "isOpen": boolean;
@@ -81,6 +83,10 @@ export class DonationRequest implements DonationRequestInterface {
         "isPermanent": {
           name: 'isPermanent',
           type: 'boolean'
+        },
+        "description": {
+          name: 'description',
+          type: 'string'
         },
         "covered": {
           name: 'covered',

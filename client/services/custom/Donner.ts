@@ -12,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { Donner } from '../../models/Donner';
 import { SocketConnection } from '../../sockets/socket.connections';
+import { City } from '../../models/City';
 
 
 /**
@@ -119,6 +120,36 @@ export class DonnerApi extends BaseLoopBackApi {
       data: data
     };
     let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Fetches belongsTo relation city.
+   *
+   * @param {any} id Donner id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Donner` object.)
+   * </em>
+   */
+  public getCity(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/Donners/:id/city";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
@@ -344,10 +375,10 @@ export class DonnerApi extends BaseLoopBackApi {
    *   populated with the actual data once the response is returned
    *   from the server.
    *
-   * The response body contains properties of the AccessToken created on login.
-   * Depending on the value of `include` parameter, the body may contain additional properties:
+   * El cuerpo de respuesta contiene propiedades de la AccessToken creada durante el inicio de la sesión.
+   * Dependiendo del valor del parámetro `include`, el cuerpo puede contener propiedades adicionales:
    * 
-   *   - `user` - `U+007BUserU+007D` - Data of the currently logged in user. (`include=user`)
+   *   - `user` - `U+007BUserU+007D` - Datos del usuario conectado actualmente. (`include=user`)
    * 
    *
    */

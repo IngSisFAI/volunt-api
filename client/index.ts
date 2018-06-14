@@ -59,6 +59,8 @@ import { DonationRequestApi } from './services/custom/DonationRequest';
 import { DonationResponseApi } from './services/custom/DonationResponse';
 import { ProductApi } from './services/custom/Product';
 import { UnitApi } from './services/custom/Unit';
+import { CityApi } from './services/custom/City';
+import { ProvinceApi } from './services/custom/Province';
 /**
 * @module SDKBrowserModule
 * @description
@@ -100,6 +102,8 @@ export class SDKBrowserModule {
         DonationResponseApi,
         ProductApi,
         UnitApi,
+        CityApi,
+        ProvinceApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

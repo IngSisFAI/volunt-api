@@ -2,7 +2,8 @@
 import {
   Contact,
   DonnerReview,
-  DonationRequest
+  DonationRequest,
+  City
 } from '../index';
 
 declare var Object: any;
@@ -13,23 +14,22 @@ export interface OrganizationInterface {
   "urlInscriptionPapers": string;
   "street": string;
   "streetNumber": string;
-  "province": string;
-  "city": string;
-  "postalCode": string;
   "pendingApprobal"?: boolean;
-  "webPage": string;
-  "facebookPage": string;
-  "logoUrl": string;
+  "webPage"?: string;
+  "facebookPage"?: string;
+  "logoUrl"?: string;
   "realm"?: string;
   "username"?: string;
   "email": string;
   "emailVerified"?: boolean;
   "id"?: any;
+  "cityId"?: any;
   "password"?: string;
   accessTokens?: any[];
   contacts?: Contact[];
   donnerReviews?: DonnerReview[];
   donationRequests?: DonationRequest[];
+  city?: City;
 }
 
 export class Organization implements OrganizationInterface {
@@ -39,9 +39,6 @@ export class Organization implements OrganizationInterface {
   "urlInscriptionPapers": string;
   "street": string;
   "streetNumber": string;
-  "province": string;
-  "city": string;
-  "postalCode": string;
   "pendingApprobal": boolean;
   "webPage": string;
   "facebookPage": string;
@@ -51,11 +48,13 @@ export class Organization implements OrganizationInterface {
   "email": string;
   "emailVerified": boolean;
   "id": any;
+  "cityId": any;
   "password": string;
   accessTokens: any[];
   contacts: Contact[];
   donnerReviews: DonnerReview[];
   donationRequests: DonationRequest[];
+  city: City;
   constructor(data?: OrganizationInterface) {
     Object.assign(this, data);
   }
@@ -113,18 +112,6 @@ export class Organization implements OrganizationInterface {
           name: 'streetNumber',
           type: 'string'
         },
-        "province": {
-          name: 'province',
-          type: 'string'
-        },
-        "city": {
-          name: 'city',
-          type: 'string'
-        },
-        "postalCode": {
-          name: 'postalCode',
-          type: 'string'
-        },
         "pendingApprobal": {
           name: 'pendingApprobal',
           type: 'boolean'
@@ -159,6 +146,10 @@ export class Organization implements OrganizationInterface {
         },
         "id": {
           name: 'id',
+          type: 'any'
+        },
+        "cityId": {
+          name: 'cityId',
           type: 'any'
         },
         "password": {
@@ -198,6 +189,14 @@ export class Organization implements OrganizationInterface {
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'organizationId'
+        },
+        city: {
+          name: 'city',
+          type: 'City',
+          model: 'City',
+          relationType: 'belongsTo',
+                  keyFrom: 'cityId',
+          keyTo: 'id'
         },
       }
     }
