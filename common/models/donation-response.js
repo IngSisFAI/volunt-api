@@ -224,7 +224,7 @@ module.exports = function(DonationResponse) {
                   } else {
                     // si es permanente
                     // modificamos lo cubierto... no usa promised
-                    p.donationRequest.covered = p.donationRequest.covered + cantidadadonar;
+                    p.donationRequest.promised = p.donationRequest.promised + cantidadadonar;
 
                     cuerpomail = 'El donador ' + donador.name + ', ' + donador.lastName + ' donó ' +
                       'la cantidad de ' + cantidadadonar + ' de productos a un pedido permanente ' +
@@ -394,16 +394,19 @@ module.exports = function(DonationResponse) {
 
           donres.alreadyDelivered = true;
          // si entrego menos de lo que se tenia en promised hay que cambiarlo
-          donres.donationRequest().promised = donres.donationRequest().promised - donres.amount + amount;
-          donres.donationRequest().promised = donres.donationRequest().promised - amount;
-          donres.donationRequest().covered = donres.donationRequest().covered + amount;
+
+          DonationResponse.app.models.DonationRequest.findById(donres.donationRequest().id)
+            .then((request)=>{
+              request.promised = request.promised - amount;
+              request.covered = request + amount;
+              request.save();
+            });
 
           donres.amount = amount;
           // no se cambia el isopen de donationrequest...
 
           donres.save();
           debug('llego hasta aca...');
-          donres.donationRequest().save();
           cb();
         }
       }
