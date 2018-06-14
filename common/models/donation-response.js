@@ -172,6 +172,8 @@ module.exports = function(DonationResponse) {
               debug('la OS que viene en el json es: ' + p.donationRequest.organizationId);
               let org = app.models.Organization;
               org.findById(p.donationRequest.organizationId, function(err, organizacion) {
+                let cuerpomail = '';
+
                 if (err) {
                   error.message = 'No se encontró la OS que genero el pedido de donacion';
                   error.status = 400;
@@ -198,8 +200,6 @@ module.exports = function(DonationResponse) {
                     // cantidadadonar = res.amount;// ya sabiamos que era mayor a 0
 
                     let cantidadfaltante = cantidadrequerida - cantidadyacubierta;
-
-                    let cuerpomail = '';
 
                     if (cantidadadonar >= cantidadfaltante) {
                       // no se debe cerrar el pedido por mas que que se haya cumplido
@@ -340,7 +340,7 @@ module.exports = function(DonationResponse) {
                         console.log('> sending email to:', donationResponse.donationRequest.organizacion.email);
                     });
 
-                  // retornamos el mensaje de exito. 
+                  // retornamos el mensaje de exito.
 
                 cb(null, 'Eliminacion correcta de la respuesta de donacion');
               }
