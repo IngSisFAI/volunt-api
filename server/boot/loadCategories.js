@@ -1,7 +1,7 @@
 'use strict';
 
 var loopback = require('loopback');
-let categories = require('./mercadoLibreCategories.json');
+let categories = require('../mercadoLibreCategories.json');
 let bootConfig = require('./bootConfig.json');
 
 module.exports = function(server) {
