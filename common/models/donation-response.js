@@ -224,7 +224,7 @@ module.exports = function(DonationResponse) {
                   } else {
                     // si es permanente
                     // modificamos lo cubierto... no usa promised
-                    p.donationRequest.covered = p.donationRequest.covered + cantidadadonar;
+                    p.donationRequest.promised = p.donationRequest.promised + cantidadadonar;
 
                     cuerpomail = 'El donador ' + donador.name + ', ' + donador.lastName + ' donó ' +
                       'la cantidad de ' + cantidadadonar + ' de productos a un pedido permanente ' +
