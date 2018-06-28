@@ -254,7 +254,8 @@ module.exports = function(DonationResponse) {
                       DonationResponse.app.models.Email.send(mail,
                         function(err) {
                           if (err)
-                            throw err;
+                            // throw err;
+                            debug('ERROR AL ENVIAR EL EMAIL');
                           else
                         debug('> sending email to:', organizacion.email);
                         });
@@ -335,7 +336,7 @@ module.exports = function(DonationResponse) {
                 DonationResponse.app.models.Email.send(mail,
                     function(err) {
                       if (err)
-                        throw err;
+                        debug('ERROR AL ENVIAR EL EMAIL');
                       else
                         console.log('> sending email to:', donationResponse.donationRequest.organizacion.email);
                     });

@@ -139,7 +139,7 @@ module.exports = function(Donner) {
   Donner.emailExists = function(mail, cb) {
     debug(mail);
     Donner.findOne({where: {email: mail}}, function(err, Donner) {
-      if (err) throw err;
+      if (err) debug('ERROR AL ENVIAR EL EMAIL');
       debug(Donner);
       cb(null, Donner != null);
     });

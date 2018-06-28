@@ -131,7 +131,7 @@ module.exports = function(Organizationreview) {
         Organizationreview.app.models.Email.send(mail,
             function(err) {
               if (err)
-                throw err;
+                debug('ERROR AL ENVIAR EL EMAIL');
               else
                 debug('> sending email to:', p.organization.email);
             });
@@ -230,7 +230,7 @@ module.exports = function(Organizationreview) {
                 Organizationreview.app.models.Email.send(mail,
                   function(err) {
                     if (err)
-                      throw err;
+                      debug('ERROR AL ENVIAR EL EMAIL');
                     else
                       console.log('> sending email to:', p.organization.email);
                   });
