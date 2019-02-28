@@ -1,0 +1,69 @@
+{
+  "name": "DonationRequest",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "creationDate": {
+      "type": "date",
+      "required": true
+    },
+    "amount": {
+      "type": "number",
+      "required": false
+    },
+    "expirationDate": {
+      "type": "date",
+      "required": false
+    },
+    "isPermanent": {
+      "type": "boolean",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "covered": {
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "promised": {
+      "type": "number",
+      "required": false,
+      "default": 0
+    },
+    "isOpen": {
+      "type": "boolean",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "product": {
+      "type": "belongsTo",
+      "model": "Product",
+      "foreignKey": ""
+    },
+    "organization":{
+      "type": "belongsTo",
+      "model": "Organization",
+      "foreignKey": ""
+    },
+    "organizationReviews":{
+      "type": "hasMany",
+      "model": "OrganizationReview",
+      "foreignKey": ""
+    },
+    "donationResponses":{
+      "type": "hasMany",
+      "model": "DonationResponse",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

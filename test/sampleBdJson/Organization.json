@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5a0df599e7f62421fe84b53c"},"realm":"string","username":"OSayudando","password":"$2a$10$l3sMZs71tCdah1fc71YCMeeJzl3dPWHpVroXRW1oSBHa66HqnEQ7K","email":"agustina.buccella@fi.uncoma.edu.ar","emailVerified":true,"id":{"$oid":"5a0df599e7f62421fe84b53c"}}
+{"_id":{"$oid":"5a0df5c5e7f62421fe84b53d"},"realm":"","username":"organizacion2","password":"$2a$10$.WttHSOr37Im3fYJJVkxHO5LcwP8P1LXeZ3aGcK0a4UTxeK5rc4JO","email":"organizacion2@email.com","emailVerified":false}

@@ -1,0 +1,37 @@
+{
+  "name": "DonnerReview",
+  "plural": "DonnerReviews",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "liked": {
+      "type": "boolean",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "donationResponse": {
+      "type": "belongsTo",
+      "model": "DonationResponse",
+      "foreignKey": ""
+    },
+    "organization": {
+      "type": "belongsTo",
+      "model": "Organization",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {},
+  "mixins": {
+    "TimeStamp" : true
+  }
+}

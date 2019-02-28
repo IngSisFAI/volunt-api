@@ -1,0 +1,38 @@
+{
+  "name": "Product",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "parentProduct": {
+      "type": "belongsTo",
+      "model": "Product",
+      "foreignKey": ""
+    },
+    "unit": {
+      "type": "belongsTo",
+      "model": "Unit",
+      "foreignKey": ""
+    },
+    "donationRequests": {
+      "type": "hasMany",
+      "model": "DonationRequest",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

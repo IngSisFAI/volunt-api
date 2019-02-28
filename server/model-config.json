@@ -1,0 +1,210 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../node_modules/loopback-ds-timestamp-mixin",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "database"
+  },
+  "AccessToken": {
+    "dataSource": "database",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "database",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "database",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "database",
+    "public": false
+  },
+  "Organization": {
+    "dataSource": "database",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": true,
+          "create": true,
+          "sampleRemoteMethod": true
+        }
+      }
+    }
+  },
+  "Email":{
+    "dataSource":"myEmailDataSource"
+  },
+  "Donner": {
+    "dataSource": "database",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": true,
+          "create": true,
+          "sampleRemoteMethod": true
+        }
+      }
+    }
+  },
+  "Contact": {
+    "dataSource": "database",
+    "public": true
+  },
+  "DonnerReview": {
+    "dataSource": "database",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "prototype.patchAttributes" : true,
+          "deleteById" : false,
+          "destroyAll" : true,
+          "find" : true,
+          "sampleRemoteMethod": true
+        }
+      }
+    }
+  },
+  "OrganizationReview": {
+    "dataSource": "database",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "prototype.patchAttributes" : true,
+          "deleteById" : false,
+          "find" : true,
+          "sampleRemoteMethod": true,
+          "destroyAll" : true
+        }
+      }
+    }
+  },
+  "DonationRequest": {
+    "dataSource": "database",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "closeRequest": true,
+          "create": true,
+          "prototype.patchAttributes" : true,
+          "deleteById" : true,
+          "find" : true,
+          "sampleRemoteMethod": true,
+          "findById" : true,
+          "destroyAll" : true
+        }
+      }
+    }
+  },
+   "DonationResponse": {
+    "dataSource": "database",
+    "public": true,    "options": {
+       "remoting": {
+         "sharedMethods": {
+           "*": false,
+           "create": true,
+           "prototype.patchAttributes" : false,
+           "destroyAll" : true,
+           "find" : true,
+           "sampleRemoteMethod": true,
+           "donationArrival": true,
+           "cancel":true
+         }
+       }
+     }
+  },
+  "Product": {
+    "dataSource": "database",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "prototype.patchAttributes" : true,
+          "deleteById" : true,
+          "find" : true,
+          "sampleRemoteMethod": true,
+          "destroyAll" : true
+        }
+      }
+    }
+  },
+  "Unit": {
+    "dataSource": "database",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "prototype.patchAttributes" : true,
+          "deleteById" : true,
+          "find" : true,
+          "sampleRemoteMethod": true,
+          "destroyAll" : true
+        }
+      }
+    }
+  },
+  "City": {
+    "dataSource": "database",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "prototype.patchAttributes" : true,
+          "deleteById" : true,
+          "find" : true,
+          "sampleRemoteMethod": true,
+          "destroyAll" : true
+        }
+      }
+    }
+  },
+  "Province": {
+    "dataSource": "database",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "prototype.patchAttributes" : true,
+          "deleteById" : true,
+          "find" : true,
+          "sampleRemoteMethod": true,
+          "destroyAll" : true
+        }
+      }
+    }
+  }
+}

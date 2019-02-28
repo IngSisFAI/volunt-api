@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5a16d509c70d0516c5173516"},"Name":"Leche en polvo","Icon":"https://image.flaticon.com/icons/png/512/81/81902.png","parentProductId":"null","unitId":{"$oid":"5a16d4cec70d0516c5173515"}}
+{"_id":{"$oid":"5a1733b8929e8e5f7ca23706"},"Name":"Harina","Icon":"http://ecospelta.com/wp-content/uploads/2016/06/harina.jpg","parentProductId":"null","unitId":{"$oid":"5a16d4cec70d0516c5173515"}}

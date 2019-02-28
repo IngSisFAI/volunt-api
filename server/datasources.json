@@ -1,0 +1,32 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "myEmailDataSource": {
+    "name": "myEmailDataSource",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "SMTP",
+        "host": "smtp.gmail.com",
+        "secure": true,
+        "port": 465,
+        "auth": {
+          "user": "voluntariadouncoma2017@gmail.com",
+          "pass": "V0lunt4r10s"
+        }
+      }
+    ]
+  },
+  "database": {
+    "host": "mlab.com",
+    "port": 11476,
+    "url": "mongodb://root:1234567@ds111476.mlab.com:11476/voluntariado",
+    "database": "voluntariado",
+    "password": "1234567",
+    "name": "database",
+    "user": "root",
+    "connector": "mongodb"
+  }
+}

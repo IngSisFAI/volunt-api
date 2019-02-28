@@ -1,0 +1,1647 @@
+[
+  {
+    "categorieName":"Inmuebles",
+    "children_categories":[
+      {
+        "id":"MLU1472",
+        "name":"Apartamentos",
+        "total_items_in_this_category":54348
+      },
+      {
+        "id":"MLU1496",
+        "name":"Campos",
+        "total_items_in_this_category":2120
+      },
+      {
+        "id":"MLU1466",
+        "name":"Casas",
+        "total_items_in_this_category":33939
+      },
+      {
+        "id":"MLU50636",
+        "name":"Cocheras",
+        "total_items_in_this_category":275
+      },
+      {
+        "id":"MLU211280",
+        "name":"Habitaciones",
+        "total_items_in_this_category":225
+      },
+      {
+        "id":"MLU50630",
+        "name":"Llave de Negocio",
+        "total_items_in_this_category":456
+      },
+      {
+        "id":"MLU1478",
+        "name":"Locales",
+        "total_items_in_this_category":4178
+      },
+      {
+        "id":"MLU50633",
+        "name":"Oficinas",
+        "total_items_in_this_category":1755
+      },
+      {
+        "id":"MLU50547",
+        "name":"Quintas",
+        "total_items_in_this_category":574
+      },
+      {
+        "id":"MLU1493",
+        "name":"Terrenos",
+        "total_items_in_this_category":7920
+      },
+      {
+        "id":"MLU1892",
+        "name":"Otros Inmuebles",
+        "total_items_in_this_category":521
+      }
+    ]
+  },
+  {
+    "categorieName":"Accesorios para Vehículos",
+    "children_categories":[
+      {
+        "id":"MLU1747",
+        "name":"Accesorios Autos y Camionetas",
+        "total_items_in_this_category":42009
+      },
+      {
+        "id":"MLU1772",
+        "name":"Accesorios para Motos",
+        "total_items_in_this_category":12537
+      },
+      {
+        "id":"MLU1023",
+        "name":"Audio para Autos",
+        "total_items_in_this_category":11856
+      },
+      {
+        "id":"MLU208681",
+        "name":"Llantas",
+        "total_items_in_this_category":4114
+      },
+      {
+        "id":"MLU208675",
+        "name":"Neumáticos",
+        "total_items_in_this_category":10440
+      },
+      {
+        "id":"MLU1748",
+        "name":"Repuestos Autos y Camionetas",
+        "total_items_in_this_category":160283
+      },
+      {
+        "id":"MLU1771",
+        "name":"Repuestos para Motos",
+        "total_items_in_this_category":20250
+      },
+      {
+        "id":"MLU206455",
+        "name":"Service Programado",
+        "total_items_in_this_category":1187
+      },
+      {
+        "id":"MLU5679",
+        "name":"Tuning",
+        "total_items_in_this_category":11705
+      },
+      {
+        "id":"MLU6177",
+        "name":"Otros",
+        "total_items_in_this_category":4661
+      }
+    ]
+  },
+  {
+    "categorieName":"Animales y Mascotas",
+    "children_categories":[
+      {
+        "id":"MLU1100",
+        "name":"Aves",
+        "total_items_in_this_category":1283
+      },
+      {
+        "id":"MLU6573",
+        "name":"Conejos",
+        "total_items_in_this_category":189
+      },
+      {
+        "id":"MLU1117",
+        "name":"Equinos",
+        "total_items_in_this_category":1890
+      },
+      {
+        "id":"MLU1081",
+        "name":"Gatos",
+        "total_items_in_this_category":2076
+      },
+      {
+        "id":"MLU3615",
+        "name":"Libros y Manuales de Animales",
+        "total_items_in_this_category":71
+      },
+      {
+        "id":"MLU1091",
+        "name":"Peces",
+        "total_items_in_this_category":1837
+      },
+      {
+        "id":"MLU1072",
+        "name":"Perros",
+        "total_items_in_this_category":11385
+      },
+      {
+        "id":"MLU1105",
+        "name":"Roedores",
+        "total_items_in_this_category":344
+      },
+      {
+        "id":"MLU1126",
+        "name":"Otros",
+        "total_items_in_this_category":1129
+      }
+    ]
+  },
+  {
+    "categorieName":"Ropa, Calzados y Accesorios",
+    "children_categories":[
+      {
+        "id":"MLU158429",
+        "name":"Accesorios de Moda",
+        "total_items_in_this_category":11110
+      },
+      {
+        "id":"MLU158309",
+        "name":"Bermudas y Shorts",
+        "total_items_in_this_category":3932
+      },
+      {
+        "id":"MLU195436",
+        "name":"Blusas",
+        "total_items_in_this_category":4966
+      },
+      {
+        "id":"MLU158312",
+        "name":"Buzos y Canguros",
+        "total_items_in_this_category":7092
+      },
+      {
+        "id":"MLU116895",
+        "name":"Calzados",
+        "total_items_in_this_category":28931
+      },
+      {
+        "id":"MLU164360",
+        "name":"Calzas y Leggings",
+        "total_items_in_this_category":1923
+      },
+      {
+        "id":"MLU195434",
+        "name":"Camisas",
+        "total_items_in_this_category":5969
+      },
+      {
+        "id":"MLU185062",
+        "name":"Camperas",
+        "total_items_in_this_category":11607
+      },
+      {
+        "id":"MLU158341",
+        "name":"Carteras, Mochilas y Equipajes",
+        "total_items_in_this_category":11610
+      },
+      {
+        "id":"MLU194224",
+        "name":"Chalecos",
+        "total_items_in_this_category":1453
+      },
+      {
+        "id":"MLU116896",
+        "name":"Championes",
+        "total_items_in_this_category":11021
+      },
+      {
+        "id":"MLU185480",
+        "name":"Chaquetas y Blazers",
+        "total_items_in_this_category":2672
+      },
+      {
+        "id":"MLU195435",
+        "name":"Chombas",
+        "total_items_in_this_category":312
+      },
+      {
+        "id":"MLU158361",
+        "name":"Enteritos",
+        "total_items_in_this_category":1709
+      },
+      {
+        "id":"MLU185099",
+        "name":"Gabardinas y Pilots",
+        "total_items_in_this_category":429
+      },
+      {
+        "id":"MLU1456",
+        "name":"Lentes",
+        "total_items_in_this_category":3209
+      },
+      {
+        "id":"MLU186005",
+        "name":"Pantalones",
+        "total_items_in_this_category":10774
+      },
+      {
+        "id":"MLU188392",
+        "name":"Poleras y Polerones",
+        "total_items_in_this_category":391
+      },
+      {
+        "id":"MLU158424",
+        "name":"Polleras",
+        "total_items_in_this_category":2773
+      },
+      {
+        "id":"MLU93488",
+        "name":"Ponchos",
+        "total_items_in_this_category":690
+      },
+      {
+        "id":"MLU158376",
+        "name":"Remeras y Musculosas",
+        "total_items_in_this_category":14969
+      },
+      {
+        "id":"MLU158378",
+        "name":"Ropa Deportiva",
+        "total_items_in_this_category":3853
+      },
+      {
+        "id":"MLU158400",
+        "name":"Ropa Interior y De Dormir",
+        "total_items_in_this_category":4446
+      },
+      {
+        "id":"MLU93502",
+        "name":"Ropa para Embarazadas",
+        "total_items_in_this_category":457
+      },
+      {
+        "id":"MLU185401",
+        "name":"Saquitos",
+        "total_items_in_this_category":2026
+      },
+      {
+        "id":"MLU194207",
+        "name":"Sweaters y Cardigans",
+        "total_items_in_this_category":1151
+      },
+      {
+        "id":"MLU185076",
+        "name":"Tapados",
+        "total_items_in_this_category":1273
+      },
+      {
+        "id":"MLU158416",
+        "name":"Trajes",
+        "total_items_in_this_category":1708
+      },
+      {
+        "id":"MLU158418",
+        "name":"Trajes de Baño",
+        "total_items_in_this_category":1466
+      },
+      {
+        "id":"MLU158690",
+        "name":"Uniformes",
+        "total_items_in_this_category":1483
+      },
+      {
+        "id":"MLU158423",
+        "name":"Vestidos",
+        "total_items_in_this_category":12631
+      },
+      {
+        "id":"MLU1911",
+        "name":"Otros",
+        "total_items_in_this_category":7940
+      }
+    ]
+  },
+  {
+    "categorieName":"Coleccionables",
+    "children_categories":[
+      {
+        "id":"MLU1834",
+        "name":"Afiches, Posters y Carteles",
+        "total_items_in_this_category":3559
+      },
+      {
+        "id":"MLU1835",
+        "name":"Animé",
+        "total_items_in_this_category":881
+      },
+      {
+        "id":"MLU2355",
+        "name":"Colecciones Diversas",
+        "total_items_in_this_category":14287
+      },
+      {
+        "id":"MLU208910",
+        "name":"Encendedores y Fósforos",
+        "total_items_in_this_category":414
+      },
+      {
+        "id":"MLU1861",
+        "name":"Filatelia",
+        "total_items_in_this_category":3913
+      },
+      {
+        "id":"MLU1799",
+        "name":"Historietas y Comics",
+        "total_items_in_this_category":3359
+      },
+      {
+        "id":"MLU2314",
+        "name":"Latas, Botellas y Afines",
+        "total_items_in_this_category":6023
+      },
+      {
+        "id":"MLU1805",
+        "name":"Militaria y Afines",
+        "total_items_in_this_category":4911
+      },
+      {
+        "id":"MLU1841",
+        "name":"Modelismo",
+        "total_items_in_this_category":3958
+      },
+      {
+        "id":"MLU1806",
+        "name":"Monedas y Billetes",
+        "total_items_in_this_category":15711
+      },
+      {
+        "id":"MLU176948",
+        "name":"Muñecos y Accesorios",
+        "total_items_in_this_category":9639
+      },
+      {
+        "id":"MLU2456",
+        "name":"Papeles Impresos y Afines",
+        "total_items_in_this_category":6504
+      },
+      {
+        "id":"MLU1830",
+        "name":"Tarjetas Telefónicas",
+        "total_items_in_this_category":779
+      },
+      {
+        "id":"MLU1832",
+        "name":"Otros",
+        "total_items_in_this_category":2974
+      }
+    ]
+  },
+  {
+    "categorieName":"Computación",
+    "children_categories":[
+      {
+        "id":"MLU1870",
+        "name":"Apple",
+        "total_items_in_this_category":6237
+      },
+      {
+        "id":"MLU2141",
+        "name":"Cartuchos, Toner y Papeles",
+        "total_items_in_this_category":35725
+      },
+      {
+        "id":"MLU6055",
+        "name":"CDs y DVDs Vírgenes",
+        "total_items_in_this_category":952
+      },
+      {
+        "id":"MLU1649",
+        "name":"Computadoras y Servidores",
+        "total_items_in_this_category":7218
+      },
+      {
+        "id":"MLU1669",
+        "name":"Discos Rígidos y Removibles",
+        "total_items_in_this_category":8285
+      },
+      {
+        "id":"MLU1718",
+        "name":"Fuentes y UPS",
+        "total_items_in_this_category":9958
+      },
+      {
+        "id":"MLU1696",
+        "name":"Gabinetes",
+        "total_items_in_this_category":2408
+      },
+      {
+        "id":"MLU1670",
+        "name":"Grabadoras de CDs y DVDs",
+        "total_items_in_this_category":434
+      },
+      {
+        "id":"MLU191264",
+        "name":"Impresoras y Repuestos",
+        "total_items_in_this_category":7874
+      },
+      {
+        "id":"MLU178391",
+        "name":"iPad y Tablets",
+        "total_items_in_this_category":17920
+      },
+      {
+        "id":"MLU1694",
+        "name":"Memorias RAM",
+        "total_items_in_this_category":3208
+      },
+      {
+        "id":"MLU1656",
+        "name":"Monitores y Proyectores",
+        "total_items_in_this_category":7045
+      },
+      {
+        "id":"MLU1692",
+        "name":"Motherboards",
+        "total_items_in_this_category":2240
+      },
+      {
+        "id":"MLU1714",
+        "name":"Mouses",
+        "total_items_in_this_category":4681
+      },
+      {
+        "id":"MLU1662",
+        "name":"Multimedia",
+        "total_items_in_this_category":4811
+      },
+      {
+        "id":"MLU87423",
+        "name":"Netbooks y Accesorios",
+        "total_items_in_this_category":8471
+      },
+      {
+        "id":"MLU3646",
+        "name":"Notebooks y Accesorios",
+        "total_items_in_this_category":95609
+      },
+      {
+        "id":"MLU1651",
+        "name":"Palmtops y Handhelds",
+        "total_items_in_this_category":87
+      },
+      {
+        "id":"MLU4980",
+        "name":"Pen Drives",
+        "total_items_in_this_category":2808
+      },
+      {
+        "id":"MLU1712",
+        "name":"Periféricos y Accesorios de PC",
+        "total_items_in_this_category":24616
+      },
+      {
+        "id":"MLU1655",
+        "name":"Placas de Video y Editoras",
+        "total_items_in_this_category":2289
+      },
+      {
+        "id":"MLU1693",
+        "name":"Procesadores",
+        "total_items_in_this_category":2429
+      },
+      {
+        "id":"MLU1700",
+        "name":"Redes",
+        "total_items_in_this_category":20140
+      },
+      {
+        "id":"MLU195328",
+        "name":"Resistencias",
+        "total_items_in_this_category":180
+      },
+      {
+        "id":"MLU1660",
+        "name":"Scanners",
+        "total_items_in_this_category":1794
+      },
+      {
+        "id":"MLU1723",
+        "name":"Software",
+        "total_items_in_this_category":3158
+      },
+      {
+        "id":"MLU1912",
+        "name":"Otros",
+        "total_items_in_this_category":6899
+      }
+    ]
+  },
+  {
+    "categorieName":"Industrias y Oficinas",
+    "children_categories":[
+      {
+        "id":"MLU2102",
+        "name":"Equipamiento para Oficinas",
+        "total_items_in_this_category":14064
+      },
+      {
+        "id":"MLU1512",
+        "name":"Industria Agrícola",
+        "total_items_in_this_category":2529
+      },
+      {
+        "id":"MLU1508",
+        "name":"Industria Automotriz",
+        "total_items_in_this_category":2554
+      },
+      {
+        "id":"MLU5182",
+        "name":"Industria Gastronómica",
+        "total_items_in_this_category":9508
+      },
+      {
+        "id":"MLU5160",
+        "name":"Industria Textil",
+        "total_items_in_this_category":5168
+      },
+      {
+        "id":"MLU164684",
+        "name":"Seguridad Industrial",
+        "total_items_in_this_category":3789
+      },
+      {
+        "id":"MLU165046",
+        "name":"Tanques y Contenedores",
+        "total_items_in_this_category":1034
+      },
+      {
+        "id":"MLU1893",
+        "name":"Otros",
+        "total_items_in_this_category":6401
+      }
+    ]
+  },
+  {
+    "categorieName":"Salud y Belleza",
+    "children_categories":[
+      {
+        "id":"MLU1253",
+        "name":"Cuidado de la Piel",
+        "total_items_in_this_category":6211
+      },
+      {
+        "id":"MLU6556",
+        "name":"Cuidado de la Salud",
+        "total_items_in_this_category":8204
+      },
+      {
+        "id":"MLU29762",
+        "name":"Cuidado de Manos",
+        "total_items_in_this_category":3266
+      },
+      {
+        "id":"MLU1263",
+        "name":"Cuidado del Cabello",
+        "total_items_in_this_category":14421
+      },
+      {
+        "id":"MLU1260",
+        "name":"Cuidado del Cuerpo",
+        "total_items_in_this_category":9968
+      },
+      {
+        "id":"MLU1248",
+        "name":"Maquillaje",
+        "total_items_in_this_category":9616
+      },
+      {
+        "id":"MLU203150",
+        "name":"Medicamentos",
+        "total_items_in_this_category":1164
+      },
+      {
+        "id":"MLU1271",
+        "name":"Perfumes y Fragancias",
+        "total_items_in_this_category":7815
+      },
+      {
+        "id":"MLU1247",
+        "name":"Vitaminas",
+        "total_items_in_this_category":469
+      },
+      {
+        "id":"MLU1275",
+        "name":"Otros",
+        "total_items_in_this_category":2839
+      }
+    ]
+  },
+  {
+    "categorieName":"Hogar, Muebles y Jardín",
+    "children_categories":[
+      {
+        "id":"MLU1613",
+        "name":"Baño",
+        "total_items_in_this_category":9873
+      },
+      {
+        "id":"MLU1592",
+        "name":"Cocina y Bazar",
+        "total_items_in_this_category":40520
+      },
+      {
+        "id":"MLU164210",
+        "name":"Comedor",
+        "total_items_in_this_category":10805
+      },
+      {
+        "id":"MLU1631",
+        "name":"Decoración",
+        "total_items_in_this_category":32368
+      },
+      {
+        "id":"MLU1608",
+        "name":"Dormitorio",
+        "total_items_in_this_category":26866
+      },
+      {
+        "id":"MLU68166",
+        "name":"Escritorio",
+        "total_items_in_this_category":6355
+      },
+      {
+        "id":"MLU1582",
+        "name":"Iluminación para el Hogar",
+        "total_items_in_this_category":28092
+      },
+      {
+        "id":"MLU1621",
+        "name":"Jardín y Exterior",
+        "total_items_in_this_category":42281
+      },
+      {
+        "id":"MLU189726",
+        "name":"Lavadero y Limpieza",
+        "total_items_in_this_category":2653
+      },
+      {
+        "id":"MLU164205",
+        "name":"Living",
+        "total_items_in_this_category":26423
+      },
+      {
+        "id":"MLU1902",
+        "name":"Otros",
+        "total_items_in_this_category":7141
+      }
+    ]
+  },
+  {
+    "categorieName":"Joyas y Relojes",
+    "children_categories":[
+      {
+        "id":"MLU1431",
+        "name":"Joyas",
+        "total_items_in_this_category":19625
+      },
+      {
+        "id":"MLU1442",
+        "name":"Relojes",
+        "total_items_in_this_category":16865
+      },
+      {
+        "id":"MLU3938",
+        "name":"Otros",
+        "total_items_in_this_category":938
+      }
+    ]
+  },
+  {
+    "categorieName":"Otras categorías",
+    "children_categories":[
+      {
+        "id":"MLU2818",
+        "name":"Adultos",
+        "total_items_in_this_category":5285
+      },
+      {
+        "id":"MLU188003",
+        "name":"Cumpleaños y Fiestas",
+        "total_items_in_this_category":20936
+      },
+      {
+        "id":"MLU1740",
+        "name":"Esoterismo",
+        "total_items_in_this_category":1109
+      },
+      {
+        "id":"MLU188002",
+        "name":"Fuegos Artificiales",
+        "total_items_in_this_category":4441
+      },
+      {
+        "id":"MLU188265",
+        "name":"Productos para Tatuajes",
+        "total_items_in_this_category":185
+      },
+      {
+        "id":"MLU203148",
+        "name":"Seguros de Viaje y Vida",
+        "total_items_in_this_category":5
+      },
+      {
+        "id":"MLU203038",
+        "name":"TV Cable",
+        "total_items_in_this_category":126
+      },
+      {
+        "id":"MLU164681",
+        "name":"Útiles Escolares",
+        "total_items_in_this_category":3006
+      },
+      {
+        "id":"MLU3530",
+        "name":"Otros",
+        "total_items_in_this_category":21465
+      }
+    ]
+  },
+  {
+    "categorieName":"Electrodomésticos y Aires Ac.",
+    "children_categories":[
+      {
+        "id":"MLU1581",
+        "name":"Artefactos para el Hogar",
+        "total_items_in_this_category":3876
+      },
+      {
+        "id":"MLU77689",
+        "name":"Calefones y Termotanques",
+        "total_items_in_this_category":1913
+      },
+      {
+        "id":"MLU68088",
+        "name":"Campanas y Extractores",
+        "total_items_in_this_category":1618
+      },
+      {
+        "id":"MLU2531",
+        "name":"Climatización",
+        "total_items_in_this_category":8511
+      },
+      {
+        "id":"MLU1580",
+        "name":"Cocción",
+        "total_items_in_this_category":5688
+      },
+      {
+        "id":"MLU68076",
+        "name":"Cuidado Personal",
+        "total_items_in_this_category":7290
+      },
+      {
+        "id":"MLU68113",
+        "name":"Electrodomésticos de Cocina",
+        "total_items_in_this_category":12068
+      },
+      {
+        "id":"MLU1578",
+        "name":"Lavado y Secado de Ropa",
+        "total_items_in_this_category":3521
+      },
+      {
+        "id":"MLU1579",
+        "name":"Lavavajillas",
+        "total_items_in_this_category":606
+      },
+      {
+        "id":"MLU4622",
+        "name":"Máquinas de Coser",
+        "total_items_in_this_category":1520
+      },
+      {
+        "id":"MLU188020",
+        "name":"Microondas y Repuestos",
+        "total_items_in_this_category":1443
+      },
+      {
+        "id":"MLU1576",
+        "name":"Refrigeración",
+        "total_items_in_this_category":6264
+      },
+      {
+        "id":"MLU1899",
+        "name":"Otros Electrodomésticos",
+        "total_items_in_this_category":1313
+      }
+    ]
+  },
+  {
+    "categorieName":"Arte y Antigüedades",
+    "children_categories":[
+      {
+        "id":"MLU2670",
+        "name":"Adornos de Vitrina",
+        "total_items_in_this_category":2587
+      },
+      {
+        "id":"MLU1372",
+        "name":"Antigüedades",
+        "total_items_in_this_category":32623
+      },
+      {
+        "id":"MLU1945",
+        "name":"Artesanías",
+        "total_items_in_this_category":15282
+      },
+      {
+        "id":"MLU2671",
+        "name":"Cristal y Vidrio",
+        "total_items_in_this_category":3180
+      },
+      {
+        "id":"MLU188257",
+        "name":"Cuadros y Láminas",
+        "total_items_in_this_category":6049
+      },
+      {
+        "id":"MLU179263",
+        "name":"Filatelia",
+        "total_items_in_this_category":3913
+      },
+      {
+        "id":"MLU110855",
+        "name":"Juguetes Antiguos",
+        "total_items_in_this_category":1036
+      },
+      {
+        "id":"MLU1885",
+        "name":"Otros Productos",
+        "total_items_in_this_category":4036
+      }
+    ]
+  },
+  {
+    "categorieName":"Bebés",
+    "children_categories":[
+      {
+        "id":"MLU5360",
+        "name":"Alimentación del Bebé",
+        "total_items_in_this_category":4157
+      },
+      {
+        "id":"MLU15046",
+        "name":"Cuarto del Bebé",
+        "total_items_in_this_category":6209
+      },
+      {
+        "id":"MLU5373",
+        "name":"Higiene y Cuidado del Bebé",
+        "total_items_in_this_category":4926
+      },
+      {
+        "id":"MLU1392",
+        "name":"Juguetes",
+        "total_items_in_this_category":4338
+      },
+      {
+        "id":"MLU1402",
+        "name":"Mamá y Futura Mamá",
+        "total_items_in_this_category":2134
+      },
+      {
+        "id":"MLU1385",
+        "name":"Paseo del Bebé",
+        "total_items_in_this_category":7379
+      },
+      {
+        "id":"MLU8591",
+        "name":"Recuerdos y Cotillones",
+        "total_items_in_this_category":1576
+      },
+      {
+        "id":"MLU1396",
+        "name":"Ropa de Bebé",
+        "total_items_in_this_category":12755
+      },
+      {
+        "id":"MLU1889",
+        "name":"Otros",
+        "total_items_in_this_category":1262
+      }
+    ]
+  },
+  {
+    "categorieName":"Servicios",
+    "children_categories":[
+      {
+        "id":"MLU9028",
+        "name":"Belleza y Cuidado Personal",
+        "total_items_in_this_category":385
+      },
+      {
+        "id":"MLU1563",
+        "name":"Clases y Cursos",
+        "total_items_in_this_category":548
+      },
+      {
+        "id":"MLU9135",
+        "name":"Fiestas y Eventos",
+        "total_items_in_this_category":1662
+      },
+      {
+        "id":"MLU116563",
+        "name":"Hogar",
+        "total_items_in_this_category":1092
+      },
+      {
+        "id":"MLU8988",
+        "name":"Imprenta",
+        "total_items_in_this_category":100
+      },
+      {
+        "id":"MLU116490",
+        "name":"Mantenimiento de Vehículos",
+        "total_items_in_this_category":334
+      },
+      {
+        "id":"MLU9056",
+        "name":"Medicina y Salud",
+        "total_items_in_this_category":269
+      },
+      {
+        "id":"MLU9038",
+        "name":"Mudanzas y Traslados",
+        "total_items_in_this_category":518
+      },
+      {
+        "id":"MLU116472",
+        "name":"Oficios",
+        "total_items_in_this_category":937
+      },
+      {
+        "id":"MLU1541",
+        "name":"Profesionales",
+        "total_items_in_this_category":615
+      },
+      {
+        "id":"MLU9004",
+        "name":"Servicio Técnico",
+        "total_items_in_this_category":814
+      },
+      {
+        "id":"MLU159037",
+        "name":"Servicios para Mascotas",
+        "total_items_in_this_category":131
+      },
+      {
+        "id":"MLU1229",
+        "name":"Viajes y Turismo",
+        "total_items_in_this_category":376
+      },
+      {
+        "id":"MLU1898",
+        "name":"Otros Servicios",
+        "total_items_in_this_category":1303
+      }
+    ]
+  },
+  {
+    "categorieName":"Celulares y Telefonía",
+    "children_categories":[
+      {
+        "id":"MLU3813",
+        "name":"Accesorios para Celulares",
+        "total_items_in_this_category":88245
+      },
+      {
+        "id":"MLU1055",
+        "name":"Celulares y Smartphones",
+        "total_items_in_this_category":23711
+      },
+      {
+        "id":"MLU2908",
+        "name":"Handies",
+        "total_items_in_this_category":3112
+      },
+      {
+        "id":"MLU1058",
+        "name":"Radiofrecuencia",
+        "total_items_in_this_category":2696
+      },
+      {
+        "id":"MLU165052",
+        "name":"Repuestos para Celulares",
+        "total_items_in_this_category":29008
+      },
+      {
+        "id":"MLU185499",
+        "name":"Smartband",
+        "total_items_in_this_category":206
+      },
+      {
+        "id":"MLU117113",
+        "name":"Smartwatch",
+        "total_items_in_this_category":3669
+      },
+      {
+        "id":"MLU46195",
+        "name":"Telefonía Fija",
+        "total_items_in_this_category":1809
+      },
+      {
+        "id":"MLU2895",
+        "name":"Teléfonos Inalámbricos",
+        "total_items_in_this_category":523
+      },
+      {
+        "id":"MLU1915",
+        "name":"Otros",
+        "total_items_in_this_category":1112
+      }
+    ]
+  },
+  {
+    "categorieName":"Consolas y Videojuegos",
+    "children_categories":[
+      {
+        "id":"MLU2535",
+        "name":"Juegos para PC",
+        "total_items_in_this_category":3430
+      },
+      {
+        "id":"MLU195439",
+        "name":"Lentes de Realidad Virtual",
+        "total_items_in_this_category":71
+      },
+      {
+        "id":"MLU8232",
+        "name":"Maquinitas",
+        "total_items_in_this_category":432
+      },
+      {
+        "id":"MLU185639",
+        "name":"Nintendo",
+        "total_items_in_this_category":6608
+      },
+      {
+        "id":"MLU185635",
+        "name":"PlayStation",
+        "total_items_in_this_category":20230
+      },
+      {
+        "id":"MLU185641",
+        "name":"Sega",
+        "total_items_in_this_category":590
+      },
+      {
+        "id":"MLU185637",
+        "name":"Xbox",
+        "total_items_in_this_category":8340
+      },
+      {
+        "id":"MLU1152",
+        "name":"Otras Consolas",
+        "total_items_in_this_category":1372
+      }
+    ]
+  },
+  {
+    "categorieName":"Instrumentos Musicales",
+    "children_categories":[
+      {
+        "id":"MLU3011",
+        "name":"Amplificadores",
+        "total_items_in_this_category":1144
+      },
+      {
+        "id":"MLU3018",
+        "name":"Bajos",
+        "total_items_in_this_category":542
+      },
+      {
+        "id":"MLU3004",
+        "name":"Baterías y Percusión",
+        "total_items_in_this_category":3377
+      },
+      {
+        "id":"MLU3013",
+        "name":"Consolas de Sonido",
+        "total_items_in_this_category":96
+      },
+      {
+        "id":"MLU3012",
+        "name":"Efectos de Sonido",
+        "total_items_in_this_category":1499
+      },
+      {
+        "id":"MLU2987",
+        "name":"Guitarras",
+        "total_items_in_this_category":3262
+      },
+      {
+        "id":"MLU4464",
+        "name":"Instrumentos de Cuerda",
+        "total_items_in_this_category":485
+      },
+      {
+        "id":"MLU3005",
+        "name":"Instrumentos de Viento",
+        "total_items_in_this_category":755
+      },
+      {
+        "id":"MLU3006",
+        "name":"Micrófonos",
+        "total_items_in_this_category":186
+      },
+      {
+        "id":"MLU26982",
+        "name":"Parlantes",
+        "total_items_in_this_category":95
+      },
+      {
+        "id":"MLU3022",
+        "name":"Teclados, Pianos y Órganos",
+        "total_items_in_this_category":1763
+      },
+      {
+        "id":"MLU1187",
+        "name":"Otros",
+        "total_items_in_this_category":813
+      }
+    ]
+  },
+  {
+    "categorieName":"Deportes y Fitness",
+    "children_categories":[
+      {
+        "id":"MLU1277",
+        "name":"Acuáticos",
+        "total_items_in_this_category":7717
+      },
+      {
+        "id":"MLU1338",
+        "name":"Aerobics y Fitness",
+        "total_items_in_this_category":13437
+      },
+      {
+        "id":"MLU80531",
+        "name":"Artes Marciales",
+        "total_items_in_this_category":4816
+      },
+      {
+        "id":"MLU1309",
+        "name":"Básquetbol",
+        "total_items_in_this_category":828
+      },
+      {
+        "id":"MLU1292",
+        "name":"Bicicletas y Ciclismo",
+        "total_items_in_this_category":17795
+      },
+      {
+        "id":"MLU7764",
+        "name":"Billar y Pool",
+        "total_items_in_this_category":51
+      },
+      {
+        "id":"MLU9900",
+        "name":"Boxeo",
+        "total_items_in_this_category":843
+      },
+      {
+        "id":"MLU3724",
+        "name":"Calzado",
+        "total_items_in_this_category":2953
+      },
+      {
+        "id":"MLU1362",
+        "name":"Camping",
+        "total_items_in_this_category":19121
+      },
+      {
+        "id":"MLU1355",
+        "name":"Extremos",
+        "total_items_in_this_category":865
+      },
+      {
+        "id":"MLU1285",
+        "name":"Fútbol",
+        "total_items_in_this_category":8651
+      },
+      {
+        "id":"MLU1342",
+        "name":"Golf",
+        "total_items_in_this_category":536
+      },
+      {
+        "id":"MLU4481",
+        "name":"Hockey",
+        "total_items_in_this_category":435
+      },
+      {
+        "id":"MLU8776",
+        "name":"Lentes Deportivos y de Sol",
+        "total_items_in_this_category":160
+      },
+      {
+        "id":"MLU1293",
+        "name":"Patín",
+        "total_items_in_this_category":1684
+      },
+      {
+        "id":"MLU1979",
+        "name":"Pesca",
+        "total_items_in_this_category":7529
+      },
+      {
+        "id":"MLU1316",
+        "name":"Rugby",
+        "total_items_in_this_category":233
+      },
+      {
+        "id":"MLU1295",
+        "name":"Skateboarding",
+        "total_items_in_this_category":1205
+      },
+      {
+        "id":"MLU3551",
+        "name":"Suplementos Alimenticios",
+        "total_items_in_this_category":2438
+      },
+      {
+        "id":"MLU1322",
+        "name":"Tenis y Paddle",
+        "total_items_in_this_category":1337
+      },
+      {
+        "id":"MLU1358",
+        "name":"Otros",
+        "total_items_in_this_category":2830
+      }
+    ]
+  },
+  {
+    "categorieName":"Alimentos y Bebidas",
+    "children_categories":[
+      {
+        "id":"MLU1411",
+        "name":"Bebidas Alcohólicas",
+        "total_items_in_this_category":4739
+      },
+      {
+        "id":"MLU195788",
+        "name":"Bebidas Analcohólicas",
+        "total_items_in_this_category":936
+      },
+      {
+        "id":"MLU1423",
+        "name":"Comestibles",
+        "total_items_in_this_category":7671
+      },
+      {
+        "id":"MLU1417",
+        "name":"Otros Productos",
+        "total_items_in_this_category":1084
+      }
+    ]
+  },
+  {
+    "categorieName":"Juegos y Juguetes",
+    "children_categories":[
+      {
+        "id":"MLU110849",
+        "name":"Autos de Juguete",
+        "total_items_in_this_category":3890
+      },
+      {
+        "id":"MLU111079",
+        "name":"Disfraces y Cotillón",
+        "total_items_in_this_category":8528
+      },
+      {
+        "id":"MLU1167",
+        "name":"Juegos de Aire Libre y Agua",
+        "total_items_in_this_category":3578
+      },
+      {
+        "id":"MLU1161",
+        "name":"Juegos de Mesa",
+        "total_items_in_this_category":2256
+      },
+      {
+        "id":"MLU6159",
+        "name":"Juegos de Salón",
+        "total_items_in_this_category":966
+      },
+      {
+        "id":"MLU1153",
+        "name":"Juegos Electrónicos",
+        "total_items_in_this_category":3875
+      },
+      {
+        "id":"MLU2533",
+        "name":"Juguetes",
+        "total_items_in_this_category":16800
+      },
+      {
+        "id":"MLU110851",
+        "name":"Muñecas y Accesorios",
+        "total_items_in_this_category":3453
+      },
+      {
+        "id":"MLU176854",
+        "name":"Muñecos y Accesorios",
+        "total_items_in_this_category":9639
+      },
+      {
+        "id":"MLU6151",
+        "name":"Vehículos para Niños",
+        "total_items_in_this_category":2726
+      },
+      {
+        "id":"MLU1910",
+        "name":"Otros",
+        "total_items_in_this_category":2270
+      }
+    ]
+  },
+  {
+    "categorieName":"Electrónica, Audio y Video",
+    "children_categories":[
+      {
+        "id":"MLU3690",
+        "name":"Accesorios para Audio y Video",
+        "total_items_in_this_category":37721
+      },
+      {
+        "id":"MLU6348",
+        "name":"Audio para Autos",
+        "total_items_in_this_category":11856
+      },
+      {
+        "id":"MLU1010",
+        "name":"Audio para el Hogar",
+        "total_items_in_this_category":7846
+      },
+      {
+        "id":"MLU1012",
+        "name":"Audio Portable",
+        "total_items_in_this_category":6890
+      },
+      {
+        "id":"MLU1024",
+        "name":"Audio Profesional y DJs",
+        "total_items_in_this_category":14553
+      },
+      {
+        "id":"MLU1060",
+        "name":"Calculadoras y Agendas",
+        "total_items_in_this_category":566
+      },
+      {
+        "id":"MLU178088",
+        "name":"Drones",
+        "total_items_in_this_category":1284
+      },
+      {
+        "id":"MLU1001",
+        "name":"DVD y Video",
+        "total_items_in_this_category":2580
+      },
+      {
+        "id":"MLU1941",
+        "name":"Fotocopiadoras",
+        "total_items_in_this_category":28
+      },
+      {
+        "id":"MLU3571",
+        "name":"GPS",
+        "total_items_in_this_category":1079
+      },
+      {
+        "id":"MLU8702",
+        "name":"iPod",
+        "total_items_in_this_category":1321
+      },
+      {
+        "id":"MLU1019",
+        "name":"MP3, MP4 y MP5 Players",
+        "total_items_in_this_category":2125
+      },
+      {
+        "id":"MLU4641",
+        "name":"Pilas, Baterías y Cargadores",
+        "total_items_in_this_category":4870
+      },
+      {
+        "id":"MLU2830",
+        "name":"Proyectores y Pantallas",
+        "total_items_in_this_category":2924
+      },
+      {
+        "id":"MLU2912",
+        "name":"Seguridad y Vigilancia",
+        "total_items_in_this_category":25689
+      },
+      {
+        "id":"MLU1002",
+        "name":"Televisores",
+        "total_items_in_this_category":6545
+      },
+      {
+        "id":"MLU1006",
+        "name":"Video Cámaras",
+        "total_items_in_this_category":2894
+      },
+      {
+        "id":"MLU1070",
+        "name":"Otros",
+        "total_items_in_this_category":14316
+      }
+    ]
+  },
+  {
+    "categorieName":"Música, Libros y Películas",
+    "children_categories":[
+      {
+        "id":"MLU1196",
+        "name":"Libros",
+        "total_items_in_this_category":618213
+      },
+      {
+        "id":"MLU1174",
+        "name":"Música",
+        "total_items_in_this_category":22701
+      },
+      {
+        "id":"MLU1169",
+        "name":"Películas",
+        "total_items_in_this_category":3555
+      },
+      {
+        "id":"MLU1955",
+        "name":"Revistas",
+        "total_items_in_this_category":7115
+      },
+      {
+        "id":"MLU7841",
+        "name":"Series",
+        "total_items_in_this_category":1421
+      },
+      {
+        "id":"MLU1228",
+        "name":"Otros",
+        "total_items_in_this_category":3767
+      }
+    ]
+  },
+  {
+    "categorieName":"Cámaras y Accesorios",
+    "children_categories":[
+      {
+        "id":"MLU1049",
+        "name":"Accesorios para Cámaras",
+        "total_items_in_this_category":18702
+      },
+      {
+        "id":"MLU4239",
+        "name":"Baterías, Cargadores y Pilas",
+        "total_items_in_this_category":10715
+      },
+      {
+        "id":"MLU1040",
+        "name":"Cámaras Analógicas",
+        "total_items_in_this_category":342
+      },
+      {
+        "id":"MLU1044",
+        "name":"Cámaras Antiguas o Colección",
+        "total_items_in_this_category":968
+      },
+      {
+        "id":"MLU1042",
+        "name":"Cámaras Digitales",
+        "total_items_in_this_category":5099
+      },
+      {
+        "id":"MLU1043",
+        "name":"Cámaras Instantáneas",
+        "total_items_in_this_category":372
+      },
+      {
+        "id":"MLU10372",
+        "name":"Laboratorios y Mini Labs",
+        "total_items_in_this_category":332
+      },
+      {
+        "id":"MLU6336",
+        "name":"Memorias Digitales",
+        "total_items_in_this_category":1067
+      },
+      {
+        "id":"MLU4708",
+        "name":"Telescopios y Binoculares",
+        "total_items_in_this_category":1313
+      },
+      {
+        "id":"MLU4660",
+        "name":"Video Cámaras",
+        "total_items_in_this_category":2894
+      },
+      {
+        "id":"MLU1914",
+        "name":"Otros",
+        "total_items_in_this_category":1718
+      }
+    ]
+  },
+  {
+    "categorieName":"Autos, Motos y Otros",
+    "children_categories":[
+      {
+        "id":"MLU1746",
+        "name":"Autos de Colección",
+        "total_items_in_this_category":793
+      },
+      {
+        "id":"MLU1744",
+        "name":"Autos y Camionetas",
+        "total_items_in_this_category":23351
+      },
+      {
+        "id":"MLU41696",
+        "name":"Camiones",
+        "total_items_in_this_category":1560
+      },
+      {
+        "id":"MLU81250",
+        "name":"Maquinaria Agrícola",
+        "total_items_in_this_category":1645
+      },
+      {
+        "id":"MLU208752",
+        "name":"Maquinaria de Construcción",
+        "total_items_in_this_category":243
+      },
+      {
+        "id":"MLU1763",
+        "name":"Motos",
+        "total_items_in_this_category":4732
+      },
+      {
+        "id":"MLU1785",
+        "name":"Náutica",
+        "total_items_in_this_category":739
+      },
+      {
+        "id":"MLU1907",
+        "name":"Otros Vehículos",
+        "total_items_in_this_category":2204
+      }
+    ]
+  },
+  {
+    "categorieName":"Herramientas y Construcción",
+    "children_categories":[
+      {
+        "id":"MLU1500",
+        "name":"Construcción",
+        "total_items_in_this_category":42466
+      },
+      {
+        "id":"MLU164461",
+        "name":"Herramientas",
+        "total_items_in_this_category":59697
+      },
+      {
+        "id":"MLU211794",
+        "name":"Mobiliario para Baños",
+        "total_items_in_this_category":6237
+      },
+      {
+        "id":"MLU211793",
+        "name":"Mobiliario para Cocinas",
+        "total_items_in_this_category":5919
+      },
+      {
+        "id":"MLU165327",
+        "name":"Pisos, Paredes y Aberturas",
+        "total_items_in_this_category":14869
+      },
+      {
+        "id":"MLU208737",
+        "name":"Otros",
+        "total_items_in_this_category":2058
+      }
+    ]
+  }
+]

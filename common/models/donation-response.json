@@ -1,0 +1,48 @@
+{
+  "name": "DonationResponse",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "creationDate": {
+      "type": "date",
+      "required": true
+    },
+    "amount": {
+      "type": "number",
+      "required": true
+    },
+    "alreadyDelivered": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "isCanceled": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "donationRequest": {
+      "type": "belongsTo",
+      "model": "DonationRequest",
+      "foreignKey": ""
+    },
+    "donner": {
+      "type": "belongsTo",
+      "model": "Donner",
+      "foreignKey": ""
+    },
+    "donnerReview": {
+      "type": "belongsTo",
+      "model": "DonnerReview",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

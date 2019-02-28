@@ -1,0 +1,77 @@
+{
+  "name": "Organization",
+  "plural": "Organizations",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "reputation":{
+      "type":"integer",
+      "required":false
+    },
+    "inscriptionCode":{
+      "type":"string",
+      "required":true
+    },
+    "name":{
+      "type":"string",
+      "required":true
+    },
+    "urlInscriptionPapers":{
+      "type":"string",
+      "required":true
+    },
+    "street":{
+      "type":"string",
+      "required": true
+    },
+    "streetNumber":{
+      "type":"string",
+      "required": true
+    },
+    "pendingApprobal":{
+      "type":"boolean",
+      "required": false
+    },
+    "webPage":{
+      "type":"string",
+      "required":false
+    },
+    "facebookPage":{
+      "type":"string",
+      "required":false
+    },
+    "logoUrl":{
+      "type":"string",
+      "required":false
+    }
+
+  },
+  "validations": [],
+  "relations": {
+    "city": {
+      "type": "belongsTo",
+      "model": "City",
+      "foreignKey": ""
+    },
+    "contacts": {
+      "type": "hasMany",
+      "model": "Contact",
+      "foreignKey": ""
+    },
+    "donnerReviews": {
+      "type": "hasMany",
+      "model": "DonnerReview",
+      "foreignKey": ""
+    },
+    "donationRequests": {
+      "type": "hasMany",
+      "model": "DonationRequest",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

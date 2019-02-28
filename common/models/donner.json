@@ -1,0 +1,52 @@
+{
+  "name": "Donner",
+  "plural": "Donners",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "inheritAcls": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "dni":{
+      "type": "string",
+      "required": true
+    },
+    "reputation":{
+      "type":"number",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {
+      "city": {
+        "type": "belongsTo",
+        "model": "City",
+        "foreignKey": ""
+     },
+    "donationResponses": {
+      "type": "hasMany",
+      "model": "DonationResponse",
+      "foreignKey": ""
+    },
+    "organizationReviews": {
+      "type": "hasMany",
+      "model": "OrganizationReview",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

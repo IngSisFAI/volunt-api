@@ -1,0 +1,35 @@
+{
+  "name": "OrganizationReview",
+  "plural": "OrganizationReviews",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "liked": {
+      "type": "boolean"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "donationRequest": {
+      "type": "belongsTo",
+      "model": "DonationRequest",
+      "foreignKey": ""
+    },
+    "donner": {
+      "type": "belongsTo",
+      "model": "Donner",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {},
+  "mixins": {
+    "TimeStamp" : true
+  }
+}
